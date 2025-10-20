@@ -171,52 +171,79 @@ header {
 
 main {
     flex: 1;
-    max-width: 1200px;
+    max-width: 100%;
     width: 100%;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
+    margin: 0;
+    padding: 0;
 }
 
 .content-section {
     background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
+    padding: 2rem 1.5rem;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+    position: relative;
 }
 
-.content-section h1 {
+.content-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 2px;
+    background-color: #e0e0e0;
+}
+
+.content-section:last-of-type::after {
+    display: none;
+}
+
+.content-section h1,
+.content-section h2 {
     color: var(--gadfly-green);
-    font-size: 2rem;
+    margin-top: 0;
     margin-bottom: 1rem;
+}
+
+.content-section p {
+    margin-bottom: 1rem;
+}
+
+.content-section p:last-child {
+    margin-bottom: 0;
+}
+
+/* ========================================
+   HOMEPAGE SECTIONS
+   ======================================== */
+
+.hero-section {
+    text-align: center;
+    padding: 2rem 1.5rem !important;
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .intro-text {
     font-size: 1.2rem;
     color: #666;
     text-align: center;
-    margin-bottom: 3rem;
-}
-
-/* ========================================
-   HISTORY SECTION
-   ======================================== */
-
-.history-section {
-    margin-top: 3rem;
-}
-
-.history-section h2 {
-    color: var(--gadfly-green);
-    border-bottom: 3px solid var(--gadfly-green);
-    padding-bottom: 0.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
 }
 
 .timeline-item {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     padding-left: 2rem;
     border-left: 3px solid var(--gadfly-green);
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
 }
 
 .timeline-item h3 {
@@ -227,6 +254,45 @@ main {
 .timeline-item p {
     margin: 0;
     color: #555;
+}
+
+.faq-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.faq-item h3 {
+    color: var(--gadfly-green);
+    margin: 0 0 0.5rem 0;
+}
+
+.faq-item p {
+    margin: 0;
+    color: #555;
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--gadfly-green);
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background: #1f3810;
+    transform: translateY(-2px);
 }
 
 /* ========================================
@@ -255,6 +321,8 @@ main {
     object-fit: cover;
     border-radius: 8px;
     flex-shrink: 0;
+    display: block;
+    margin: 0 auto;
 }
 
 .author-info h2 {
@@ -415,7 +483,7 @@ main {
 .document-page {
     background-color: #fff;
     max-width: 900px;
-    margin: 0 auto;
+    margin: 2rem auto;
     padding: 3rem 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -568,6 +636,7 @@ footer a:hover {
     }
 
     .document-page {
+        margin: 1rem auto;
         padding: 2rem 1.5rem;
     }
 
@@ -600,8 +669,21 @@ footer a:hover {
         margin-left: 0;
     }
 
-    main {
-        padding: 3rem 2rem;
+    .content-section {
+        padding: 2.5rem 2rem;
+    }
+
+    .content-section::after {
+        left: 2rem;
+        right: 2rem;
+    }
+
+    .hero-section {
+        padding: 2.5rem 2rem !important;
+    }
+
+    .hero-section h1 {
+        font-size: 3rem;
     }
 
     footer {
@@ -625,8 +707,17 @@ footer a:hover {
         margin-right: 1.5rem;
     }
 
-    main {
-        padding: 4rem 3rem;
+    .content-section {
+        padding: 3rem 3rem;
+    }
+
+    .content-section::after {
+        left: 3rem;
+        right: 3rem;
+    }
+
+    .hero-section {
+        padding: 3rem 3rem !important;
     }
 
     footer {
@@ -635,6 +726,7 @@ footer a:hover {
     }
 
     .document-page {
+        margin: 3rem auto;
         padding: 4rem 3rem;
     }
 }
