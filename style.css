@@ -801,3 +801,8 @@ body {
     padding: 0;
 }
 
+/* Add to your CSS */
+.document-page > p:first-of-type {
+    margin-bottom: 2rem;
+}
+
