@@ -815,3 +815,173 @@ body {
     text-decoration: none;
 }
 
+.newsletter-signup {
+    width: 100%;
+    margin: 0;
+    padding: 2rem 1rem;
+    background-color: rgba(9, 70, 29, 0.1);
+    text-align: center;
+}
+
+.newsletter-signup h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--gadfly-green);
+}
+
+.newsletter-signup p {
+    margin: 0 0 1rem 0;
+    font-size: 0.9rem;
+}
+
+.newsletter-signup form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.newsletter-signup input[type="email"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.75rem;
+    border: 2px solid var(--gadfly-green);
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.newsletter-signup button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--gadfly-green);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter-signup button:hover {
+    background-color: #0a5523;
+}
+
+@media (max-width: 768px) {
+    .newsletter-signup form {
+        flex-direction: column;
+    }
+
+    .newsletter-signup input[type="email"] {
+        width: 100%;
+    }
+}
+
+.newsletter-signup {
+    width: 100%;
+    margin: 0;
+    padding: 2rem 1rem;
+    background-color: rgba(9, 70, 29, 0.1);
+    text-align: center;
+}
+
+.newsletter-signup h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--gadfly-green);
+}
+
+.newsletter-signup p {
+    margin: 0 0 1rem 0;
+    font-size: 0.9rem;
+}
+
+.embeddable-buttondown-form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.embeddable-buttondown-form input[type="email"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.75rem;
+    border: 2px solid var(--gadfly-green);
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.embeddable-buttondown-form button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--gadfly-green);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.embeddable-buttondown-form button:hover {
+    background-color: #0a5523;
+}
+
+@media (max-width: 768px) {
+    .embeddable-buttondown-form {
+        flex-direction: column;
+    }
+
+    .embeddable-buttondown-form input[type="email"] {
+        width: 100%;
+    }
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+}
+
+.contact-form label {
+    font-weight: 600;
+    color: var(--gadfly-green);
+    margin-bottom: 0.25rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 0.75rem;
+    border: 2px solid var(--gadfly-green);
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #0a5523;
+}
+
+.contact-form button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--gadfly-green);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+}
+
+.contact-form button:hover {
+    background-color: #0a5523;
+}
+
