@@ -8,21 +8,20 @@
     <link rel="icon" href="../media/favicon.png" type="image/png">
 </head>
 <body>
-
 <header>
     <div class="logo-container">
         <a href="../index.html">
             <img src="../media/wordmark.svg" alt="The Gadfly Wordmark">
         </a>
     </div>
-
+    <a href="../pdfs/latest/latest.pdf" class="cta-button">Read The Latest Issue</a>
     <button class="hamburger-menu" aria-label="Toggle navigation menu">
       <img src="../media/burger.svg" alt="Menu Icon">
     </button>
+
     <nav class="main-nav">
         <ul>
             <li><a href="read.html">Read The Gadfly</a></li>
-            <li><a href="about-gadfly.html">What's The Gadfly?</a></li>
             <li><a href="about-authors.html">About the Authors</a></li>
             <li><a href="manifesto.html">Manifesto</a></li>
             <li><a href="aoa.html">Articles of Agreement</a></li>
@@ -31,18 +30,55 @@
     </nav>
 </header>
 
-<main>
 
-</main>
+    <main>
+        <section class="content-section">
+            <h1>Contact Us</h1>
+            <p>Have a story tip, feedback, or want to get involved? Reach out to us!</p>
+
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <h2>Send us a message</h2>
+                    <form action="https://formspree.io/f/mjkazlnp" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+                    <div class="contact-method">
+                        <h3>Or Email Us:</h3>
+                        <p><a href="mailto:thegadfly.team@proton.me">thegadfly.team@proton.me</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
 
 <footer>
-    <p>&copy; 2025 The Gadfly. All rights reserved.</p>
+    <p>&copy; 2025 The Gadfly Team - All rights reserved.</p>
     <p>This website is GPLv2 - Find the source code here: https://github.com/Mateo-Grgic/Mateo-Grgic.github.io</p>
     <p>Contact us at: <a href="mailto:thegadfly.team@proton.me">thegadfly.team@proton.me</a></p>
 </footer>
-
 <script src="../script.js"></script>
-
 </body>
 </html>
 

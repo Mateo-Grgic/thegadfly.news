@@ -1,24 +1,58 @@
-* {font-family: 'Open Sans', sans-serif;}
+/* ========================================
+   GLOBAL STYLES & RESETS
+   ======================================== */
 
-body, h1, h2, h3, p, ul, nav {
+* {
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+header, main, footer, section, article, div {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+p, li, a, span {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+h1, h2, h3, p, ul, nav {
     margin: 0;
     padding: 0;
 }
 
 :root {
-  --gadfly-green: #09461d;
-  --text-colour: #fff;
+    --gadfly-green: #09461d;
+    --text-colour: #fff;
 }
 
-.hamburger-menu img {
-    width: 40px;  /* Adjust this value as needed */
-    height: 40px; /* Adjust this value as needed */
-    display: block; /* Often helps with alignment */
-}
-
-/* --- Base Styles (Mobile-First) --- */
-
-/* ... (your existing base styles) ... */
+/* ========================================
+   HEADER & NAVIGATION
+   ======================================== */
 
 header {
     background-color: var(--gadfly-green);
@@ -28,59 +62,54 @@ header {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    position: relative; /* ADD THIS LINE */
+    position: relative;
 }
 
-
 .logo-container img {
-    height: 80px; /* Set to your sweet spot */
+    height: 80px;
     width: auto;
     display: block;
 }
 
 .hamburger-menu {
-    display: block; /* Visible by default on mobile */
+    display: block;
     background: none;
     border: none;
-    font-size: 2rem;
     color: var(--text-colour);
     cursor: pointer;
     padding: 0.5rem;
-    margin-left: auto; /* Pushes it to the right */
+    margin-left: auto;
 }
 
-/* --- Navigation Styles --- */
+.hamburger-menu img {
+    width: 40px;
+    height: 40px;
+    display: block;
+}
+
 .main-nav {
-    /* Use visibility and opacity instead of display for smooth transitions */
     visibility: hidden;
     opacity: 0;
     max-height: 0;
     overflow: hidden;
-
-    /* Keep the positioning */
     flex-direction: column;
     width: 100%;
     position: absolute;
     top: 100%;
     left: 0;
     background-color: var(--gadfly-green);
-    padding: 0; /* Start with no padding */
+    padding: 0;
     text-align: center;
     z-index: 1000;
-
-    /* Add smooth transitions */
     transition: opacity 0.3s ease, max-height 0.3s ease, padding 0.3s ease, visibility 0s 0.3s;
-    /* The visibility delay ensures it stays visible during the animation */
 }
 
 .main-nav.active {
-    display: flex; /* Still need flex for layout */
+    display: flex;
     visibility: visible;
     opacity: 1;
-    max-height: 500px; /* Adjust this if your menu is taller */
-    padding: 1rem 0; /* Restore padding when open */
-
-    /* Remove the visibility delay when opening */
+    max-height: 500px;
+    padding: 1rem 0;
     transition: opacity 0.3s ease, max-height 0.3s ease, padding 0.3s ease;
 }
 
@@ -89,58 +118,531 @@ header {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column; /* Stack list items vertically */
+    flex-direction: column;
     width: 100%;
 }
 
 .main-nav ul li {
-    margin-left: 0; /* Remove horizontal margin */
-    margin-bottom: 15px; /* Add space between stacked items */
-    width: 100%; /* Ensure list items take full width */
-    padding: 0 1rem; /* Add some horizontal padding to list items */
-}
-
-/* Remove the ::after separator for mobile view */
-.main-nav ul li::after {
-    content: "";
+    margin: 0 0 15px 0;
+    width: 100%;
+    padding: 0 1rem;
 }
 
 .main-nav ul li a {
     color: var(--text-colour);
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.2rem; /* Slightly larger font for easier tapping */
-    display: block; /* Make the entire link area clickable */
-    padding: 10px 0; /* Add padding for better tap target */
+    font-size: 1.2rem;
+    display: block;
+    padding: 10px 0;
+    transition: color 0.2s ease;
 }
 
 .main-nav ul li a:hover {
     color: #ccc;
+}
+
+/* ========================================
+   CTA BUTTON
+   ======================================== */
+
+.cta-button {
+    display: none;
+    background-color: #fff;
+    color: var(--gadfly-green);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================
+   MAIN CONTENT
+   ======================================== */
+
+main {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+.content-section {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.content-section h1 {
+    color: var(--gadfly-green);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* ========================================
+   HISTORY SECTION
+   ======================================== */
+
+.history-section {
+    margin-top: 3rem;
+}
+
+.history-section h2 {
+    color: var(--gadfly-green);
+    border-bottom: 3px solid var(--gadfly-green);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.timeline-item {
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+    border-left: 3px solid var(--gadfly-green);
+}
+
+.timeline-item h3 {
+    color: var(--gadfly-green);
+    margin: 0 0 0.5rem 0;
+}
+
+.timeline-item p {
+    margin: 0;
+    color: #555;
+}
+
+/* ========================================
+   AUTHOR CARDS
+   ======================================== */
+
+.authors-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.author-card {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid var(--gadfly-green);
+}
+
+.author-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.author-info h2 {
+    margin: 0 0 0.5rem 0;
+    color: var(--gadfly-green);
+}
+
+.author-info p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.author-role {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 0.75rem !important;
+}
+
+/* ========================================
+   ISSUES GRID
+   ======================================== */
+
+.issues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.issue-card {
+    display: block;
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid transparent;
+}
+
+.issue-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--gadfly-green);
+}
+
+.issue-thumbnail {
+    width: 100%;
+    aspect-ratio: 8.5 / 11;
+    object-fit: cover;
+    display: block;
+}
+
+.issue-info {
+    padding: 1rem;
+}
+
+.issue-info h2 {
+    margin: 0 0 0.5rem 0;
+    color: var(--gadfly-green);
+    font-size: 1.25rem;
+}
+
+.issue-date {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* ========================================
+   CONTACT PAGE
+   ======================================== */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.contact-form h2,
+.contact-info h2 {
+    color: var(--gadfly-green);
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--gadfly-green);
+}
+
+.submit-button {
+    background: var(--gadfly-green);
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.submit-button:hover {
+    background: #1f3810;
+}
+
+.contact-method {
+    margin-bottom: 2rem;
+}
+
+.contact-method h3 {
+    color: var(--gadfly-green);
+    margin-bottom: 0.5rem;
+}
+
+.contact-method p {
+    margin: 0.25rem 0;
+}
+
+.contact-method a {
+    color: var(--gadfly-green);
+    text-decoration: none;
+}
+
+.contact-method a:hover {
     text-decoration: underline;
 }
 
-/* --- Footer Styles --- */
-/* ... (your footer styles) ... */
+/* ========================================
+   DOCUMENT PAGES
+   ======================================== */
 
-/* --- Basic Button Styles --- */
-/* ... (your button styles) ... */
+.document-page {
+    background-color: #fff;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.8;
+}
 
-/* --- Main Content Area --- */
-/* ... (your main content styles) ... */
+.document-page h1 {
+    color: var(--gadfly-green);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    border-bottom: 3px solid var(--gadfly-green);
+    padding-bottom: 1rem;
+}
 
-/* --- Responsive Adjustments --- */
+.document-meta {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 3rem;
+}
 
-/* Tablet and larger */
-@media (min-width: 768px) {
-    .logo-container img {
-        height: 100px; /* Larger logo for tablets */
+.article-section {
+    margin-bottom: 2.5rem;
+}
+
+.article-section h2 {
+    color: var(--gadfly-green);
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--gadfly-green);
+    padding-left: 1rem;
+}
+
+.article-section h3 {
+    color: #333;
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.article-section p {
+    margin-bottom: 1rem;
+    text-align: justify;
+    color: #333;
+}
+
+.article-section ol,
+.article-section ul {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.article-section li {
+    margin-bottom: 0.75rem;
+    color: #333;
+}
+
+.article-section ol ol,
+.article-section ul ul {
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+}
+
+/* ========================================
+   PDF VIEWER
+   ======================================== */
+
+.pdf-viewer {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.pdf-viewer iframe {
+    width: 100%;
+    height: 80vh;
+    border: none;
+    border-radius: 4px;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+footer {
+    background-color: #0b130c;
+    color: #eee;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+footer p {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+footer p:last-child {
+    margin-bottom: 0;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: #ccc;
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
+
+/* Mobile (max 767px) */
+@media (max-width: 767px) {
+    .cta-button {
+        display: block;
+        width: 100%;
+        order: 3;
+        margin-top: 1rem;
+        text-align: center;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+
+    .author-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .author-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .issues-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .document-page {
+        padding: 2rem 1.5rem;
+    }
+
+    .document-page h1 {
+        font-size: 2rem;
+    }
+
+    .article-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .article-section p {
+        text-align: left;
     }
 }
 
-/* Desktop */
+/* Tablet (768px+) */
+@media (min-width: 768px) {
+    .logo-container img {
+        height: 100px;
+    }
+
+    .cta-button {
+        display: inline-block;
+        margin-left: auto;
+        margin-right: 1rem;
+    }
+
+    .hamburger-menu {
+        margin-left: 0;
+    }
+
+    main {
+        padding: 3rem 2rem;
+    }
+
+    footer {
+        padding: 2.5rem 2rem;
+    }
+
+    .pdf-viewer iframe {
+        height: 85vh;
+    }
+}
+
+/* Desktop (1410px+) */
 @media (min-width: 1410px) {
     .logo-container img {
-        height: 120px; /* Even larger for desktop */
+        height: 120px;
+    }
+
+    .cta-button {
+        font-size: 1.2rem;
+        padding: 0.85rem 2rem;
+        margin-right: 1.5rem;
+    }
+
+    main {
+        padding: 4rem 3rem;
+    }
+
+    footer {
+        padding: 3rem 3rem;
+        font-size: 1rem;
+    }
+
+    .document-page {
+        padding: 4rem 3rem;
+    }
+}
+
+/* Super Wide (1800px+) */
+@media (min-width: 1800px) {
+    .logo-container img {
+        height: 140px;
     }
 }
 
