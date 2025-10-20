@@ -11,43 +11,38 @@ body, h1, h2, h3, p, ul, nav {
   --text-colour: #fff;
 }
 
-
-/* --- Header Styles --- */
 header {
     background-color: var(--gadfly-green);
     color: #000000;
     padding: 1rem 2rem;
-    display: flex; /* Enables Flexbox */
+    display: flex;
     justify-content: space-between; /* Pushes logo and nav to opposite ends */
     align-items: center; /* Vertically centers items in the header */
     text-align: left; /* Default alignment for text within header elements */
-    /* Optional: Limit header width and center it */
     margin: 0px;
 }
 
 .logo-container {
-    /* This div contains the logo image */
-    display: flex; /* Use flexbox to align logo and motto if you add it */
-    align-items: center; /* Vertically align items within the logo container */
+    display: flex;
+    align-items: center;
 }
 
 .logo-container img {
-    /* --- Control the logo size here --- */
-    height: 100px; /* Adjust this value to make the logo smaller */
-    width: auto;  /* Maintain aspect ratio */
-    display: block; /* Removes extra space below the image */
+    height: 100px; 
+    width: auto;
+    display: block;
 }
 
-/* --- Navigation Styles --- */
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex; /* Arranges list items horizontally */
+    display: flex;
 }
 
 nav ul li {
-    margin-left: 20px; /* Space between navigation links */
+    margin-left: 20px;
+    display: flex;
 }
 
 nav ul li a {

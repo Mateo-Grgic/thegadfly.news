@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Gadfly - Home</title>
+    <!-- Ensure the path to style.css is correct for your file structure -->
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="media/favicon.png" type="image/png">
 </head>
@@ -11,12 +12,23 @@
 
 <header>
     <div class="logo-container">
+        <!-- Adjust href path if this HTML file is in a subdirectory -->
         <a href="index.html">
             <img src="media/wordmark.svg" alt="The Gadfly Wordmark">
         </a>
     </div>
-    <nav>
+
+    <!-- Hamburger Menu Button -->
+    <!-- This button will be visible on small screens -->
+    <button class="hamburger-menu" aria-label="Toggle navigation menu">
+        &#9776; <!-- HTML entity for the hamburger icon -->
+    </button>
+
+    <!-- Navigation Menu -->
+    <!-- Added 'main-nav' class for targeting with CSS/JS -->
+    <nav class="main-nav">
         <ul>
+            <!-- Adjust href paths if these files are in subdirectories -->
             <li><a href="pages/read.html">Read The Gadfly</a></li>
             <li><a href="pages/about-gadfly.html">What's The Gadfly?</a></li>
             <li><a href="pages/about-authors.html">About the Authors</a></li>
@@ -27,28 +39,32 @@
     </nav>
 </header>
 
-    <main>
-        <!-- Your main content will go here -->
-        <section class="intro-section">
-            <h1>Welcome to The Gadfly's Website</h1>
-            <p>Your source for breaking news, investigative reporting, and satire.</p>
-            <p>Explore our latest issue, or peruse our previous issues.</p>
-            <a href="pages/read.html" class="button">Read The Gadfly's Latest Issue</a>
-        </section>
+<main>
+    <!-- Your main content will go here -->
+    <section class="intro-section">
+        <h1>Welcome to The Gadfly's Website</h1>
+        <p>Your source for breaking news, investigative reporting, and satire.</p>
+        <p>Explore our latest issue, or peruse our previous issues.</p>
+        <a href="pages/read.html" class="button">Read The Gadfly's Latest Issue</a>
+    </section>
 
-        <section class="latest-issue-highlight">
-            <h2>Latest Issue: Issue #1 - September 2025</h2>
-            <p>The Gadfly's debut issue</p>
-            <a href="pdfs/Gadfly/issue-1.pdf" class="button download-button">Download PDF</a>
-        </section>
-    </main>
+    <section class="latest-issue-highlight">
+        <h2>Latest Issue: Issue #1 - September 2025</h2>
+        <p>The Gadfly's debut issue</p>
+        <a href="pdfs/Gadfly/issue-1.pdf" class="button download-button">Download PDF</a>
+    </section>
+</main>
 
-    <footer>
-        <p>&copy; 2025 The Gadfly. All rights reserved.</p>
-        <p>This website is GPLv2 - Find the source code here: https://github.com/Mateo-Grgic/Mateo-Grgic.github.io
-        <p>Contact us at: <a href="mailto:thegadfly.team@proton.me">thegadfly.team@proton.me</a></p>
-    </footer>
-    
+<footer>
+    <p>&copy; 2025 The Gadfly. All rights reserved.</p>
+    <p>This website is GPLv2 - Find the source code here: https://github.com/Mateo-Grgic/Mateo-Grgic.github.io</p>
+    <p>Contact us at: <a href="mailto:thegadfly.team@proton.me">thegadfly.team@proton.me</a></p>
+</footer>
+
+<!-- Link to your JavaScript file -->
+<!-- Make sure the path is correct based on where you save script.js -->
+<script src="script.js"></script>
+
 </body>
 </html>
 
