@@ -782,3 +782,22 @@ footer a:hover {
     }
 }
 
+/* ========================================
+   GLOBAL STYLES & RESETS
+   ======================================== */
+
+html {
+    background-color: #0b130c; /* Footer color for all overscroll */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
