@@ -1,1 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700');
+* {font-family: 'Open Sans', sans-serif;}
+
+body, h1, h2, h3, p, ul, nav {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+  --gadfly-green: #09461d;
+  --text-colour: #fff;
+}
+
+
+/* --- Header Styles --- */
+header {
+    background-color: var(--gadfly-green);
+    color: #000000;
+    padding: 1rem 2rem;
+    display: flex; /* Enables Flexbox */
+    justify-content: space-between; /* Pushes logo and nav to opposite ends */
+    align-items: center; /* Vertically centers items in the header */
+    text-align: left; /* Default alignment for text within header elements */
+    /* Optional: Limit header width and center it */
+    margin: 0px;
+}
+
+.logo-container {
+    /* This div contains the logo image */
+    display: flex; /* Use flexbox to align logo and motto if you add it */
+    align-items: center; /* Vertically align items within the logo container */
+}
+
+.logo-container img {
+    /* --- Control the logo size here --- */
+    height: 100px; /* Adjust this value to make the logo smaller */
+    width: auto;  /* Maintain aspect ratio */
+    display: block; /* Removes extra space below the image */
+}
+
+/* --- Navigation Styles --- */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Arranges list items horizontally */
+}
+
+nav ul li {
+    margin-left: 20px; /* Space between navigation links */
+}
+
+nav ul li a {
+    color: var(--text-colour);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem; /* Adjust font size as needed */
+}
+
+nav ul li a:hover {
+    color: #ccc; /* Lighter color on hover */
+    text-decoration: underline;
+}
+
+/* --- Footer Styles --- */
+footer {
+    background-color: #333; /* Dark background for footer */
+    color: #eee; /* Light text color */
+    padding: 1.5rem 2rem;
+    text-align: center; /* Center footer content */
+    margin-top: 30px; /* Space above the footer */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer p {
+    margin-bottom: 0.5rem; /* Space between footer paragraphs */
+}
+
+footer a {
+    color: #fff; /* White links in footer */
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: #ccc;
+}
+
+/* --- Basic Button Styles --- */
+.button, .download-button {
+    display: inline-block; /* Allows padding and margins */
+    background-color: var(--gadfly-green);
+    color: var(--text-colour);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline from links */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover, .download-button:hover {
+    background-color: #09461d; /* Slightly darker or same for now */
+    filter: brightness(90%); /* Darken slightly on hover */
+}
+
+.download-button {
+    background-color: #555; /* Different color for download button */
+    margin-left: 15px; /* Space between buttons */
+}
+
+.download-button:hover {
+    background-color: #555;
+    filter: brightness(80%);
+}
+
+/* --- Main Content Area --- */
+main {
+    max-width: 900px; /* Limit content width for readability */
+    margin: 30px auto; /* Center main content and add space above/below */
+    padding: 0 20px; /* Add some horizontal padding */
+}
+
+.intro-section h1 {
+    color: var(--gadfly-green); /* Use Gadfly green for main heading */
+    font-size: 2.5rem; /* Adjust as needed */
+    margin-bottom: 1rem;
+}
+
+.intro-section p, .latest-issue-highlight p {
+    line-height: 1.6; /* Improve readability of paragraphs */
+    margin-bottom: 1rem;
+}
+
+.latest-issue-highlight {
+    background-color: #f0f0f0; /* Light background for highlight */
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 40px; /* Space above this section */
+}
+
+.latest-issue-highlight h2 {
+    color: var(--gadfly-green);
+    margin-bottom: 1rem;
+}
 
