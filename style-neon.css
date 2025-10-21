@@ -48,6 +48,12 @@ h1, h2, h3, p, ul, nav {
 :root {
     --gadfly-green: #09461d;
     --text-colour: #fff;
+    --neon-green: #39ff14;
+    --dark-bg: #0a0a0a;
+    --dark-surface: #1a1a1a;
+    --text-light: #e0e0e0;
+    --text-dim: #999;
+    --dark-green: #0b130c
 }
 
 /* ========================================
@@ -66,9 +72,10 @@ header {
 }
 
 .logo-container img {
-    height: 80px;
+    height: 120px;
     width: auto;
     display: block;
+    filter: drop-shadow(0 0 8px var(--neon-green));
 }
 
 .hamburger-menu {
@@ -1021,21 +1028,4 @@ body {
     text-decoration: none;
 }
 
-/* ========================================
-   NEON DARK LOGO
-   ======================================== */
 
-:root {
-    --neon-green: #39ff14;
-    --dark-bg: #0a0a0a;
-    --dark-surface: #1a1a1a;
-    --text-light: #e0e0e0;
-    --text-dim: #999;
-}
-
-.logo-container img {
-    height: 80px;
-    width: auto;
-    display: block;
-    filter: drop-shadow(0 0 8px var(--neon-green));
-}
