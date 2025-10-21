@@ -3,8 +3,9 @@
    ======================================== */
 
 * {
-    font-family: mono;
+    font-family: 'Fira Mono', monospace;
     box-sizing: border-box;
+    font-style: normal;
 }
 
 html, body {
