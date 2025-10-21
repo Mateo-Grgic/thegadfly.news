@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
 const themeToggle = document.querySelector('.theme-toggle');
 const themeIcon = document.querySelector('.theme-icon');
 const themeStylesheet = document.getElementById('theme-stylesheet');
+const logoImage = document.querySelector('.logo-container img');  // Select the logo image
+
 function getPreferredTheme() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
@@ -32,9 +34,11 @@ function setTheme(theme) {
     if (theme === 'dark') {
         themeStylesheet.href = 'style-neon.css';
         themeIcon.textContent = 'Dark';
+        logoImage.src = 'media/wordmark-black.svg';
     } else {
         themeStylesheet.href = 'style.css';
         themeIcon.textContent = 'Light';
+        logoImage.src = 'media/wordmark.svg';
     }
     localStorage.setItem('theme', theme);
     document.documentElement.setAttribute('data-theme', theme);

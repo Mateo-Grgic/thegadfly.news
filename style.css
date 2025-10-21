@@ -75,7 +75,6 @@ header {
     height: 120px;
     width: auto;
     display: block;
-    filter: drop-shadow(0 0 8px var(--neon-green));
 }
 
 .hamburger-menu {
@@ -155,7 +154,7 @@ header {
 
 .cta-button {
     display: none;
-    background-color: #fff;
+    background-color: white;
     color: var(--gadfly-green);
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
@@ -619,6 +618,11 @@ footer a:hover {
         text-align: center;
         padding: 0.5rem 1rem;
         font-size: 1rem;
+    }
+
+    .logo-container img {
+    height: 80px;
+    width: auto;
     }
 
     .author-card {
