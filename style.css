@@ -1011,3 +1011,12 @@ body {
     text-shadow: 0 0 15px var(--neon-pink);
 }
 
+.fake-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.fake-link:hover {
+    color: inherit;
+    text-decoration: none;
+}
