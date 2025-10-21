@@ -78,6 +78,13 @@ header {
     display: block;
 }
 
+.neon-wordmark img {
+    filter: drop-shadow(2px 2px 12px var(--neon-green));
+    height: 120px;
+    width: auto;
+    display: block;
+}
+
 .hamburger-menu {
     display: block;
     background: none;
@@ -625,6 +632,11 @@ footer a:hover {
     height: 80px;
     width: auto;
     }
+    
+    .neon-wordmark img{
+    height: 80px;
+    width: auto;
+    }
 
     .author-card {
         flex-direction: column;
@@ -1037,3 +1049,4 @@ html {
     visibility: visible !important;
     opacity: 1 !important;
 }
+
