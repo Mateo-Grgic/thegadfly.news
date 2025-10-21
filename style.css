@@ -811,7 +811,7 @@ body {
 }
 
 .subtle-link:hover {
-    color: #000000;
+    color: inherit;
     text-decoration: none;
 }
 
