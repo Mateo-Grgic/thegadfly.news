@@ -54,7 +54,8 @@ h1, h2, h3, p, ul, nav {
     --dark-surface: #1a1a1a;
     --text-light: #e0e0e0;
     --text-dim: #999;
-    --dark-green: #0b130c
+    --dark-green: #0b130c;
+    --off-white: #fffdf4;
 }
 
 /* ========================================
@@ -73,6 +74,7 @@ header {
 }
 
 .logo-container img {
+    filter: drop-shadow(3px 5px 18px var(--neon-green));
     height: 120px;
     width: auto;
     display: block;
@@ -162,7 +164,7 @@ header {
 
 .cta-button {
     display: none;
-    background-color: white;
+    background-color: var(--off-white);
     color: var(--gadfly-green);
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
@@ -189,15 +191,17 @@ main {
     width: 100%;
     margin: 0;
     padding: 0;
+    background-color: var(--off-white);
 }
 
 .content-section {
-    background-color: #fff;
+    background-color: var(--off-white);
     padding: 2rem 1.5rem;
     border-radius: 0;
     box-shadow: none;
     margin-bottom: 0;
     position: relative;
+    background-color: var(--off-white);
 }
 
 .content-section::after {
@@ -207,7 +211,7 @@ main {
     left: 1.5rem;
     right: 1.5rem;
     height: 2px;
-    background-color: #e0e0e0;
+    background-color: var(--off-white);
 }
 
 .content-section:last-of-type::after {
@@ -236,6 +240,7 @@ main {
 .hero-section {
     text-align: center;
     padding: 2rem 1.5rem !important;
+    background-color: var(--off-white);
 }
 
 .hero-section h1 {
@@ -273,7 +278,7 @@ main {
 .faq-item {
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid grey;
 }
 
 .faq-item:last-child {
@@ -295,7 +300,7 @@ main {
 .button {
     display: inline-block;
     background-color: var(--gadfly-green);
-    color: white;
+    color: var(--off-white);
     padding: 0.75rem 2rem;
     border-radius: 5px;
     text-decoration: none;
@@ -317,6 +322,7 @@ main {
     display: grid;
     gap: 2rem;
     margin-top: 2rem;
+    background-color: var(--off-white);
 }
 
 .author-card {
@@ -324,9 +330,10 @@ main {
     gap: 1.5rem;
     align-items: flex-start;
     padding: 1.5rem;
-    background: #f8f9fa;
     border-radius: 8px;
     border-left: 4px solid var(--gadfly-green);
+    box-shadow: 5px 5px 15px grey;
+    background-color: var(--off-white);
 }
 
 .author-image {
@@ -337,6 +344,9 @@ main {
     flex-shrink: 0;
     display: block;
     margin: 0 auto;
+    box-shadow: 5px 5px 15px grey;
+    display: flex;
+    vertical-align: .author-card;
 }
 
 .author-info h2 {
@@ -369,8 +379,8 @@ main {
 
 .issue-card {
     display: block;
-    background: #f8f9fa;
-    border-radius: 8px;
+    background: #e1e7e3;
+    border-radius: 4px;
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
     text-decoration: none;
@@ -454,7 +464,7 @@ main {
 
 .submit-button {
     background: var(--gadfly-green);
-    color: white;
+    color: var(--off-white);
     padding: 0.75rem 2rem;
     border: none;
     border-radius: 4px;
@@ -495,7 +505,7 @@ main {
    ======================================== */
 
 .document-page {
-    background-color: #fff;
+    background-color: var(--off-white);
     max-width: 900px;
     margin: 2rem auto;
     padding: 3rem 2rem;
@@ -567,7 +577,7 @@ main {
    ======================================== */
 
 .pdf-viewer {
-    background-color: #fff;
+    background-color: var(--off-white);
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -603,7 +613,7 @@ footer p:last-child {
 }
 
 footer a {
-    color: #fff;
+    color: var(--off-white);
     text-decoration: underline;
     transition: color 0.2s ease;
 }
@@ -840,6 +850,7 @@ body {
 }
 
 .newsletter-signup {
+    border-top: 1px solid grey !important;
     width: 100%;
     margin: 0;
     padding: 2rem 1rem;
@@ -1024,17 +1035,6 @@ body {
     font-size: 1rem;
 }
 
-/* Neon styling for dark mode */
-[data-theme="dark"] .theme-toggle {
-    color: var(--neon-cyan);
-    text-shadow: 0 0 8px var(--neon-cyan);
-}
-
-[data-theme="dark"] .theme-toggle:hover {
-    color: var(--neon-pink);
-    text-shadow: 0 0 15px var(--neon-pink);
-}
-
 .fake-link {
     color: inherit;
     text-decoration: none;
@@ -1049,4 +1049,3 @@ html {
     visibility: visible !important;
     opacity: 1 !important;
 }
-
