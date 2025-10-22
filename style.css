@@ -400,6 +400,7 @@ main {
     aspect-ratio: 8.5 / 11;
     object-fit: cover;
     display: block;
+    border: 0.5px solid !important;
 }
 
 .issue-info {
@@ -794,6 +795,7 @@ footer a:hover {
     align-items: center;
     justify-content: center;
     border-bottom: 2px solid #dee2e6;
+    border: 0.5px solid !important;
 }
 
 .coming-soon-placeholder span {
