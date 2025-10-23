@@ -1,11 +1,50 @@
 /* ========================================
    GLOBAL STYLES & RESETS
    ======================================== */
-
+   
+@font-face {
+    font-family: 'Fira Mono';
+    src: url('media/fonts/Fira/woff/FiraMono-Regular.woff') format('woff'),
+         url('media/fonts/Fira/woff2/FiraMono-Regular.woff2') format('woff2'),
+         url('media/fonts/Fira/otf/FiraMono-Regular.otf') format('otf'),
+         url('media/fonts/Fira/ttf/FiraMono-Regular.ttf') format('ttf'),
+         url('media/fonts/Fira/eot/FiraMono-Regular.eot') format('eot'),
+}
+ 
+@font-face {
+    font-family: 'Fira Mono Medium';
+    src: url('media/fonts/Fira/woff/FiraMono-Medium.woff') format('woff'),
+         url('media/fonts/Fira/woff2/FiraMono-Medium.woff2') format('woff2'),
+         url('media/fonts/Fira/otf/FiraMono-Medium.otf') format('otf'),
+         url('media/fonts/Fira/ttf/FiraMono-Medium.ttf') format('ttf'),
+         url('media/fonts/Fira/eot/FiraMono-Medium.eot') format('eot'),
+}
+   
+@font-face {
+    font-family: 'Fira Mono Bold';
+    src: url('media/fonts/Fira/woff/FiraMono-Bold.woff') format('woff'),
+         url('media/fonts/Fira/woff2/FiraMono-Bold.woff2') format('woff2'),
+         url('media/fonts/Fira/otf/FiraMono-Bold.otf') format('otf'),
+         url('media/fonts/Fira/ttf/FiraMono-Bold.ttf') format('ttf'),
+         url('media/fonts/Fira/eot/FiraMono-Bold.eot') format('eot'),
+}
+   
 * {
     font-family: 'Fira Mono', monospace;
     box-sizing: border-box;
     font-style: normal;
+}
+
+h1 {
+    font-family: 'Fira Mono Bold', monospace !important;
+    box-sizing: border-box !important;
+    font-style: normal !important;
+}
+
+h2, h3 {
+    font-family: 'Fira Mono Medium', monospace !important;
+    box-sizing: border-box !important;
+    font-style: normal !important;
 }
 
 html, body {
