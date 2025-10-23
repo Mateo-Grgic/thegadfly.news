@@ -151,7 +151,7 @@ header {
 
 .hamburger-menu img {
     display: block;
-    filter: drop-shadow(9px 9px 5px black);
+    filter: drop-shadow(3px 3px 3px black);
     width: auto;
     display: block;
     width: 40px;
@@ -163,7 +163,7 @@ header {
 }
 
 .hamburger-menu:hover img{
-  filter: drop-shadow(10px 10px 5px black), 0.2s ease !important;
+  filter: drop-shadow(4px 4px 3px black), 0.2s ease !important;
 }
 
 .main-nav {
