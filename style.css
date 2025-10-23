@@ -895,13 +895,13 @@ body {
 }
 
 .subtle-link {
-    color: inherit;
-    text-decoration: none;
+    color: inherit !important;
+    text-decoration: none !important;
 }
 
 .subtle-link:hover {
-    color: inherit;
-    text-decoration: none;
+    color: inherit !important;
+    text-decoration: none !important;
 }
 
 .newsletter-signup {
