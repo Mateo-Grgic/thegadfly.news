@@ -8,7 +8,7 @@
          url('media/fonts/Fira/woff2/FiraMono-Regular.woff2') format('woff2'),
          url('media/fonts/Fira/otf/FiraMono-Regular.otf') format('otf'),
          url('media/fonts/Fira/ttf/FiraMono-Regular.ttf') format('ttf'),
-         url('media/fonts/Fira/eot/FiraMono-Regular.eot') format('eot'),
+         url('media/fonts/Fira/eot/FiraMono-Regular.eot') format('eot');
 }
  
 @font-face {
@@ -17,7 +17,7 @@
          url('media/fonts/Fira/woff2/FiraMono-Medium.woff2') format('woff2'),
          url('media/fonts/Fira/otf/FiraMono-Medium.otf') format('otf'),
          url('media/fonts/Fira/ttf/FiraMono-Medium.ttf') format('ttf'),
-         url('media/fonts/Fira/eot/FiraMono-Medium.eot') format('eot'),
+         url('media/fonts/Fira/eot/FiraMono-Medium.eot') format('eot');
 }
    
 @font-face {
@@ -26,7 +26,7 @@
          url('media/fonts/Fira/woff2/FiraMono-Bold.woff2') format('woff2'),
          url('media/fonts/Fira/otf/FiraMono-Bold.otf') format('otf'),
          url('media/fonts/Fira/ttf/FiraMono-Bold.ttf') format('ttf'),
-         url('media/fonts/Fira/eot/FiraMono-Bold.eot') format('eot'),
+         url('media/fonts/Fira/eot/FiraMono-Bold.eot') format('eot');
 }
    
 * {
