@@ -5,6 +5,6 @@ Simple static website with vanilla JavaScript; mostly coded by myself, with AI a
 
 External Resources Used:
 * Domain Purchase - namecheap
-* Font(s) - Fira Mono (Regular, Medium, Bold)
-* Email subscription - powered by Buttondown (Free tier) 
-* Form - powered by Web3Forms  
+* Font(s) - Mozilla Fira Mono (Regular, Medium, Bold)
+* Email subscription - Buttondown (Free tier) 
+* Form - Web3Forms (Free tier) 
