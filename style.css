@@ -112,11 +112,23 @@ header {
     position: relative;
 }
 
+.logo-container{
+    transition: transform 0.2s ease, 0.2s ease;
+}
+
 .logo-container img {
     filter: drop-shadow(9px 9px 5px black);
     height: 120px;
     width: auto;
     display: block;
+}
+
+.logo-container:hover {
+    transform: translateY(-1.5px);
+}
+
+.logo-container:hover img{
+  filter: drop-shadow(10px 10px 5px black), 0.2s ease !important;
 }
 
 .neon-wordmark img {
