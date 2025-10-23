@@ -146,12 +146,25 @@ header {
     cursor: pointer;
     padding: 0.5rem;
     margin-left: auto;
+    transition: transform 0.2s ease, 0.2s ease;
 }
 
 .hamburger-menu img {
     width: 40px;
     height: 40px;
     display: block;
+    filter: drop-shadow(9px 9px 5px black);
+    height: 120px;
+    width: auto;
+    display: block;
+}
+
+.hamburger-menu:hover {
+    transform: translateY(-1.5px);
+}
+
+.hamburger-menu:hover img{
+  filter: drop-shadow(10px 10px 5px black), 0.2s ease !important;
 }
 
 .main-nav {
