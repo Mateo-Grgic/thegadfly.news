@@ -150,13 +150,12 @@ header {
 }
 
 .hamburger-menu img {
-    width: 40px;
-    height: 40px;
     display: block;
     filter: drop-shadow(9px 9px 5px black);
-    height: 120px;
     width: auto;
     display: block;
+    width: 40px;
+    height: 40px;
 }
 
 .hamburger-menu:hover {
