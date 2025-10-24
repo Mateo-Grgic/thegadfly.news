@@ -17,39 +17,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-//ThemeJS
-const themeToggle = document.querySelector('.theme-toggle');
-const themeIcon = document.querySelector('.theme-icon');
-const themeStylesheet = document.getElementById('theme-stylesheet');
-const logoImage = document.querySelector('.logo-container img');  // Select the logo image
-
-function getPreferredTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        return savedTheme;
-    }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-}
-function setTheme(theme) {
-    if (theme === 'dark') {
-        themeStylesheet.href = 'style-neon.css';
-        themeIcon.textContent = 'Dark';
-    } else {
-        themeStylesheet.href = 'style.css';
-        themeIcon.textContent = 'Light';
-    }
-    localStorage.setItem('theme', theme);
-    document.documentElement.setAttribute('data-theme', theme);
-}
-function toggleTheme() {
-    const currentTheme = localStorage.getItem('theme') || getPreferredTheme();
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-}
-setTheme(getPreferredTheme());
-themeToggle.addEventListener('click', toggleTheme);
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) {
-        setTheme(e.matches ? 'dark' : 'light');
-    }
-});
