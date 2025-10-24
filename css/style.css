@@ -500,7 +500,7 @@ main {
     padding: 0.75rem;
     border: 2px solid #ddd;
     border-radius: 4px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Fira Mono', Monospace !important;
     font-size: 1rem;
     transition: border-color 0.2s;
 }
@@ -915,7 +915,6 @@ body {
     padding: 0.75rem;
     border: 2px solid var(--gadfly-green);
     border-radius: 4px;
-    font-family: 'Open Sans', sans-serif;
 }
 
 .newsletter-signup button {
@@ -925,7 +924,6 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     transition: background-color 0.3s ease;
 }
@@ -977,7 +975,6 @@ body {
     padding: 0.75rem;
     border: 2px solid var(--gadfly-green);
     border-radius: 4px;
-    font-family: 'Open Sans', sans-serif;
 }
 
 .embeddable-buttondown-form button {
@@ -987,7 +984,6 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     transition: background-color 0.3s ease;
 }
@@ -1024,7 +1020,6 @@ body {
     padding: 0.75rem;
     border: 2px solid var(--gadfly-green);
     border-radius: 4px;
-    font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
 }
 
@@ -1041,7 +1036,6 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 1rem;
     transition: background-color 0.3s ease;
@@ -1084,4 +1078,60 @@ html {
 
 input, textarea {
     background-color: var(--off-white);
+}
+
+.jump-to {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--gadfly-green);
+  color: var(--off-white);
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.footer-jump{
+  margin-top: -10px;
+  margin-bottom: 15px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--gadfly-green);
+  color: var(--off-white);
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.fun-title{
+    text-align: center !important;
+    padding: 2rem 1.5rem;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+    color: var(--gadfly-green);
+    position: relative;
+    background-color: var(--off-white);
+}
+
+.some-links {
+    color: var(--gadfly-green);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.some-links:hover {
+    color: var(--dark-green);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.other-fun-title{
+
 }
