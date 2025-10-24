@@ -1,7 +1,3 @@
-/* ========================================
-   GLOBAL STYLES & RESETS
-   ======================================== */
-   
 @font-face {
     font-family: 'Fira Mono';
     src: url('media/fonts/Fira/woff/FiraMono-Regular.woff') format('woff'),
@@ -97,10 +93,6 @@ h1, h2, h3, p, ul, nav {
     --dark-green: #0b130c;
     --off-white: #fffdf4;
 }
-
-/* ========================================
-   HEADER & NAVIGATION
-   ======================================== */
 
 header {
     background-color: var(--gadfly-green);
@@ -206,10 +198,6 @@ header {
     color: #ccc;
 }
 
-/* ========================================
-   CTA BUTTON
-   ======================================== */
-
 .cta-button {
     display: none;
     background-color: var(--off-white);
@@ -229,10 +217,6 @@ header {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
-
-/* ========================================
-   MAIN CONTENT
-   ======================================== */
 
 main {
     flex: 1;
@@ -280,10 +264,6 @@ main {
 .content-section p:last-child {
     margin-bottom: 0;
 }
-
-/* ========================================
-   HOMEPAGE SECTIONS
-   ======================================== */
 
 .hero-section {
     text-align: center;
@@ -362,10 +342,6 @@ main {
     transform: translateY(-2px);
 }
 
-/* ========================================
-   AUTHOR CARDS
-   ======================================== */
-
 .authors-grid {
     display: grid;
     gap: 2rem;
@@ -415,10 +391,6 @@ main {
     margin-bottom: 0.75rem !important;
 }
 
-/* ========================================
-   ISSUES GRID
-   ======================================== */
-
 .issues-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -466,10 +438,6 @@ main {
     color: #666;
     font-size: 0.9rem;
 }
-
-/* ========================================
-   CONTACT PAGE
-   ======================================== */
 
 .contact-grid {
     display: grid;
@@ -550,10 +518,6 @@ main {
     text-decoration: underline;
 }
 
-/* ========================================
-   DOCUMENT PAGES
-   ======================================== */
-
 .document-page {
     background-color: var(--off-white);
     max-width: 900px;
@@ -623,10 +587,6 @@ main {
     margin-left: 1.5rem;
 }
 
-/* ========================================
-   FOOTER
-   ======================================== */
-
 footer {
     background-color: #0b130c;
     color: #eee;
@@ -654,11 +614,6 @@ footer a:hover {
     color: #ccc;
 }
 
-/* ========================================
-   RESPONSIVE BREAKPOINTS
-   ======================================== */
-
-/* Mobile (max 767px) */
 @media (max-width: 767px) {
     .cta-button {
         display: block;
@@ -670,6 +625,10 @@ footer a:hover {
         font-size: 1rem;
     }
 
+    * {
+        text-align: center !important
+    }
+    
     .logo-container img {
     height: 80px;
     width: auto;
@@ -719,7 +678,6 @@ footer a:hover {
     }
 }
 
-/* Tablet (768px+) */
 @media (min-width: 768px) {
     .logo-container img {
         height: 100px;
@@ -761,7 +719,6 @@ footer a:hover {
     }
 }
 
-/* Desktop (1410px+) */
 @media (min-width: 1410px) {
     .logo-container img {
         height: 120px;
@@ -797,14 +754,6 @@ footer a:hover {
     }
 }
 
-/* Super Wide (1800px+) */
-@media (min-width: 1800px) {
-    .logo-container img {
-        height: 140px;
-    }
-}
-
-/* Coming Soon Placeholder */
 .issue-card.coming-soon {
     cursor: default;
     opacity: 0.7;
@@ -849,12 +798,8 @@ footer a:hover {
     }
 }
 
-/* ========================================
-   GLOBAL STYLES & RESETS
-   ======================================== */
-
 html {
-    background-color: #0b130c; /* Footer color for all overscroll */
+    background-color: #0b130c;
 }
 
 body {
@@ -1139,4 +1084,18 @@ input, textarea {
     color: var(--dark-green);
     text-decoration: underline;
     transition: color 0.2s ease;
+}
+
+.inline-image {
+    height: 400px;
+    justify-content: center !important;
+    text-align: center;
+    border-radius: 8px !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px){
+  .inline-image{height: 250px;}
 }
