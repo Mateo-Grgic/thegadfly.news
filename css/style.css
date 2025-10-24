@@ -45,6 +45,7 @@ h2, h3 {
     font-family: 'Fira Mono Medium', monospace !important;
     box-sizing: border-box !important;
     font-style: normal !important;
+    color: var(--gadfly-green) !important;
 }
 
 html, body {
