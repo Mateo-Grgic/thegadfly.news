@@ -3,3 +3,6 @@ Disallow: /
 
 User-Agent: Kagibot
 Allow: /
+
+User-Agent: search.marginalia.nu
+Allow: /
