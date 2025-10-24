@@ -1095,10 +1095,11 @@ input, textarea {
 }
 
 .footer-jump{
-  margin-top: -10px;
-  margin-bottom: 15px;
+  margin-top: -20px;
+  margin-bottom: 20px;
   display: inline-block;
-  padding: 10px 20px;
+  padding: 3px 15px;
+  text-align: center;
   background-color: var(--gadfly-green);
   color: var(--off-white);
   text-decoration: none;
@@ -1107,6 +1108,12 @@ input, textarea {
   font-size: 16px;
   cursor: pointer;
   align-self: flex-start;
+  filter: drop-shadow(5px 5px 10px black);
+}
+
+.footer-jump:hover{    
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
 .fun-title{
@@ -1130,8 +1137,4 @@ input, textarea {
     color: var(--dark-green);
     text-decoration: underline;
     transition: color 0.2s ease;
-}
-
-.other-fun-title{
-
 }
