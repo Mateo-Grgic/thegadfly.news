@@ -1095,10 +1095,10 @@ input, textarea {
 }
 
 .footer-jump{
-  margin-top: -20px;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: -20px;
   display: inline-block;
-  padding: 3px 15px;
+  padding: 3px 15px 5px;
   text-align: center;
   background-color: var(--gadfly-green);
   color: var(--off-white);
@@ -1109,6 +1109,7 @@ input, textarea {
   cursor: pointer;
   align-self: flex-start;
   filter: drop-shadow(5px 5px 10px black);
+  font-size: small;
 }
 
 .footer-jump:hover{    
