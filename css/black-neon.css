@@ -51,3 +51,14 @@ html {
 main, .content-section, .content-section::after, .hero-section, .button, .authors-grid, .author-card, .issue-card, .submit-button, .document-page, footer a{
     background-color: black;
 }
+
+:root {
+    --gadfly-green: #39ff14 !important;
+    --text-colour: #fff !important;
+    --dark-bg: #0a0a0a !important;
+    --dark-surface: #1a1a1a !important;
+    --text-light: #fff !important;
+    --text-dim: #fff !important;
+    --dark-green: #39ff14 !important;
+    --off-white: #000000 !important;
+}
