@@ -715,10 +715,6 @@ footer a:hover {
     footer {
         padding: 2.5rem 2rem;
     }
-
-    .pdf-viewer iframe {
-        height: 85vh;
-    }
 }
 
 @media (min-width: 1410px) {
@@ -756,10 +752,15 @@ footer a:hover {
     }
 }
 
-@media (max-width: 666px) {
+@media (max-width: 375px) {
  .logo-container img {
-    height: 70px;
+    height: 60px;
     width: auto;
+    }
+    
+  .issues-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
     }
 }
 
