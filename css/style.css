@@ -779,6 +779,13 @@ footer a:hover {
     }
 }
 
+@media (max-width: 411px) {
+    .logo-container img {
+        height: 75px;
+        width: auto;
+    }
+}
+
 .issue-card.coming-soon {
     cursor: default;
     opacity: 0.7;
