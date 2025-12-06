@@ -25,16 +25,22 @@
         url('../media/fonts/Fira/eot/FiraMono-Bold.eot') format('eot');
 }
 
+:root {
+    --gadfly-green: #09461d;
+    --text-colour: #fff;
+    --neon-green: #39ff14;
+    --dark-bg: #0a0a0a;
+    --dark-surface: #1a1a1a;
+    --text-light: #e0e0e0;
+    --text-dim: #999;
+    --dark-green: #0b130c;
+    --off-white: #fffdf4;
+}
+
 * {
     font-family: 'Fira Mono', monospace;
     box-sizing: border-box;
     font-style: normal;
-}
-
-@media (max-width: 767px) {
-    h1 {
-        text-align: center;
-    }
 }
 
 h1 {
@@ -49,70 +55,6 @@ h3 {
     box-sizing: border-box !important;
     font-style: normal !important;
     color: var(--gadfly-green) !important;
-}
-
-html,
-body {
-    overflow-x: hidden;
-    max-width: 100vw;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-header,
-main,
-footer,
-section,
-article,
-div {
-    max-width: 100%;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-p,
-li,
-a,
-span {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
-}
-
-h1,
-h2,
-h3,
-p,
-ul,
-nav {
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --gadfly-green: #09461d;
-    --text-colour: #fff;
-    --neon-green: #39ff14;
-    --dark-bg: #0a0a0a;
-    --dark-surface: #1a1a1a;
-    --text-light: #e0e0e0;
-    --text-dim: #999;
-    --dark-green: #0b130c;
-    --off-white: #fffdf4;
 }
 
 header {
@@ -613,16 +555,13 @@ footer {
     color: #eee;
     padding: 2rem 1.5rem;
     text-align: center;
-    margin-top: auto;
+    margin-top: 0rem;
 }
 
 footer p {
-    margin-bottom: 0.75rem;
-    line-height: 1.6;
-}
-
-footer p:last-child {
-    margin-bottom: 0;
+    margin-bottom: 1rem;
+    margin-top: -10px;
+    line-height: 1.5rem;
 }
 
 footer a {
@@ -1203,4 +1142,3 @@ h3 {
     aspect-ratio: 1 / 1;
     object-fit: cover;
 }
-
