@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>The Gadfly - Contact Us!</title>
+        <title>The Gadfly - Read The Gadfly</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="icon" href="../assets/favicon.png" type="image/png">
     </head>
@@ -36,31 +36,39 @@
         </header>
         <main>
             <section class="content-section">
-                <h1>Contact Us</h1>
-                <p>Have feedback? A question for Harper? Love us? Just hate our guts? Reach out!</p>
-                <div class="article-section">
-                    <h2>
-                        <font size="5"> Send Us a Message</font>
-                    </h2>
-                    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-                        <input type="hidden" name="access_key" value="0db446af-3365-4c8f-b6c2-2c6c5bd6a50c">
-                        <input type="hidden" name="subject" value="Form Submission: ">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email">
-                        <label for="name">Subject:</label>
-                        <input type="text" id="subject" name="subject" required>
-                        <label for="message">Message:</label>
-                        <textarea id="message" name="message" rows="8" required></textarea>
-                        <button type="submit">Send Message</button>
-                    </form>
-                </div>
-                <div class="contact-method">
-                    <h3>Or Email Us Directly:</h3>
-                    <p>
-                        <a href="mailto:thegadfly.team@proton.me">thegadfly.team@proton.me</a>
-                    </p>
+                <h1>The Gadfly</h1>
+                <p>Browse all issues of The Gadfly. Click any issue to read online or download.</p>
+                <div class="issues-grid">
+                    <a href="../assets/issues/The-Gadfly/issue-1.pdf" class="issue-card">
+                        <img src="../assets/issues/thumbnails/gadfly/gadfly1.png" alt="Issue 1 Cover" class="issue-thumbnail">
+                        <div class="issue-info">
+                            <h2>Issue #1</h2>
+                            <p class="issue-date">September 2025</p>
+                        </div>
+                    </a>
+                    <a href="../assets/issues/The-Gadfly/issue-2.pdf" class="issue-card">
+                        <img src="../assets/issues/thumbnails/gadfly/gadfly2.png" alt="Issue 2 Cover" class="issue-thumbnail">
+                        <div class="issue-info">
+                            <h2>Issue #2</h2>
+                            <p class="issue-date">October 2025</p>
+                        </div>
+                    </a>
+                    <a href="../assets/issues/The-Gadfly/issue-3.pdf" class="issue-card">
+                        <img src="../assets/issues/thumbnails/gadfly/gadfly3.png" alt="Issue 3 Cover" class="issue-thumbnail">
+                        <div class="issue-info">
+                            <h2>Issue #3</h2>
+                            <p class="issue-date">November 2025</p>
+                        </div>
+                    </a>
+                    <div class="issue-card coming-soon">
+                        <div class="coming-soon-placeholder">
+                            <span>Coming Soon</span>
+                        </div>
+                        <div class="issue-info">
+                            <h2>Issue #4</h2>
+                            <p class="issue-date">December 2025</p>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
@@ -78,9 +86,12 @@
             </p>
             <p>Contact us at: <a href="mailto:thegadfly.team@proton.me">thegadfly.team@proton.me</a>
             </p>
+            <p>
+                <a href="privacy_policy.html">Privacy Policy</a> | <a href="extra.html">Extra-Issue Docs</a>
+            </p>
             <a href="#top" class="footer-jump"> Jump To Top</a>
         </footer>
-        <script src="../js/script.js"></script>
+        <script src="../script.js"></script>
     </body>
 </html>
 
