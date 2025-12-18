@@ -1126,6 +1126,12 @@ textarea {
     text-align: center;
 } 
 
+@media (min-width: 2500px) {
+.groupies-grid {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .image-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
