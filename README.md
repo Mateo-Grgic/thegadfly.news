@@ -11,3 +11,4 @@ Resources Used:
 * Font(s) - Mozilla Fira Mono (Regular, Medium, Bold)
 * Email subscription - Buttondown (Free tier) 
 * Form - Web3Forms (Free tier) 
+* Captcha - hCaptcha
