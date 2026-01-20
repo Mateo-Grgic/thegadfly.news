@@ -6,3 +6,5 @@ Allow: /
 
 User-Agent: search.marginalia.nu
 Allow: /
+
+Sitemap: https://thegadfly.news/sitemap.xml
