@@ -43,6 +43,24 @@
     font-style: normal;
 }
 
+html {
+    background-color: #0b130c !important;
+    height: 100%;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
 h1 {
     font-family: 'Fira Mono Bold', monospace !important;
     box-sizing: border-box !important;
@@ -60,6 +78,7 @@ h3 {
 header {
     background-color: var(--gadfly-green);
     color: var(--text-colour);
+    padding: calc(1rem + env(safe-area-inset-top, 0px)) 1.5rem 1rem 1.5rem;
     padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
@@ -769,21 +788,6 @@ footer a:hover {
     }
 }
 
-html {
-    background-color: #0b130c;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-}
-
 .document-page>p:first-of-type {
     margin-bottom: 2rem;
 }
@@ -986,11 +990,6 @@ body {
 .fake-link:hover {
     color: inherit;
     text-decoration: none;
-}
-
-html {
-    visibility: visible !important;
-    opacity: 1 !important;
 }
 
 input,
