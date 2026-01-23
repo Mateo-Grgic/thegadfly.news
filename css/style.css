@@ -725,7 +725,7 @@ footer a:hover {
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 375px) {
     .logo-container img {
         height: 60px;
         width: auto;
@@ -734,6 +734,13 @@ footer a:hover {
     .issues-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .logo-container img {
+        height: 55px;
+        width: auto;
     }
 }
 
