@@ -737,7 +737,7 @@ footer a:hover {
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 355px) {
     .logo-container img {
         height: 55px;
         width: auto;
