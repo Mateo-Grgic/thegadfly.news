@@ -725,6 +725,13 @@ footer a:hover {
     }
 }
 
+@media (max-width: 360px) {
+    .logo-container img {
+        height: 65px !important;
+        width: auto;
+    }
+}
+
 @media (max-width: 375px) {
     .logo-container img {
         height: 70px;
@@ -737,16 +744,9 @@ footer a:hover {
     }
 }
 
-@media (max-width: 360px) {
-    .logo-container img {
-        height: 65px !important;
-        width: auto;
-    }
-}
-
 @media (max-width: 411px) {
     .logo-container img {
-        height: 75px !important;
+        height: 75px;
         width: auto;
     }
 }
