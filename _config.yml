@@ -2,7 +2,7 @@ title: The Gadfly
 repository: matey-0/thegadfly.news
 permalink: /:categories/:title/
 
-baseurl: "/thegadfly.news"
+baseurl: ""
 url: "https://thegadfly.news/"
 
 plugins:
