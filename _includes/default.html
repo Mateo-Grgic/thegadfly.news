@@ -1,0 +1,31 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+        <meta name="description" content="{{ page.description | default: 'The Gadfly: LHSS\'s premier satire newspaper.' }}">
+        <meta property="og:title" content="{{ page.title }} | The Gadfly">
+        <meta property="og:image" content="/assets/misc/gadfly.png">
+        <meta name="theme-color" content="#09461d">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="icon" href="/assets/favicon.png" type="image/png">
+        <title>{{ page.title }} | The Gadfly</title>
+    </head>
+    <body>
+        {% include header.html %}
+
+        <main>
+            {{ content }}
+        </main>
+        
+        <div class="newsletter-signup">
+            <h3>Stay Updated</h3>
+            <p>Get notified when new issues are published</p>
+            <form action="https://buttondown.com/api/emails/embed-subscribe/thegadfly" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/thegadfly', 'popupwindow')" class="embeddable-buttondown-form">
+                <input type="email" name="email" id="bd-email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+        {% include footer.html %}
+        <script src="/js/main.js"></script> 
+        </body>
+</html>
