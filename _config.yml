@@ -2,8 +2,8 @@ title: The Gadfly
 repository: matey-0/thegadfly.news
 permalink: /:categories/:title/
 
-jekyll-github-metadata:
-  skip_api_calls: true
+baseurl: "/thegadfly.news"
+url: "https://thegadfly.news/"
 
 plugins:
   - jekyll-feed

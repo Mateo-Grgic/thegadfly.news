@@ -4,10 +4,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
         <meta name="description" content="{{ page.description | default: 'The Gadfly: LHSS\'s premier satire newspaper.' }}">
         <meta property="og:title" content="{{ page.title }} | The Gadfly">
-        <meta property="og:image" content="/assets/misc/gadfly.png">
+        <meta property="og:image" content="{{ '/assets/misc/gadfly.png' | relative_url }}">
         <meta name="theme-color" content="#09461d">
-        <link rel="stylesheet" href="/css/style.css">
-        <link rel="icon" href="/assets/favicon.png" type="image/png">
+        <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+        <link rel="icon" href="{{ '/assets/favicon.png' | relative_url }}" type="image/png">
         <title>{{ page.title }} | The Gadfly</title>
     </head>
     <body>
@@ -26,6 +26,6 @@
             </form>
         </div>
         {% include footer.html %}
-        <script src="/js/main.js"></script> 
+        <script src="{{ '/js/main.js' | relative_url }}"></script>
         </body>
 </html>
