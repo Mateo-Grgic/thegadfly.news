@@ -4,10 +4,11 @@
 
 This is the website for my satirical school newspaper: The Gadfly.   
 
-A simple static website with vanilla JavaScript, mostly coded by me, with AI assistance in places. Of course, the content itself is certified No-AI; that means the issues and website contents are human-written.  
+A simple static website using Jekyll, with minimal amounts of vanilla JavaScript (only to make the burger menu work), mostly coded by myself with AI assistance in places. Of course, the content itself is certified No-AI; that means the issues and website contents are human-written.  
 
 Resources used:
 * Hosting - GitHub Pages
+* Building - Jekyll
 * Domain purchase - Namecheap
 * Font(s) - Mozilla Fira Mono (Regular, Medium, Bold)
 * Email subscription - Buttondown (free tier) 
