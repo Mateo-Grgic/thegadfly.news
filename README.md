@@ -10,6 +10,7 @@ Resources used:
 * Hosting - GitHub Pages
 * Building - Jekyll
 * Domain purchase - Namecheap
+* Simple vister counter - goattracker (Block zgo.at if you don't like that; I do personally)
 * Font(s) - Mozilla Fira Mono (Regular, Medium, Bold)
 * Email subscription - Buttondown (free tier) 
 * Form - Web3Forms (free tier) 
