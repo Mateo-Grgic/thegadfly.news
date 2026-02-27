@@ -35,6 +35,7 @@
     --text-dim: #999;
     --dark-green: #0b130c;
     --off-white: #fffdf4;
+    --mint-green: #e1e7e3;
 }
 
 * {
@@ -47,11 +48,6 @@ html {
     background-color: #0b130c !important;
     visibility: visible !important;
     opacity: 1 !important;
-    background-image: linear-gradient(
-        to bottom, 
-        #09461d 50%, 
-        #0b130c 50%
-    );
     background-repeat: no-repeat;
     height: 100%;
 }
@@ -820,7 +816,7 @@ footer a:hover {
     width: 100%;
     margin: 0;
     padding: 2rem 1rem;
-    background-color: rgba(9, 70, 29, 0.1);
+    background-color: var(--mint-green);
     text-align: center;
 }
 
