@@ -45,16 +45,22 @@
 
 html {
     background-color: #0b130c !important;
-    height: 100%;
     visibility: visible !important;
     opacity: 1 !important;
+    background-image: linear-gradient(
+        to bottom, 
+        #09461d 50%, 
+        #0b130c 50%
+    );
+    background-repeat: no-repeat;
+    height: 100%;
 }
 
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f9f9f9 !important;
+    background-color: #09461d;
     color: #333;
     line-height: 1.6;
     margin: 0;
