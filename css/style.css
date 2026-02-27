@@ -45,10 +45,17 @@
 }
 
 html {
-    background-color: #0b130c !important;
+    background-color: #0b130c;
     visibility: visible !important;
     opacity: 1 !important;
     background-repeat: no-repeat;
+    height: 100%;
+}
+
+html {
+    background-image: linear-gradient(to bottom, #09461d 50%, #0b130c 50%);
+    background-repeat: no-repeat;
+    background-color: #0b130c;
     height: 100%;
 }
 
@@ -870,24 +877,6 @@ footer a:hover {
     .newsletter-signup input[type="email"] {
         width: 100%;
     }
-}
-
-.newsletter-signup {
-    width: 100%;
-    margin: 0;
-    padding: 2rem 1rem;
-    background-color: rgba(9, 70, 29, 0.1);
-    text-align: center;
-}
-
-.newsletter-signup h3 {
-    margin: 0 0 0.5rem 0;
-    color: var(--gadfly-green);
-}
-
-.newsletter-signup p {
-    margin: 0 0 1rem 0;
-    font-size: 0.9rem;
 }
 
 .embeddable-buttondown-form {
