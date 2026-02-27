@@ -50,13 +50,7 @@ html {
     opacity: 1 !important;
     background-repeat: no-repeat;
     height: 100%;
-}
-
-html {
     background-image: linear-gradient(to bottom, #09461d 50%, #0b130c 50%);
-    background-repeat: no-repeat;
-    background-color: #0b130c;
-    height: 100%;
 }
 
 body {
@@ -76,8 +70,7 @@ h1 {
     font-style: normal !important;
 }
 
-h2,
-h3 {
+h2,h3 {
     font-family: 'Fira Mono Medium', monospace !important;
     box-sizing: border-box !important;
     font-style: normal !important;
