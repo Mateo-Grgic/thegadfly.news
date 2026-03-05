@@ -1,5 +1,4 @@
 # The Gadfly Website
-
 <img width="2880" height="1712" alt="image" src="https://github.com/user-attachments/assets/ea2869ea-ff58-42d4-b098-3bd5ff7801b9" />  
 
 This is the website for my satirical school newspaper: The Gadfly.   
