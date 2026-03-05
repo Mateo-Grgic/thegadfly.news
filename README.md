@@ -13,4 +13,6 @@ Resources used:
 * Font(s) - Mozilla Fira Mono (Regular, Medium, Bold)
 * Email subscription - Buttondown (free tier) 
 * Form - Web3Forms (free tier) 
-* Captcha - hCaptcha
+* Captcha - hCaptcha  
+
+[![License: MIT]()](https://github.com/matey-0/thegadfly.news/blob/main/LICENSE)
