@@ -1010,7 +1010,6 @@ textarea {
     display: inline-block;
     padding: 3px 15px 5px;
     text-align: center;
-    display: flex; 
     justify-content: center;
     align-items: center;
     background-color: var(--gadfly-green);
