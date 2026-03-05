@@ -1136,6 +1136,7 @@ textarea {
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: cover;
+}
 
 .footer-icon {
     width: 22px;
@@ -1155,3 +1156,5 @@ textarea {
     width: auto;
     display: block;
 }
+
+
