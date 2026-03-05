@@ -1133,13 +1133,6 @@ textarea {
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-}
-
-.footer-social {
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-}
 
 .footer-icon {
     width: 22px;
