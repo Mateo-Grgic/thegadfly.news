@@ -573,10 +573,13 @@ main {
 
 footer {
     background-color: #0b130c;
+    display: flex;
     color: #eee;
     padding: 2rem 1.5rem;
     text-align: center;
     margin-top: 0rem;
+    align-items: center;
+    flex-direction: column;
 }
 
 footer p {
