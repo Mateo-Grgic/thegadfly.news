@@ -1,1 +1,1 @@
-script.js template file
+I still need to make the game
