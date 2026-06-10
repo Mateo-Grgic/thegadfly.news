@@ -230,31 +230,66 @@
         </div>
     </main>
 
-    <script>
+<script>
         document.addEventListener("DOMContentLoaded", () => {
             const voidContainer = document.getElementById('space-void');
 
-            // Replace these with the actual paths to your old/funny author photos
-            // I've added a fallback to AI robot avatars just so the demo works immediately!
-            const fallbackImages = [
-                "https://api.dicebear.com/7.x/bottts/svg?seed=1",
-                "https://api.dicebear.com/7.x/bottts/svg?seed=2",
-                "https://api.dicebear.com/7.x/bottts/svg?seed=3",
-                "https://api.dicebear.com/7.x/bottts/svg?seed=4",
-                "https://api.dicebear.com/7.x/bottts/svg?seed=5"
+            // All previous author images mapped with Jekyll's relative_url filter
+            const prevImages = [
+                // David
+                "{{ '/assets/author-images/prev/David/david-3.png' | relative_url }}",
+                "{{ '/assets/author-images/prev/David/david-4.png' | relative_url }}",
+                "{{ '/assets/author-images/prev/David/david-5.jpg' | relative_url }}",
+                "{{ '/assets/author-images/prev/David/david-6.webp' | relative_url }}",
+                
+                // Hassan
+                "{{ '/assets/author-images/prev/Hassan/hassan-1.webp' | relative_url }}",
+                "{{ '/assets/author-images/prev/Hassan/hassan-2.png' | relative_url }}",
+                "{{ '/assets/author-images/prev/Hassan/hassan-3.png' | relative_url }}",
+                "{{ '/assets/author-images/prev/Hassan/hassan-4.png' | relative_url }}",
+                "{{ '/assets/author-images/prev/Hassan/hassan-5.jpg' | relative_url }}",
+                "{{ '/assets/author-images/prev/Hassan/hassan-6.webp' | relative_url }}",
+                "{{ '/assets/author-images/prev/Hassan/hassan-7.webp' | relative_url }}",
+                "{{ '/assets/author-images/prev/Hassan/hassan-8.webp' | relative_url }}",
+                
+                // Lianne
+                "{{ '/assets/author-images/prev/Lianne/lianne-1.webp' | relative_url }}",
+                "{{ '/assets/author-images/prev/Lianne/lianne-2.png' | relative_url }}",
+                "{{ '/assets/author-images/prev/Lianne/lianne-3.png' | relative_url }}",
+                "{{ '/assets/author-images/prev/Lianne/lianne-4.png' | relative_url }}",
+                "{{ '/assets/author-images/prev/Lianne/lianne-5.jpg' | relative_url }}",
+                "{{ '/assets/author-images/prev/Lianne/lianne-6.webp' | relative_url }}",
+                "{{ '/assets/author-images/prev/Lianne/lianne-7.webp' | relative_url }}",
+                
+                // Mateo
+                "{{ '/assets/author-images/prev/Mateo/mateo-1.webp' | relative_url }}",
+                "{{ '/assets/author-images/prev/Mateo/mateo-2.png' | relative_url }}",
+                "{{ '/assets/author-images/prev/Mateo/mateo-3.png' | relative_url }}",
+                "{{ '/assets/author-images/prev/Mateo/mateo-4.jpg' | relative_url }}",
+                "{{ '/assets/author-images/prev/Mateo/mateo-5.jpg' | relative_url }}",
+                "{{ '/assets/author-images/prev/Mateo/mateo-6.webp' | relative_url }}",
+                "{{ '/assets/author-images/prev/Mateo/mateo-7.webp' | relative_url }}",
+                "{{ '/assets/author-images/prev/Mateo/mateo-8.webp' | relative_url }}",
+                
+                // Oskar
+                "{{ '/assets/author-images/prev/Oskar/oskar-6.webp' | relative_url }}",
+                "{{ '/assets/author-images/prev/Oskar/oskar-7.webp' | relative_url }}",
+                "{{ '/assets/author-images/prev/Oskar/oskar-8.webp' | relative_url }}"
             ];
 
             function spawnSpaceDebris() {
                 const img = document.createElement('img');
                 
-                // Select a random image
-                img.src = fallbackImages[Math.floor(Math.random() * fallbackImages.length)];
+                // Select a random image from your actual files
+                img.src = prevImages[Math.floor(Math.random() * prevImages.length)];
                 img.className = 'floating-head';
 
                 // Randomize Size (between 60px and 180px)
                 const size = Math.random() * 120 + 60;
                 img.style.width = `${size}px`;
                 img.style.height = `${size}px`;
+                // Ensure the images don't stretch if they aren't perfectly square
+                img.style.objectFit = 'cover'; 
 
                 // Randomize Start Position (X axis)
                 const startX = Math.random() * 100;
