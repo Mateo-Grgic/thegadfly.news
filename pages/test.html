@@ -1,0 +1,174 @@
+---
+layout: default
+title: About the Authors
+---  
+
+<style>
+    /* Ensure the main container lets the background show through */
+    .content-section {
+        position: relative;
+        z-index: 10;
+        background: transparent;
+    }
+
+    /* Make the cards look like they are floating in space */
+    .author-card {
+        background: rgba(20, 20, 25, 0.85); /* Dark semi-transparent background */
+        backdrop-filter: blur(4px); /* Frost effect so space doesn't clash with text */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        /* The gentle hover animation */
+        animation: gentleHover 6s ease-in-out infinite alternate;
+        transition: transform 0.3s ease;
+    }
+
+    /* Stagger the floating animations so they don't all move identically */
+    .author-card:nth-child(1) { animation-duration: 7s; animation-delay: 0s; }
+    .author-card:nth-child(2) { animation-duration: 6s; animation-delay: -2s; }
+    .author-card:nth-child(3) { animation-duration: 8s; animation-delay: -4s; }
+    .author-card:nth-child(4) { animation-duration: 6.5s; animation-delay: -1s; }
+
+    @keyframes gentleHover {
+        0% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-10px) rotate(1deg); }
+        100% { transform: translateY(5px) rotate(-1deg); }
+    }
+
+    /* The Space Void Background */
+    #space-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        pointer-events: none; /* Prevents background images from blocking clicks */
+        overflow: hidden;
+        background-color: #050505; /* Deep space black */
+    }
+
+    .floating-head {
+        position: absolute;
+        border-radius: 10%;
+        opacity: 0.25; /* Keep them dim so they don't distract from the text */
+        filter: grayscale(50%);
+        animation: floatAndSpin linear infinite forwards;
+    }
+
+    @keyframes floatAndSpin {
+        0% {
+            transform: translate(0, 110vh) rotate(0deg);
+        }
+        100% {
+            /* Variables injected by JavaScript */
+            transform: translate(var(--x-end), -20vh) rotate(var(--rot-end));
+        }
+    }
+</style>
+
+<div id="space-background"></div>
+
+<section class="content-section">
+    <h1>About the Authors</h1>
+    <div class="authors-grid">
+        <div class="author-card">
+            <img src="{{ "/assets/author-images/current/mateo.webp" | relative_url }}" alt="Mateo Grgic" class="author-image">
+            <div class="author-info">
+                <h2>Mateo Grgić</h2>
+                <p class="author-role">Co-Founder, Writer, Steering Committee, Editor, Layout/Publishing, Finances, Website</p>
+                <p>Mateo Grgić is a grade 11 student at Laurel Heights Secondary School. He was born & raised in Waterloo, Ontario. He co-founded 'The Backcast', a failed school newspaper with his friend Hassan Ahmed, which eventually got shut down for being too funny. Never ones to give up, they then started a new, legally distinct newspaper: The Gadfly. His favourite colour is neon green. He spends his free time reading, cycling, and browsing the Arch Linux Wiki.</p>
+            </div>
+        </div>
+        <div class="author-card">
+            <img src="{{ "/assets/author-images/current/hassan.webp" | relative_url }}" alt="Hassan Ahmed" class="author-image">
+            <div class="author-info">
+                <h2>Hassan Ahmed</h2>
+                <p class="author-role">Co-Founder, Writer, Steering Committee, Secretary, Graffitist</p>
+                <p>Hassan Ahmed is a co-founder of The Gadfly, and an aspiring New York Times Bestselling Author. Born in Saskatoon, Saskatchewan, he was deported for being too funny. He moved to the land that provided the most promise and opportunity for a young journalist; suburban Waterloo. With only 3 incidents involving the police, Hassan discovered one day that anyone can start a news publication if they tried hard enough, and here we are.</p>
+            </div>
+        </div>
+        <div class="author-card">
+            <img src="{{ "/assets/author-images/current/lianne.webp" | relative_url }}" alt="Lianne Elkadri" class="author-image">
+            <div class="author-info">
+                <h2>Lianne Elkadri</h2>
+                <p class="author-role">Co-Founder, Writer, Steering Committee, Holder of the Secret Knowledge</p>
+                <p>Lianne Elkadri is a journalist for the Gadfly, while also dedicating a significant amount of her time to thinking about what to do with her free time. She also never knows what to put in "about the author" sections, despite this being the first time she has had to write one. She enjoys music, collecting vinyl records, the colour red, space, turtles, physics, and geometry.</p>
+            </div>
+        </div>
+        <div class="author-card">
+            <img src="{{ "/assets/author-images/current/oskar.webp" | relative_url }}" alt="Oskar Deneau" class="author-image">
+            <div class ="author-info"> 
+                <h2>Oskar Deneau</h2>
+                <p class="author-role">Writer</p>
+                <p>Oskar Deneau is an investigator of sorts; he spends his time pursuing things he likely can't achieve. Once hailed as leader and king by his subjects, he was recently overthrown, and has landed a job here at The Gadfly. He is said to be a nuisance at many social gatherings and is reportedly banned from most parking lots. In his free time he enjoys art, music, tea, and selling your data online.</p>
+            </div>
+        </div>
+        <div>
+            <a href="{{ "/pages/group-pictures" | relative_url }}">
+                <img src="{{ "/assets/group-pictures/issue8-group.webp" | relative_url }}" alt="group photo" class="inline-image">
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Sample of previous author images extracted from your directory structure
+        const prevImages = [
+            "{{ '/assets/author-images/prev/David/david-6.webp' | relative_url }}",
+            "{{ '/assets/author-images/prev/Hassan/hassan-1.webp' | relative_url }}",
+            "{{ '/assets/author-images/prev/Hassan/hassan-6.webp' | relative_url }}",
+            "{{ '/assets/author-images/prev/Lianne/lianne-2.png' | relative_url }}",
+            "{{ '/assets/author-images/prev/Lianne/lianne-6.webp' | relative_url }}",
+            "{{ '/assets/author-images/prev/Mateo/mateo-3.png' | relative_url }}",
+            "{{ '/assets/author-images/prev/Mateo/mateo-8.webp' | relative_url }}",
+            "{{ '/assets/author-images/prev/Oskar/oskar-6.webp' | relative_url }}",
+            "{{ '/assets/author-images/prev/Oskar/oskar-8.webp' | relative_url }}"
+        ];
+
+        const spaceContainer = document.getElementById('space-background');
+
+        function spawnFloatingHead() {
+            const img = document.createElement('img');
+            
+            // Pick a random image from the array
+            img.src = prevImages[Math.floor(Math.random() * prevImages.length)];
+            img.className = 'floating-head';
+
+            // Randomize image size (between 50px and 120px)
+            const size = Math.random() * 70 + 50; 
+            img.style.width = `${size}px`;
+            img.style.height = 'auto';
+
+            // Randomize starting X position along the bottom of the screen
+            const startX = Math.random() * 100;
+            img.style.left = `${startX}vw`;
+
+            // Randomize drift (end X), spin (end Rotation), and speed (duration)
+            const xEnd = (Math.random() * 100 - 50) + 'vw'; // Drift slightly left or right
+            const rotEnd = (Math.random() * 720 - 360) + 'deg'; // Spin up to 720 degrees
+            const duration = Math.random() * 20 + 15; // Take 15 to 35 seconds to reach the top
+
+            // Pass variables to CSS keyframes
+            img.style.setProperty('--x-end', xEnd);
+            img.style.setProperty('--rot-end', rotEnd);
+            img.style.animationDuration = `${duration}s`;
+
+            spaceContainer.appendChild(img);
+
+            // Clean up the DOM by removing the image once it floats off screen
+            setTimeout(() => {
+                if (img.parentNode) img.parentNode.removeChild(img);
+            }, duration * 1000);
+        }
+
+        // Spawn a batch of images immediately so the screen isn't initially empty
+        for(let i = 0; i < 12; i++) {
+            setTimeout(spawnFloatingHead, Math.random() * 8000);
+        }
+
+        // Continuously spawn a new image every 1.5 seconds
+        setInterval(spawnFloatingHead, 1500);
+    });
+</script>
