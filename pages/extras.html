@@ -1,21 +1,14 @@
 ---
 layout: default
 title: Extras
-description: The non-mainline stuff—comics, the zine, manifestos, and other oddities from The Gadfly. It's weird down here.
 ---
 
-<!--
+<!--  Original page made by Claude 4.8 Opus thinking, with some minor changes by Gemini 3 Pro—yes, I know it's vibe coded, but I couldn't be bothered for this right now. 
 
-Original page made by Claude 4.8 Opus thinking. Some minor changes by Gemini 3 pro—yes, I know it's vibe coding, but I couldn't be assed.
-The first iteration was super clunky visually, so I changed the colours, fixed layout a little bit, etc. 
-I—and The Gadfly team on the whole—hate AI-copy, so all that got stripped out and fixed too.
-Not just rewritten, because then it's still be bad, but overhauled entirely.
-
---> 
+The first iteration was super clunky visually, so I changed the colours, fixed layout a little bit, etc. I—and The Gadfly team on the whole—hate AI-copy, so all that got stripped out and fixed too. Not just rewritten—because then it's still be bad, just in my words—but overhauled entirely. (p.s. I use em dashes more than AI does. There's like a bell curve for em-dash use: none = not AI, a few = AI, & every sentince = me).  --> 
 
 <style>
 /* ---------- scope everything to .extras ---------- */
-
 
 .extras {
     --x-green: #09461d;
@@ -52,7 +45,7 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
     animation: x-float 18s ease-in-out infinite, x-morph 12s ease-in-out infinite;
 }
 .extras .blob.b1 { width: 320px; height: 320px; left: -60px;  top: 5%;  background: var(--x-neon);  animation-delay: 0s, -2s; }
-.extras .blob.b2 { width: 260px; height: 260px; right: -40px; top: 25%; background: var(--x-green);   animation-delay: -4s, -1s; }
+.extras .blob.b2 { width: 260px; height: 260px; right: -40px; top: 25%; background: var(--x-green);  animation-delay: -4s, -1s; }
 .extras .blob.b3 { width: 380px; height: 380px; left: 20%;   top: 55%; background: var(--x-green);          animation-delay: -8s, -5s; }
 .extras .blob.b4 { width: 220px; height: 220px; right: 12%;  top: 72%; background: var(--x-green);          animation-delay: -6s, -3s; }
 .extras .blob.b5 { width: 300px; height: 300px; left: 40%;   top: 88%; background: var(--x-green);          animation-delay: -10s, -7s; }
@@ -115,19 +108,6 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
     max-width: 40ch;
     margin: 1rem auto 0;
 }
-.extras .x-bleed-btn {
-    margin-top: 1.5rem;
-    display: inline-block;
-    background: transparent;
-    border: 2px dashed var(--x-neon);
-    color: var(--x-neon);
-    font-family: 'Fira Mono', monospace;
-    padding: 0.6rem 1.4rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: transform 0.15s ease, background 0.2s ease;
-}
-.extras .x-bleed-btn:hover { transform: scale(1.06) rotate(-2deg); background: rgba(57,255,20,0.12); }
 
 /* ---------- weird sections ---------- */
 .extras .x-section {
@@ -193,8 +173,8 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
 }
 @keyframes x-flicker {
     0%,19%,21%,100% { opacity: 1; }
-    20%             { opacity: 0.3; }
-    55%,57%         { opacity: 0.5; }
+    20%              { opacity: 0.3; }
+    55%,57%          { opacity: 0.5; }
 }
 .extras .x-card-body { padding: 1rem; }
 .extras .x-card-body h3 { margin: 0 0 0.3rem; color: var(--x-cream) !important; font-family: 'Fira Mono Medium', monospace; }
@@ -251,7 +231,6 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
 
 <div class="extras" id="extras">
 
-    <!-- colourful floating background shapes -->
     <div class="shapes" aria-hidden="true">
         <span class="blob b1"></span>
         <span class="blob b2"></span>
@@ -260,18 +239,14 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
         <span class="blob b5"></span>
     </div>
 
-    <!-- draggable buzzing gadfly -->
     <img class="x-bug" id="x-bug" src="{{ '/assets/misc/gadfly.png' | relative_url }}"
          alt="A loose gadfly. Drag him around." style="left: 78%; top: 120px;">
 
-    <!-- ===================== HERO ===================== -->
     <section class="x-hero">
         <h1 class="x-glitch" data-text="EXTRAS &amp; ODDITIES">EXTRAS &amp; ODDITIES</h1>
         <p class="x-sub">Everything that didn't fit in a mainline issue. It's a little weirder down here. That's on purpose.</p>
-        <button class="x-bleed-btn" id="x-bleed-btn" type="button">Let the colour bleed in</button>
     </section>
 
-    <!-- ===================== COMICS ===================== -->
     <section class="x-section">
         <h2>The Gadfly Comic</h2>
         <p>
@@ -291,7 +266,6 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
         </div>
     </section>
 
-    <!-- ===================== ZINE ===================== -->
     <section class="x-section">
         <h2>The Zine</h2>
         <p>Smaller, scrappier, and even less accountable than the main paper.</p>
@@ -303,13 +277,10 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
         </div>
     </section>
 
-    <!-- ===================== SPECIAL ISSUES ===================== -->
     <section class="x-section">
         <h2>Special Issues</h2>
         <p>The issues that broke the numbering. Officially unofficial.</p>
         <div class="x-grid">
-            <!-- When PDFs exist, turn these <div>s into:
-            <a href="{{ '/assets/issues/extras/issue-21.pdf' | relative_url }}" class="x-card"> ... </a> -->
             <div class="x-card">
                 <div class="x-thumb"><span>#21<br>Coming Soon</span></div>
                 <div class="x-card-body"><h3>Issue #21</h3><p>2026</p></div>
@@ -321,7 +292,6 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
         </div>
     </section>
 
-    <!-- ===================== EXTRA-ISSUE DOCS ===================== -->
     <section class="x-section">
         <h2>Extra-Issue Documents</h2>
         <p>The paperwork that keeps the lights on (and the admins at bay).</p>
@@ -339,56 +309,33 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
 
 <script>
 (function () {
-    /* -------------------------------------------------------------
-       PREFERENCE CONFIGURATION
-       Set to "bw" to permanently freeze layout in monochrome.
-       Set to "colour" to keep the standard interactive bleed system.
-    -------------------------------------------------------------- */
-    var PREF_THEME = "bw"; 
-
     var extras = document.getElementById('extras');
     if (!extras) return;
 
-    var btn = document.getElementById('x-bleed-btn');
-    var shapes = document.getElementById('x-shapes');
+    /* ---- STATE CONFIGURATION VARIABLES ---- */
+    var bw = false;      // Set to true to force stark Black & White ('betrayed' state)
+    var colour = true;   // Set to true to switch to full Colour ('bleed' state)
 
-    // Handle B&W configuration logic upfront
-    if (PREF_THEME === "bw") {
-        extras.classList.add('forced-bw');
-        if (btn) btn.style.display = 'none';
-        if (shapes) shapes.style.display = 'none';
-    }
-
-    /* ---- colour bleeds in on first scroll-into-view ---- */
-    var bleedOnce = function () {
-        if (PREF_THEME === "bw") return;
+    /* ---- apply state based on variables ---- */
+    if (bw) {
+        extras.classList.remove('bleed');
+        extras.classList.add('betrayed');
+    } else if (colour) {
         extras.classList.add('bleed');
         extras.classList.remove('betrayed');
-        window.removeEventListener('scroll', onScroll);
-    };
-    var onScroll = function () {
-        var r = extras.getBoundingClientRect();
-        if (r.top < window.innerHeight * 0.6) bleedOnce();
-    };
-    
-    if (PREF_THEME !== "bw") {
+    } else {
+        /* Default baseline: colour bleeds in on first scroll-into-view if flags are untouched */
+        var bleedOnce = function () {
+            extras.classList.add('bleed');
+            extras.classList.remove('betrayed');
+            window.removeEventListener('scroll', onScroll);
+        };
+        var onScroll = function () {
+            var r = extras.getBoundingClientRect();
+            if (r.top < window.innerHeight * 0.6) bleedOnce();
+        };
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
-    }
-
-    /* ---- manual bleed / betray toggle ---- */
-    if (btn && PREF_THEME !== "bw") {
-        btn.addEventListener('click', function () {
-            if (extras.classList.contains('bleed')) {
-                extras.classList.remove('bleed');
-                extras.classList.add('betrayed');
-                btn.textContent = 'Harper betrayed you. Bring it back.';
-            } else {
-                extras.classList.add('bleed');
-                extras.classList.remove('betrayed');
-                btn.textContent = 'Let the colour bleed in';
-            }
-        });
     }
 
     /* ---- cards tilt toward the cursor (3D-ish wobble) ---- */
@@ -409,7 +356,7 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
         var dragging = false, offX = 0, offY = 0;
         var start = function (x, y) {
             dragging = true;
-            var b = bug.getBoundingClientRect();
+            var b = bug.getBoundingClientRect(), p = extras.getBoundingClientRect();
             offX = x - b.left; offY = y - b.top;
             bug.style.animation = 'none';
         };
@@ -432,4 +379,3 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
     }
 })();
 </script>
-
