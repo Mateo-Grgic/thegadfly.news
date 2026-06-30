@@ -18,7 +18,6 @@ description: The non-mainline stuff—comics, the zine, manifestos, and other od
 .extras {
     --x-green: #09461d;
     --x-neon: #39ff14;
-    --x-red: #ff2d4b;
     --x-cream: #fffdf4;
     --x-ink: #0b130c;
     position: relative;
@@ -50,10 +49,10 @@ description: The non-mainline stuff—comics, the zine, manifestos, and other od
     animation: x-float 18s ease-in-out infinite, x-morph 12s ease-in-out infinite;
 }
 .extras .blob.b1 { width: 320px; height: 320px; left: -60px;  top: 5%;  background: var(--x-neon);  animation-delay: 0s, -2s; }
-.extras .blob.b2 { width: 260px; height: 260px; right: -40px; top: 25%; background: var(--x-red);   animation-delay: -4s, -1s; }
-.extras .blob.b3 { width: 380px; height: 380px; left: 20%;   top: 55%; background: #2d8cff;          animation-delay: -8s, -5s; }
-.extras .blob.b4 { width: 220px; height: 220px; right: 12%;  top: 72%; background: #ffd23f;          animation-delay: -6s, -3s; }
-.extras .blob.b5 { width: 300px; height: 300px; left: 40%;   top: 88%; background: #c84bff;          animation-delay: -10s, -7s; }
+.extras .blob.b2 { width: 260px; height: 260px; right: -40px; top: 25%; background: var(--x-green);   animation-delay: -4s, -1s; }
+.extras .blob.b3 { width: 380px; height: 380px; left: 20%;   top: 55%; background: var(--x-green);          animation-delay: -8s, -5s; }
+.extras .blob.b4 { width: 220px; height: 220px; right: 12%;  top: 72%; background: var(--x-green);          animation-delay: -6s, -3s; }
+.extras .blob.b5 { width: 300px; height: 300px; left: 40%;   top: 88%; background: var(--x-green);          animation-delay: -10s, -7s; }
 
 @keyframes x-float {
     0%,100% { transform: translate(0,0) scale(1); }
@@ -94,7 +93,7 @@ description: The non-mainline stuff—comics, the zine, manifestos, and other od
     overflow: hidden;
     opacity: 0.8;
 }
-.extras .x-glitch::before { color: var(--x-red);  transform: translate(-3px,0); }
+.extras .x-glitch::before { color: var(--x-green);  transform: translate(-3px,0); }
 .extras .x-glitch::after  { color: var(--x-neon); transform: translate(3px,0); }
 .extras .x-hero:hover .x-glitch::before { animation: x-glitch1 0.4s steps(2) infinite; }
 .extras .x-hero:hover .x-glitch::after  { animation: x-glitch2 0.4s steps(2) infinite; }
@@ -200,7 +199,7 @@ description: The non-mainline stuff—comics, the zine, manifestos, and other od
 
 /* ---------- manifesto / docs blocks ---------- */
 .extras .x-doc {
-    border-left: 4px solid var(--x-red);
+    border-left: 4px solid var(--x-green);
     padding: 0.5rem 0 0.5rem 1.2rem;
     margin: 1.4rem 0;
     transition: border-color 0.3s ease, transform 0.2s ease;
@@ -399,8 +398,10 @@ description: The non-mainline stuff—comics, the zine, manifestos, and other od
             bug.style.left = (x - p.left - offX) + 'px';
             bug.style.top  = (y - p.top  - offY) + 'px';
         };
-        var end = function () { dragging = false; };
-
+        var end = function () { 
+            dragging = false; 
+            if (bug) bug.style.animation = '';
+        };
         bug.addEventListener('mousedown', function (e) { e.preventDefault(); start(e.clientX, e.clientY); });
         window.addEventListener('mousemove', function (e) { move(e.clientX, e.clientY); });
         window.addEventListener('mouseup', end);
