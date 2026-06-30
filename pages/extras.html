@@ -6,12 +6,9 @@ description: The non-mainline stuff—comics, the zine, manifestos, and other od
 
 <!--
 
-Original page made by Claude 4.8 Opus thinking
-
+Original page made by Claude 4.8 Opus thinking. Some minor changes by Gemini 3 pro—yes, I know it's vibe coding, but I couldn't be assed.
 The first iteration was super clunky visually, so I changed the colours, fixed layout a little bit, etc. 
-
 I—and The Gadfly team on the whole—hate AI-copy, so all that got stripped out and fixed too.
-
 Not just rewritten, because then it's still be bad, but overhauled entirely.
 
 --> 
@@ -25,6 +22,7 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
     --x-neon: #39ff14;
     --x-cream: #fffdf4;
     --x-ink: #0b130c;
+    
     position: relative;
     overflow: hidden;
     background: var(--x-ink);
@@ -337,17 +335,33 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
                <a href="{{ '/pages/aoa' | relative_url }}">Read it here →</a></p>
         </div>
     </section>
-
-    <p class="x-footnote">// you have reached the bottom of the drawer. there is nothing else. probably.</p>
 </div>
 
 <script>
 (function () {
+    /* -------------------------------------------------------------
+       PREFERENCE CONFIGURATION
+       Set to "bw" to permanently freeze layout in monochrome.
+       Set to "colour" to keep the standard interactive bleed system.
+    -------------------------------------------------------------- */
+    var PREF_THEME = "bw"; 
+
     var extras = document.getElementById('extras');
     if (!extras) return;
 
+    var btn = document.getElementById('x-bleed-btn');
+    var shapes = document.getElementById('x-shapes');
+
+    // Handle B&W configuration logic upfront
+    if (PREF_THEME === "bw") {
+        extras.classList.add('forced-bw');
+        if (btn) btn.style.display = 'none';
+        if (shapes) shapes.style.display = 'none';
+    }
+
     /* ---- colour bleeds in on first scroll-into-view ---- */
     var bleedOnce = function () {
+        if (PREF_THEME === "bw") return;
         extras.classList.add('bleed');
         extras.classList.remove('betrayed');
         window.removeEventListener('scroll', onScroll);
@@ -356,12 +370,14 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
         var r = extras.getBoundingClientRect();
         if (r.top < window.innerHeight * 0.6) bleedOnce();
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    
+    if (PREF_THEME !== "bw") {
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+    }
 
     /* ---- manual bleed / betray toggle ---- */
-    var btn = document.getElementById('x-bleed-btn');
-    if (btn) {
+    if (btn && PREF_THEME !== "bw") {
         btn.addEventListener('click', function () {
             if (extras.classList.contains('bleed')) {
                 extras.classList.remove('bleed');
@@ -393,7 +409,7 @@ Not just rewritten, because then it's still be bad, but overhauled entirely.
         var dragging = false, offX = 0, offY = 0;
         var start = function (x, y) {
             dragging = true;
-            var b = bug.getBoundingClientRect(), p = extras.getBoundingClientRect();
+            var b = bug.getBoundingClientRect();
             offX = x - b.left; offY = y - b.top;
             bug.style.animation = 'none';
         };
