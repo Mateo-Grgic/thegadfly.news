@@ -1,0 +1,409 @@
+---
+layout: default
+title: Extras
+description: The non-mainline stuff—comics, the zine, manifestos, and other oddities from The Gadfly. It's weird down here.
+---
+
+<!-- =====================================================================
+     EXTRAS — the weird drawer. All styles/scripts are scoped to .extras
+     so nothing here can leak into the mainline pages or style.css.
+     ===================================================================== -->
+
+<style>
+/* ---------- scope everything to .extras ---------- */
+.extras {
+    --x-green: #09461d;
+    --x-neon: #39ff14;
+    --x-red: #ff2d4b;
+    --x-cream: #fffdf4;
+    --x-ink: #0b130c;
+    position: relative;
+    overflow: hidden;
+    background: var(--x-ink);
+    color: var(--x-cream);
+    padding: 0;
+    /* page starts drained of colour; JS / :hover bleeds it back in */
+    filter: saturate(0.15) contrast(1.05);
+    transition: filter 1.2s ease;
+}
+.extras.bleed { filter: saturate(1) contrast(1.05); }
+.extras.betrayed { filter: saturate(0) contrast(1.1) brightness(0.95); }
+
+/* ---------- floating colourful background shapes ---------- */
+.extras .shapes {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.extras .blob {
+    position: absolute;
+    border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
+    filter: blur(8px);
+    opacity: 0.55;
+    mix-blend-mode: screen;
+    animation: x-float 18s ease-in-out infinite, x-morph 12s ease-in-out infinite;
+}
+.extras .blob.b1 { width: 320px; height: 320px; left: -60px;  top: 5%;  background: var(--x-neon);  animation-delay: 0s, -2s; }
+.extras .blob.b2 { width: 260px; height: 260px; right: -40px; top: 25%; background: var(--x-red);   animation-delay: -4s, -1s; }
+.extras .blob.b3 { width: 380px; height: 380px; left: 20%;   top: 55%; background: #2d8cff;          animation-delay: -8s, -5s; }
+.extras .blob.b4 { width: 220px; height: 220px; right: 12%;  top: 72%; background: #ffd23f;          animation-delay: -6s, -3s; }
+.extras .blob.b5 { width: 300px; height: 300px; left: 40%;   top: 88%; background: #c84bff;          animation-delay: -10s, -7s; }
+
+@keyframes x-float {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33%     { transform: translate(40px,-30px) scale(1.08); }
+    66%     { transform: translate(-30px,25px) scale(0.94); }
+}
+@keyframes x-morph {
+    0%,100% { border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; }
+    50%     { border-radius: 60% 40% 33% 67% / 55% 62% 38% 45%; }
+}
+
+/* keep all real content above the shapes */
+.extras > section,
+.extras > .x-hero { position: relative; z-index: 1; }
+
+/* ---------- hero ---------- */
+.extras .x-hero {
+    text-align: center;
+    padding: 4rem 1.5rem 3rem;
+}
+.extras .x-glitch {
+    font-family: 'Fira Mono Bold', monospace;
+    font-size: clamp(2.4rem, 8vw, 5rem);
+    line-height: 1.05;
+    margin: 0;
+    color: var(--x-cream);
+    position: relative;
+    display: inline-block;
+    animation: x-wobble 4s ease-in-out infinite;
+}
+/* RGB-split glitch layers */
+.extras .x-glitch::before,
+.extras .x-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%;
+    overflow: hidden;
+    opacity: 0.8;
+}
+.extras .x-glitch::before { color: var(--x-red);  transform: translate(-3px,0); }
+.extras .x-glitch::after  { color: var(--x-neon); transform: translate(3px,0); }
+.extras .x-hero:hover .x-glitch::before { animation: x-glitch1 0.4s steps(2) infinite; }
+.extras .x-hero:hover .x-glitch::after  { animation: x-glitch2 0.4s steps(2) infinite; }
+@keyframes x-glitch1 { 0%{clip-path:inset(0 0 70% 0);transform:translate(-4px,-2px)} 50%{clip-path:inset(60% 0 0 0);transform:translate(-2px,2px)} 100%{clip-path:inset(20% 0 40% 0);transform:translate(-5px,0)} }
+@keyframes x-glitch2 { 0%{clip-path:inset(50% 0 20% 0);transform:translate(4px,2px)}  50%{clip-path:inset(10% 0 60% 0);transform:translate(2px,-2px)} 100%{clip-path:inset(30% 0 30% 0);transform:translate(5px,0)} }
+
+@keyframes x-wobble {
+    0%,100% { transform: rotate(-1.5deg) skewX(-1deg); }
+    50%     { transform: rotate(1.5deg)  skewX(1deg); }
+}
+
+.extras .x-sub {
+    font-size: 1.15rem;
+    color: var(--x-cream);
+    opacity: 0.8;
+    max-width: 40ch;
+    margin: 1rem auto 0;
+}
+.extras .x-bleed-btn {
+    margin-top: 1.5rem;
+    display: inline-block;
+    background: transparent;
+    border: 2px dashed var(--x-neon);
+    color: var(--x-neon);
+    font-family: 'Fira Mono', monospace;
+    padding: 0.6rem 1.4rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.2s ease;
+}
+.extras .x-bleed-btn:hover { transform: scale(1.06) rotate(-2deg); background: rgba(57,255,20,0.12); }
+
+/* ---------- weird sections ---------- */
+.extras .x-section {
+    padding: 2.5rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.extras .x-section h2 {
+    font-family: 'Fira Mono Medium', monospace;
+    color: var(--x-neon) !important;
+    font-size: 1.9rem;
+    margin: 0 0 0.5rem;
+    display: inline-block;
+    transform: rotate(-1deg);
+}
+.extras .x-section > p { opacity: 0.85; max-width: 65ch; }
+
+/* ---------- the weird card grid ---------- */
+.extras .x-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.8rem;
+    margin-top: 1.8rem;
+}
+.extras .x-card {
+    display: block;
+    text-decoration: none;
+    color: var(--x-cream);
+    background: rgba(255,255,255,0.04);
+    border: 2px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    overflow: hidden;
+    backdrop-filter: blur(2px);
+    transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s ease, border-color 0.25s ease;
+    will-change: transform;
+}
+.extras .x-card:hover {
+    transform: rotate(var(--tilt, -2deg)) translateY(-6px) scale(1.03);
+    border-color: var(--x-neon);
+    box-shadow: 0 10px 30px rgba(57,255,20,0.18), 0 0 0 1px rgba(255,45,75,0.25);
+}
+.extras .x-card:nth-child(2n)  { --tilt: 2deg; }
+.extras .x-card:nth-child(3n)  { --tilt: -3deg; }
+
+.extras .x-thumb {
+    aspect-ratio: 8.5 / 11;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 12px, transparent 12px 24px),
+        linear-gradient(135deg, #1a1a1a, #0b130c);
+    border-bottom: 2px solid rgba(255,255,255,0.12);
+}
+.extras .x-thumb span {
+    font-family: 'Fira Mono Bold', monospace;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--x-neon);
+    text-align: center;
+    padding: 1rem;
+    animation: x-flicker 5s infinite;
+}
+@keyframes x-flicker {
+    0%,19%,21%,100% { opacity: 1; }
+    20%             { opacity: 0.3; }
+    55%,57%         { opacity: 0.5; }
+}
+.extras .x-card-body { padding: 1rem; }
+.extras .x-card-body h3 { margin: 0 0 0.3rem; color: var(--x-cream) !important; font-family: 'Fira Mono Medium', monospace; }
+.extras .x-card-body p  { margin: 0; opacity: 0.6; font-size: 0.9rem; }
+
+/* ---------- manifesto / docs blocks ---------- */
+.extras .x-doc {
+    border-left: 4px solid var(--x-red);
+    padding: 0.5rem 0 0.5rem 1.2rem;
+    margin: 1.4rem 0;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+}
+.extras .x-doc:hover { border-color: var(--x-neon); transform: translateX(6px); }
+.extras .x-doc h3 { margin: 0 0 0.3rem; color: var(--x-cream) !important; }
+.extras .x-doc p  { margin: 0; opacity: 0.8; }
+.extras .x-doc a  { color: var(--x-neon); font-weight: bold; text-decoration: none; }
+.extras .x-doc a:hover { text-decoration: underline; }
+
+/* ---------- floating draggable bug ---------- */
+.extras .x-bug {
+    position: absolute;
+    z-index: 2;
+    width: 46px;
+    height: auto;
+    cursor: grab;
+    user-select: none;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6));
+    animation: x-buzz 6s ease-in-out infinite;
+}
+.extras .x-bug:active { cursor: grabbing; animation: none; }
+@keyframes x-buzz {
+    0%,100% { transform: translate(0,0) rotate(-6deg); }
+    25%     { transform: translate(14px,-10px) rotate(8deg); }
+    50%     { transform: translate(-8px,12px) rotate(-4deg); }
+    75%     { transform: translate(10px,6px) rotate(6deg); }
+}
+
+/* a little footer note inside the drawer */
+.extras .x-footnote {
+    text-align: center;
+    padding: 2rem 1.5rem 3.5rem;
+    opacity: 0.5;
+    font-size: 0.85rem;
+}
+
+/* respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .extras *,
+    .extras .blob,
+    .extras .x-glitch,
+    .extras .x-bug { animation: none !important; transition: none !important; }
+}
+</style>
+
+<div class="extras" id="extras">
+
+    <!-- colourful floating background shapes -->
+    <div class="shapes" aria-hidden="true">
+        <span class="blob b1"></span>
+        <span class="blob b2"></span>
+        <span class="blob b3"></span>
+        <span class="blob b4"></span>
+        <span class="blob b5"></span>
+    </div>
+
+    <!-- draggable buzzing gadfly -->
+    <img class="x-bug" id="x-bug" src="{{ '/assets/misc/gadfly.png' | relative_url }}"
+         alt="A loose gadfly. Drag him around." style="left: 78%; top: 120px;">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="x-hero">
+        <h1 class="x-glitch" data-text="EXTRAS &amp; ODDITIES">EXTRAS &amp; ODDITIES</h1>
+        <p class="x-sub">Everything that didn't fit in a mainline issue. It's a little weirder down here. That's on purpose.</p>
+        <button class="x-bleed-btn" id="x-bleed-btn" type="button">Let the colour bleed in</button>
+    </section>
+
+    <!-- ===================== COMICS ===================== -->
+    <section class="x-section">
+        <h2>The Gadfly Comic</h2>
+        <p>
+            Hassan's comic. The "real" one follows Ivan—greyscale with a thread of red, until he meets
+            Harper and the colour bleeds into his life... right up until the betrayal drains it all back
+            to grey. The four-panel slapstick strips stay as lazily coloured as ever, and we love them for it.
+        </p>
+        <div class="x-grid">
+            <div class="x-card">
+                <div class="x-thumb"><span>Ch. 1<br>Coming Soon</span></div>
+                <div class="x-card-body"><h3>The Ivan &amp; Harper Comic</h3><p>In progress</p></div>
+            </div>
+            <div class="x-card">
+                <div class="x-thumb"><span>Four<br>Panels</span></div>
+                <div class="x-card-body"><h3>Slapstick Strips</h3><p>Whenever Hassan's bored</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== ZINE ===================== -->
+    <section class="x-section">
+        <h2>The Zine</h2>
+        <p>Smaller, scrappier, and even less accountable than the main paper.</p>
+        <div class="x-grid">
+            <div class="x-card">
+                <div class="x-thumb"><span>Zine #1<br>Coming Soon</span></div>
+                <div class="x-card-body"><h3>Zine #1</h3><p>TBD</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SPECIAL ISSUES ===================== -->
+    <section class="x-section">
+        <h2>Special Issues</h2>
+        <p>The issues that broke the numbering. Officially unofficial.</p>
+        <div class="x-grid">
+            <!-- When PDFs exist, turn these <div>s into:
+            <a href="{{ '/assets/issues/extras/issue-21.pdf' | relative_url }}" class="x-card"> ... </a> -->
+            <div class="x-card">
+                <div class="x-thumb"><span>#21<br>Coming Soon</span></div>
+                <div class="x-card-body"><h3>Issue #21</h3><p>2026</p></div>
+            </div>
+            <div class="x-card">
+                <div class="x-thumb"><span>#22<br>Coming Soon</span></div>
+                <div class="x-card-body"><h3>Issue #22</h3><p>2026</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== EXTRA-ISSUE DOCS ===================== -->
+    <section class="x-section">
+        <h2>Extra-Issue Documents</h2>
+        <p>The paperwork that keeps the lights on (and the admins at bay).</p>
+        <div class="x-doc">
+            <h3>The Manifesto</h3>
+            <p>Coming soon—assuming we ever agree on what we actually believe.</p>
+        </div>
+        <div class="x-doc">
+            <h3>Articles of Agreement</h3>
+            <p>Our governing document, in all its over-engineered glory.
+               <a href="{{ '/pages/aoa' | relative_url }}">Read it here →</a></p>
+        </div>
+    </section>
+
+    <p class="x-footnote">// you have reached the bottom of the drawer. there is nothing else. probably.</p>
+</div>
+
+<script>
+(function () {
+    var extras = document.getElementById('extras');
+    if (!extras) return;
+
+    /* ---- colour bleeds in on first scroll-into-view ---- */
+    var bleedOnce = function () {
+        extras.classList.add('bleed');
+        extras.classList.remove('betrayed');
+        window.removeEventListener('scroll', onScroll);
+    };
+    var onScroll = function () {
+        var r = extras.getBoundingClientRect();
+        if (r.top < window.innerHeight * 0.6) bleedOnce();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ---- manual bleed / betray toggle ---- */
+    var btn = document.getElementById('x-bleed-btn');
+    if (btn) {
+        btn.addEventListener('click', function () {
+            if (extras.classList.contains('bleed')) {
+                extras.classList.remove('bleed');
+                extras.classList.add('betrayed');
+                btn.textContent = 'Harper betrayed you. Bring it back.';
+            } else {
+                extras.classList.add('bleed');
+                extras.classList.remove('betrayed');
+                btn.textContent = 'Let the colour bleed in';
+            }
+        });
+    }
+
+    /* ---- cards tilt toward the cursor (3D-ish wobble) ---- */
+    extras.querySelectorAll('.x-card').forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+            var b = card.getBoundingClientRect();
+            var rx = ((e.clientY - b.top) / b.height - 0.5) * -10;
+            var ry = ((e.clientX - b.left) / b.width - 0.5) * 10;
+            card.style.transform =
+                'perspective(700px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-6px) scale(1.03)';
+        });
+        card.addEventListener('mouseleave', function () { card.style.transform = ''; });
+    });
+
+    /* ---- draggable buzzing gadfly ---- */
+    var bug = document.getElementById('x-bug');
+    if (bug) {
+        var dragging = false, offX = 0, offY = 0;
+        var start = function (x, y) {
+            dragging = true;
+            var b = bug.getBoundingClientRect(), p = extras.getBoundingClientRect();
+            offX = x - b.left; offY = y - b.top;
+            bug.style.animation = 'none';
+        };
+        var move = function (x, y) {
+            if (!dragging) return;
+            var p = extras.getBoundingClientRect();
+            bug.style.left = (x - p.left - offX) + 'px';
+            bug.style.top  = (y - p.top  - offY) + 'px';
+        };
+        var end = function () { dragging = false; };
+
+        bug.addEventListener('mousedown', function (e) { e.preventDefault(); start(e.clientX, e.clientY); });
+        window.addEventListener('mousemove', function (e) { move(e.clientX, e.clientY); });
+        window.addEventListener('mouseup', end);
+        bug.addEventListener('touchstart', function (e) { start(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+        window.addEventListener('touchmove', function (e) { if (dragging) move(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+        window.addEventListener('touchend', end);
+    }
+})();
+</script>
+
