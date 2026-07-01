@@ -1158,4 +1158,184 @@ textarea {
     display: block;
 }
 
+/* ========================================
+   Consent Form Styling
+   ======================================== */
+
+.consent-form {
+    max-width: 700px;
+    margin: 2rem auto;
+}
+
+.consent-form .field-group {
+    margin-bottom: 1.5rem;
+}
+
+.consent-form .field-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+}
+
+.consent-form .field-group input[type="text"],
+.consent-form .field-group input[type="date"],
+.consent-form .field-group select {
+    width: 100%;
+    padding: 0.6rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.name-fields {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.name-fields .field-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.signature-field {
+    font-family: "Brush Script MT", cursive, "Segoe Script", serif;
+    font-size: 1.3rem !important;
+}
+
+.consent-prompt {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+}
+
+.form-apology {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Circle-able Options --- */
+
+.circle-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 1rem 0;
+}
+
+.circle-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.8rem 1rem;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #fafafa;
+    user-select: none;
+    position: relative;
+}
+
+.circle-option:hover {
+    border-color: #999;
+    background: #f0f0f0;
+}
+
+/* Hide the default radio button visually but keep it accessible */
+.circle-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The "circle" indicator — a circle that fills when selected */
+.circle-option .circle-label::before {
+    content: "○";
+    display: inline-block;
+    font-size: 1.4rem;
+    line-height: 1;
+    margin-right: 0.5rem;
+    transition: all 0.2s ease;
+    color: #888;
+    vertical-align: middle;
+}
+
+.circle-option input[type="radio"]:checked + .circle-label::before {
+    content: "◉";
+    color: #c00;  /* The Gadfly red */
+    font-weight: bold;
+}
+
+/* Highlighted border when selected — looks "circled" */
+.circle-option input[type="radio"]:checked ~ .circle-label {
+    font-weight: bold;
+}
+
+.circle-option:has(input[type="radio"]:checked) {
+    border-color: #c00;
+    background: #fff5f5;
+    box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.15);
+}
+
+.circle-note {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+    margin-top: 0.2rem;
+    margin-left: 2.2rem;
+}
+
+/* Media type row */
+.media-type-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.media-option {
+    flex: 0 0 auto;
+    padding: 0.6rem 1.2rem;
+}
+
+.media-option .circle-label::before {
+    content: "○";
+    font-size: 1.2rem;
+    margin-right: 0.4rem;
+}
+
+.media-option input[type="radio"]:checked + .circle-label::before {
+    content: "◉";
+    color: #c00;
+}
+
+/* Submit button */
+.submit-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #fff;
+    background: #c00;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+    background: #a00;
+}
+
+.submit-btn:active {
+    background: #800;
+}
 

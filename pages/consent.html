@@ -1,0 +1,108 @@
+---
+layout: default
+title: Consent Form — The Gadfly
+---
+
+<section class="content-section">
+    <h1>Consent Form for Feature in <em>The Gadfly</em></h1>
+
+    <div class="article-section">
+        <p>The following form is to be signed in the event of your name or likeness' feature in <em>The Gadfly</em>. Please read the following information, fill out the relevant sections, and return to The Secretary of The Gadfly (the person who gave you this form).</p>
+    </div>
+
+    <div class="article-section">
+        <h2>What This Applies To</h2>
+        <p>The purpose of all this is to record your consent. We would ideally just ask you for consent and leave it at that, but the bureaucracy™ would like us to have a form. Useful to keep track of things I suppose.</p>
+        <p>This form <strong>ONLY</strong> counts towards the single piece of media your likeness is being used in (article, ad, photo, etc.); if you are included in more than one piece of media, you will have to sign another form. If you are included in a future issue, you will also have to sign another form then.</p>
+        <p>If you are a public figure (e.g. politician, celebrity, high-level government worker) we do not need your consent. Because you sold your soul to the devil, we do not care for your opinion.</p>
+    </div>
+
+    <div class="article-section">
+        <h2>We Will Bother You.</h2>
+        <p>We believe that consent matters. You will have the right to review your media upon its completion and offer your feedback. Your feedback is binding and will be implemented prior to the official release. We will stay in contact until you are satisfied with the piece of media your likeness is attached to.</p>
+        <p>Please note that once the newspaper for that month is printed, we cannot recall the copies and as such all mentions are final. We cannot stress how important it is to voice any concerns you have before we release.</p>
+    </div>
+
+    <form action="https://api.web3forms.com/submit" method="POST" class="consent-form">
+        <input type="hidden" name="access_key" value="0db446af-3365-4c8f-b6c2-2c6c5bd6a50c">
+        <input type="hidden" name="subject" value="Consent Form Submission — The Gadfly">
+
+        <div class="article-section">
+            <h2>Your Consent</h2>
+            <p class="consent-prompt">I, the person whose likeness is being used in <em>The Gadfly</em>…</p>
+
+            <div class="circle-options">
+                <label class="circle-option agree-option">
+                    <input type="radio" name="consent" value="agree" required>
+                    <span class="circle-label">…agree to the above.</span>
+                </label>
+
+                <label class="circle-option disagree-option">
+                    <input type="radio" name="consent" value="disagree">
+                    <span class="circle-label">…do <strong>not</strong> agree to the above.</span>
+                    <span class="circle-note">(guarantees a follow-up from The Gadfly team to negotiate terms)</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="article-section">
+            <h2>The Actual Signing Part</h2>
+            <p class="form-apology">Now onto the signing, we apologise for the dehumanising nature of the following fields. Just how 'professionalism' works.</p>
+
+            <div class="name-fields">
+                <div class="field-group">
+                    <label for="first_name">First Name of Subject:</label>
+                    <input type="text" id="first_name" name="First Name" required>
+                </div>
+                <div class="field-group">
+                    <label for="last_name">Last Name of Subject:</label>
+                    <input type="text" id="last_name" name="Last Name" required>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label>Media Type (please circle):</label>
+                <div class="media-type-options">
+                    <label class="circle-option media-option">
+                        <input type="radio" name="Media Type" value="Article" required>
+                        <span class="circle-label">Article</span>
+                    </label>
+                    <label class="circle-option media-option">
+                        <input type="radio" name="Media Type" value="Ad">
+                        <span class="circle-label">Ad</span>
+                    </label>
+                    <label class="circle-option media-option">
+                        <input type="radio" name="Media Type" value="Photograph">
+                        <span class="circle-label">Photograph</span>
+                    </label>
+                    <label class="circle-option media-option">
+                        <input type="radio" name="Media Type" value="Other">
+                        <span class="circle-label">Other</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label for="signature">Signature of Subject:</label>
+                <input type="text" id="signature" name="Signature" class="signature-field" required>
+            </div>
+
+            <div class="field-group">
+                <label for="parent_signature">Signature of Parent/Guardian (If Applicable):</label>
+                <input type="text" id="parent_signature" name="Parent/Guardian Signature" class="signature-field">
+            </div>
+
+            <div class="field-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="Date" required>
+            </div>
+        </div>
+
+        <div class="h-captcha" data-captcha="true"></div>
+
+        <button type="submit" class="submit-btn">Submit Consent Form</button>
+    </form>
+
+    <script src="https://web3forms.com/client/script.js" async defer></script>
+</section>
+
