@@ -276,6 +276,48 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     font-size: 0.85rem;
 }
 
+/* ---------- SCORE COUNTER ---------- */
+.extras .x-score-counter {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(11, 19, 12, 0.85);
+    border: 2px solid var(--x-neon);
+    color: var(--x-cream);
+    padding: 10px 20px;
+    font-family: 'Fira Mono Bold', monospace;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.3s ease;
+    pointer-events: none;
+}
+.extras .x-score-counter.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.extras .x-score-counter.enraged {
+    border-color: #ff2d4b;
+    color: #ff2d4b;
+    animation: x-flicker 2s infinite;
+}
+
+/* ---------- ERRATIC BUG MODE ---------- */
+.extras .x-bug.x-erratic {
+    /* Fast, angry jitter */
+    animation: x-fast-buzz 0.08s infinite alternate !important; 
+    /* Smooths out the random JS coordinate jumps */
+    transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1), left 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+}
+
+@keyframes x-fast-buzz {
+    0%   { transform: rotate(-15deg) scale(1.1); }
+    100% { transform: rotate(15deg) scale(0.9); }
+}
+
 /* respect reduced-motion preferences */
 @media (prefers-reduced-motion: reduce) {
     .extras *,
@@ -361,10 +403,9 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     if (!extras) return;
 
     /* ---- STATE CONFIGURATION VARIABLES ---- */
-    var bw = false;      // Set to true to force stark Black & White ('betrayed' state)
-    var colour = true;   // Set to true to switch to full Colour ('bleed' state)
+    var bw = false;      
+    var colour = true;   
 
-    /* ---- apply state based on variables ---- */
     if (bw) {
         extras.classList.remove('bleed');
         extras.classList.add('betrayed');
@@ -372,7 +413,6 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
         extras.classList.add('bleed');
         extras.classList.remove('betrayed');
     } else {
-        /* Default baseline: colour bleeds in on first scroll-into-view if flags are untouched */
         var bleedOnce = function () {
             extras.classList.add('bleed');
             extras.classList.remove('betrayed');
@@ -386,7 +426,6 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
         onScroll();
     }
 
-    /* ---- cards tilt toward the cursor (3D-ish wobble) ---- */
     extras.querySelectorAll('.x-card').forEach(function (card) {
         card.addEventListener('mousemove', function (e) {
             var b = card.getBoundingClientRect();
@@ -398,10 +437,17 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
         card.addEventListener('mouseleave', function () { card.style.transform = ''; });
     });
 
-    /* ---- BUG SPAWNER & SWATTER MINIGAME ---- */
+    /* ---- BUG MINIGAME LOGIC ---- */
     var MAX_FLIES = 8;
     var currentFlyCount = 0;
+    var fliesKilled = 0;
     var bugImgSrc = "{{ '/assets/misc/gadfly.png' | relative_url }}";
+    
+    // Create and inject the score counter
+    var scoreCounter = document.createElement('div');
+    scoreCounter.className = 'x-score-counter';
+    scoreCounter.innerText = 'Gadflies Swatted: 0';
+    document.body.appendChild(scoreCounter); // Append to body so it stays fixed relative to the viewport
     
     function spawnFly() {
         if (currentFlyCount >= MAX_FLIES) return;
@@ -412,7 +458,6 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
         bug.src = bugImgSrc;
         bug.alt = "A loose gadfly.";
         
-        // Random starting position (mostly keeping to top/middle so they can fall)
         var p = extras.getBoundingClientRect();
         var startX = Math.random() * (p.width - 100) + 20;
         var startY = Math.random() * (p.height * 0.6) + 20;
@@ -420,9 +465,30 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
         bug.style.left = startX + 'px';
         bug.style.top = startY + 'px';
         
+        // 10 Kills triggers the erratic movement state
+        var isErratic = fliesKilled >= 10;
+        if (isErratic) {
+            bug.classList.add('x-erratic');
+            
+            // Randomly jump around the screen every 800ms
+            var erraticMove = setInterval(function() {
+                if (bug.classList.contains('x-dead') || bug.classList.contains('x-dead-prep')) {
+                    clearInterval(erraticMove);
+                    return;
+                }
+                if (!dragging) {
+                    var currentP = extras.getBoundingClientRect();
+                    var newX = Math.random() * (currentP.width - 80) + 10;
+                    var newY = Math.random() * (currentP.height - 100) + 10;
+                    bug.style.left = newX + 'px';
+                    bug.style.top = newY + 'px';
+                }
+            }, 800);
+        }
+        
         extras.appendChild(bug);
 
-        /* Bug Drag & Click Logic (closure scopes to each bug) */
+        /* Bug Drag & Click Logic */
         var dragging = false, isDrag = false;
         var startMouseX = 0, startMouseY = 0;
         var offX = 0, offY = 0;
@@ -430,7 +496,7 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
         var start = function (e) {
             if (bug.classList.contains('x-dead')) return;
             dragging = true;
-            isDrag = false; // Reset drag flag
+            isDrag = false; 
             
             var b = bug.getBoundingClientRect();
             var clientX = e.clientX || (e.touches && e.touches[0].clientX);
@@ -442,6 +508,7 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
             offY = clientY - b.top;
             
             bug.style.animation = 'none';
+            if (isErratic) bug.style.transition = 'none'; // Disable transition so dragging stays snappy
         };
         
         var move = function (e) {
@@ -450,14 +517,13 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
             var clientX = e.clientX || (e.touches && e.touches[0].clientX);
             var clientY = e.clientY || (e.touches && e.touches[0].clientY);
             
-            // If mouse moved more than 5px, it's a drag, not a swat
             if (Math.abs(clientX - startMouseX) > 5 || Math.abs(clientY - startMouseY) > 5) {
                 isDrag = true;
             }
             
-            var p = extras.getBoundingClientRect();
-            bug.style.left = (clientX - p.left - offX) + 'px';
-            bug.style.top  = (clientY - p.top  - offY) + 'px';
+            var bounds = extras.getBoundingClientRect();
+            bug.style.left = (clientX - bounds.left - offX) + 'px';
+            bug.style.top  = (clientY - bounds.top  - offY) + 'px';
         };
         
         var end = function () { 
@@ -465,15 +531,18 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
             dragging = false; 
             
             if (!isDrag) {
-                // If they didn't drag it, they clicked it—SWAT!
                 triggerSwat(bug);
             } else {
-                // Resume buzz if it was just dragged
-                bug.style.animation = 'x-buzz 6s ease-in-out infinite';
+                // Resume buzz state if dragged and dropped
+                if (isErratic) {
+                    bug.style.transition = ''; // Restore CSS transition
+                    bug.style.animation = 'x-fast-buzz 0.08s infinite alternate !important';
+                } else {
+                    bug.style.animation = 'x-buzz 6s ease-in-out infinite';
+                }
             }
         };
 
-        // Attach listeners directly to this specific bug and window
         bug.addEventListener('mousedown', function(e) { e.preventDefault(); start(e); });
         window.addEventListener('mousemove', move);
         window.addEventListener('mouseup', end);
@@ -483,51 +552,58 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     }
 
     function triggerSwat(bug) {
-        // Stop interactivity instantly
         bug.classList.add('x-dead-prep');
         
         var b = bug.getBoundingClientRect();
         var p = extras.getBoundingClientRect();
         
-        // Create CSS flyswatter dynamically
         var swatter = document.createElement('div');
         swatter.className = 'x-swatter';
         swatter.innerHTML = '<div class="x-swatter-head"></div><div class="x-swatter-handle"></div>';
         
-        // Position it slightly offset from the bug to arc downwards
         swatter.style.left = (b.left - p.left + 15) + 'px';
         swatter.style.top = (b.top - p.top - 80) + 'px';
         
         extras.appendChild(swatter);
         
-        // Halfway through the 0.5s animation, the swatter "hits"
         setTimeout(function() {
             bug.classList.remove('x-dead-prep');
+            bug.classList.remove('x-erratic'); // Ensure dead bugs don't twitch
             bug.classList.add('x-dead');
             
-            // Calculate where the footer/bottom is and drop the bug
-            var dropHeight = p.height - 60; // 60px padding from absolute bottom
+            var dropHeight = p.height - 60; 
             bug.style.top = dropHeight + 'px';
             
-            // We killed one, so decrement the active counter so more can spawn
             currentFlyCount--;
+            fliesKilled++;
+            
+            // Update Score UI
+            if (fliesKilled === 1) {
+                scoreCounter.classList.add('visible');
+            }
+            if (fliesKilled >= 10) {
+                scoreCounter.classList.add('enraged');
+                scoreCounter.innerText = 'Gadflies Swatted: ' + fliesKilled + ' [SWARM HOSTILE]';
+            } else {
+                scoreCounter.innerText = 'Gadflies Swatted: ' + fliesKilled;
+            }
+
         }, 250); 
         
-        // Clean up the swatter DOM element after animation finishes
         setTimeout(function() {
             swatter.remove();
         }, 600);
     }
 
-    // Spawn the first bug immediately
     spawnFly();
     
-    // Attempt to spawn a new bug every 3 seconds (randomized chance)
+    // Spawn loops: Faster spawns if the swarm is hostile
     setInterval(function() {
-        if (Math.random() > 0.4) {
+        var spawnChance = fliesKilled >= 10 ? 0.7 : 0.4;
+        if (Math.random() > spawnChance) {
             spawnFly();
         }
-    }, 3000);
+    }, 2000);
 
 })();
 </script>
