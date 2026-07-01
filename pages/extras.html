@@ -24,6 +24,8 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     /* page starts drained of colour; JS / :hover bleeds it back in */
     filter: saturate(0.15) contrast(1.05);
     transition: filter 1.2s ease;
+    /* Ensure the container is tall enough for dead flies to fall into */
+    min-height: 100vh; 
 }
 .extras.bleed { filter: saturate(1) contrast(1.05); }
 .extras.betrayed { filter: saturate(0) contrast(1.1) brightness(0.95); }
@@ -193,7 +195,7 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
 .extras .x-doc a  { color: var(--x-neon); font-weight: bold; text-decoration: none; }
 .extras .x-doc a:hover { text-decoration: underline; }
 
-/* ---------- floating draggable bug ---------- */
+/* ---------- BUG MINIGAME STYLES ---------- */
 .extras .x-bug {
     position: absolute;
     z-index: 2;
@@ -203,13 +205,67 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     user-select: none;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6));
     animation: x-buzz 6s ease-in-out infinite;
+    /* smooth movement for when they spawn */
+    transition: opacity 0.3s ease; 
 }
-.extras .x-bug:active { cursor: grabbing; animation: none; }
+.extras .x-bug:active { cursor: grabbing; }
+
+/* The moment before being swatted */
+.extras .x-bug.x-dead-prep {
+    animation: none !important;
+}
+
+/* Squished and falling */
+.extras .x-bug.x-dead {
+    animation: none !important;
+    transform: scaleY(0.25) scaleX(1.3) !important;
+    /* Accelerates nicely into the footer */
+    transition: top 1.2s cubic-bezier(0.5, 0, 1, 1), transform 0.1s !important;
+    pointer-events: none;
+    filter: grayscale(1) opacity(0.7) !important;
+    z-index: 0;
+}
+
 @keyframes x-buzz {
     0%,100% { transform: translate(0,0) rotate(-6deg); }
     25%     { transform: translate(14px,-10px) rotate(8deg); }
     50%     { transform: translate(-8px,12px) rotate(-4deg); }
     75%     { transform: translate(10px,6px) rotate(6deg); }
+}
+
+/* Pure CSS Flyswatter */
+.extras .x-swatter {
+    position: absolute;
+    width: 60px;
+    height: 140px;
+    pointer-events: none;
+    z-index: 999;
+    /* Hinges at the bottom of the handle */
+    transform-origin: bottom center;
+    animation: swat-arc 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.extras .x-swatter-head {
+    width: 60px;
+    height: 70px;
+    background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255, 60, 60, 0.6) 4px, rgba(255, 60, 60, 0.6) 6px),
+                repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(255, 60, 60, 0.6) 4px, rgba(255, 60, 60, 0.6) 6px);
+    border: 4px solid #b32424;
+    border-radius: 8px;
+}
+.extras .x-swatter-handle {
+    width: 8px;
+    height: 70px;
+    background: #5c3a21;
+    margin: 0 auto;
+    border-radius: 0 0 4px 4px;
+}
+
+@keyframes swat-arc {
+    0%   { transform: rotate(60deg) translateY(-30px); opacity: 0; }
+    20%  { opacity: 1; transform: rotate(70deg) translateY(-40px); }
+    50%  { transform: rotate(-10deg) translateY(0); } /* THE WHACK */
+    80%  { opacity: 1; transform: rotate(-10deg) translateY(0); }
+    100% { opacity: 0; transform: rotate(-10deg) translateY(0); }
 }
 
 /* a little footer note inside the drawer */
@@ -238,9 +294,6 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
         <span class="blob b4"></span>
         <span class="blob b5"></span>
     </div>
-
-    <img class="x-bug" id="x-bug" src="{{ '/assets/misc/gadfly.png' | relative_url }}"
-         alt="A loose gadfly. Drag him around." style="left: 78%; top: 120px;">
 
     <section class="x-hero">
         <h1 class="x-glitch" data-text="EXTRA STUFF">EXTRA STUFF</h1>
@@ -345,32 +398,136 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
         card.addEventListener('mouseleave', function () { card.style.transform = ''; });
     });
 
-    /* ---- draggable buzzing gadfly ---- */
-    var bug = document.getElementById('x-bug');
-    if (bug) {
-        var dragging = false, offX = 0, offY = 0;
-        var start = function (x, y) {
+    /* ---- BUG SPAWNER & SWATTER MINIGAME ---- */
+    var MAX_FLIES = 8;
+    var currentFlyCount = 0;
+    var bugImgSrc = "{{ '/assets/misc/gadfly.png' | relative_url }}";
+    
+    function spawnFly() {
+        if (currentFlyCount >= MAX_FLIES) return;
+        currentFlyCount++;
+
+        var bug = document.createElement('img');
+        bug.className = 'x-bug';
+        bug.src = bugImgSrc;
+        bug.alt = "A loose gadfly.";
+        
+        // Random starting position (mostly keeping to top/middle so they can fall)
+        var p = extras.getBoundingClientRect();
+        var startX = Math.random() * (p.width - 100) + 20;
+        var startY = Math.random() * (p.height * 0.6) + 20;
+        
+        bug.style.left = startX + 'px';
+        bug.style.top = startY + 'px';
+        
+        extras.appendChild(bug);
+
+        /* Bug Drag & Click Logic (closure scopes to each bug) */
+        var dragging = false, isDrag = false;
+        var startMouseX = 0, startMouseY = 0;
+        var offX = 0, offY = 0;
+        
+        var start = function (e) {
+            if (bug.classList.contains('x-dead')) return;
             dragging = true;
-            var b = bug.getBoundingClientRect(), p = extras.getBoundingClientRect();
-            offX = x - b.left; offY = y - b.top;
+            isDrag = false; // Reset drag flag
+            
+            var b = bug.getBoundingClientRect();
+            var clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            var clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            
+            startMouseX = clientX;
+            startMouseY = clientY;
+            offX = clientX - b.left; 
+            offY = clientY - b.top;
+            
             bug.style.animation = 'none';
         };
-        var move = function (x, y) {
-            if (!dragging) return;
+        
+        var move = function (e) {
+            if (!dragging || bug.classList.contains('x-dead')) return;
+            
+            var clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            var clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            
+            // If mouse moved more than 5px, it's a drag, not a swat
+            if (Math.abs(clientX - startMouseX) > 5 || Math.abs(clientY - startMouseY) > 5) {
+                isDrag = true;
+            }
+            
             var p = extras.getBoundingClientRect();
-            bug.style.left = (x - p.left - offX) + 'px';
-            bug.style.top  = (y - p.top  - offY) + 'px';
+            bug.style.left = (clientX - p.left - offX) + 'px';
+            bug.style.top  = (clientY - p.top  - offY) + 'px';
         };
+        
         var end = function () { 
+            if (!dragging || bug.classList.contains('x-dead')) return;
             dragging = false; 
-            if (bug) bug.style.animation = '';
+            
+            if (!isDrag) {
+                // If they didn't drag it, they clicked it—SWAT!
+                triggerSwat(bug);
+            } else {
+                // Resume buzz if it was just dragged
+                bug.style.animation = 'x-buzz 6s ease-in-out infinite';
+            }
         };
-        bug.addEventListener('mousedown', function (e) { e.preventDefault(); start(e.clientX, e.clientY); });
-        window.addEventListener('mousemove', function (e) { move(e.clientX, e.clientY); });
+
+        // Attach listeners directly to this specific bug and window
+        bug.addEventListener('mousedown', function(e) { e.preventDefault(); start(e); });
+        window.addEventListener('mousemove', move);
         window.addEventListener('mouseup', end);
-        bug.addEventListener('touchstart', function (e) { start(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
-        window.addEventListener('touchmove', function (e) { if (dragging) move(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+        bug.addEventListener('touchstart', function(e) { start(e); }, { passive: true });
+        window.addEventListener('touchmove', move, { passive: true });
         window.addEventListener('touchend', end);
     }
+
+    function triggerSwat(bug) {
+        // Stop interactivity instantly
+        bug.classList.add('x-dead-prep');
+        
+        var b = bug.getBoundingClientRect();
+        var p = extras.getBoundingClientRect();
+        
+        // Create CSS flyswatter dynamically
+        var swatter = document.createElement('div');
+        swatter.className = 'x-swatter';
+        swatter.innerHTML = '<div class="x-swatter-head"></div><div class="x-swatter-handle"></div>';
+        
+        // Position it slightly offset from the bug to arc downwards
+        swatter.style.left = (b.left - p.left + 15) + 'px';
+        swatter.style.top = (b.top - p.top - 80) + 'px';
+        
+        extras.appendChild(swatter);
+        
+        // Halfway through the 0.5s animation, the swatter "hits"
+        setTimeout(function() {
+            bug.classList.remove('x-dead-prep');
+            bug.classList.add('x-dead');
+            
+            // Calculate where the footer/bottom is and drop the bug
+            var dropHeight = p.height - 60; // 60px padding from absolute bottom
+            bug.style.top = dropHeight + 'px';
+            
+            // We killed one, so decrement the active counter so more can spawn
+            currentFlyCount--;
+        }, 250); 
+        
+        // Clean up the swatter DOM element after animation finishes
+        setTimeout(function() {
+            swatter.remove();
+        }, 600);
+    }
+
+    // Spawn the first bug immediately
+    spawnFly();
+    
+    // Attempt to spawn a new bug every 3 seconds (randomized chance)
+    setInterval(function() {
+        if (Math.random() > 0.4) {
+            spawnFly();
+        }
+    }, 3000);
+
 })();
 </script>
