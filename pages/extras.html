@@ -439,7 +439,7 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     });
 
     /* ---- BUG MINIGAME LOGIC ---- */
-    var MAX_FLIES = 8;
+    var MAX_FLIES = 2;
     var currentFlyCount = 0;
     var fliesKilled = 0;
     var bugImgSrc = "{{ '/assets/misc/gadfly.png' | relative_url }}";
@@ -460,7 +460,7 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
         bug.style.left = startX + 'px';
         bug.style.top = startY + 'px';
         
-        // 15 Kills triggers the erratic movement state
+        // 8 Kills triggers the erratic movement state
         var isErratic = fliesKilled >= 8;
         if (isErratic) {
             bug.classList.add('x-erratic');
