@@ -1158,17 +1158,25 @@ textarea {
     display: block;
 }
 
+.x-footnote {
+    text-align: center;
+    padding: 2rem 1.5rem 3.5rem;
+    opacity: 0.5;
+    font-size: 0.85rem;
+}
+
+
 /* ========================================
    Consent Form Styling
    ======================================== */
 
 .consent-form {
-    max-width: 700px;
-    margin: 2rem auto;
+    max-width: 800px;
+    margin: 2.5rem auto;
 }
 
 .consent-form .field-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .consent-form .field-group label {
@@ -1182,7 +1190,8 @@ textarea {
 .consent-form .field-group input[type="date"],
 .consent-form .field-group select {
     width: 100%;
-    padding: 0.6rem;
+    padding: 0.85rem 0.75rem;
+    line-height: 1.5;
     font-family: inherit;
     font-size: 0.95rem;
     border: 1px solid #ccc;
@@ -1192,7 +1201,7 @@ textarea {
 
 .name-fields {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     flex-wrap: wrap;
 }
 
@@ -1223,15 +1232,15 @@ textarea {
 .circle-options {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
-    margin: 1rem 0;
+    gap: 1rem;
+    margin: 1.5rem 0;
 }
 
 .circle-option {
     display: flex;
     align-items: flex-start;
-    gap: 0.6rem;
-    padding: 0.8rem 1rem;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
     border: 2px solid #ccc;
     border-radius: 12px;
     cursor: pointer;
@@ -1296,12 +1305,13 @@ textarea {
 .media-type-options {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
+    gap: 1rem;
+    margin-top: 0.75rem;
 }
 
 .media-option {
     flex: 0 0 auto;
-    padding: 0.6rem 1.2rem;
+    padding: 0.75rem 1.5rem;
 }
 
 .media-option .circle-label::before {
@@ -1318,7 +1328,7 @@ textarea {
 /* Submit button */
 .submit-btn {
     display: inline-block;
-    padding: 0.8rem 2rem;
+    padding: 1rem 2.5rem;
     font-family: inherit;
     font-size: 1.05rem;
     font-weight: bold;
@@ -1328,7 +1338,7 @@ textarea {
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.2s;
-    margin-top: 0.5rem;
+    margin-top: 1.5rem;
 }
 
 .submit-btn:hover {
@@ -1339,3 +1349,9 @@ textarea {
     background: #800;
 }
 
+.x-footnote {
+    text-align: center;
+    padding: 2rem 1.5rem 3.5rem;
+    opacity: 0.5;
+    font-size: 0.85rem;
+}
