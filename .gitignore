@@ -2,4 +2,3 @@
 *.tar.xz
 *~
 _site/
-flake.lock
