@@ -3,7 +3,7 @@ layout: default
 title: Extras
 ---
 
-<!--  Original page made by Claude 4.8 Opus thinking, with most of the Gadfly 
+<!-- Original page made by Claude 4.8 Opus thinking, with most of the Gadfly 
 "game" by Gemini 3 Pro—yes, I know it's vibe coded, but I couldn't be bothered 
 for this right now. 
 
@@ -19,39 +19,50 @@ Refactored by Claude Fable 5 -->
 <style>
 /* ==========================================================
    Extras page — scoped to .extras
-   Inherits site-wide variables from :root, with fallbacks.
+   Light "paper" theme. Inherits site-wide variables from
+   :root, with fallbacks.
    ========================================================== */
 
 .extras {
     /* ---- local variables ---- */
+    --x-paper:  var(--off-white, #fffdf4);     /* page background */
+    --x-text:   var(--ink, #2b2b26);           /* body text — set to #fff at your peril */
     --x-green:  var(--gadfly-green, #09461d);
-    --x-sage:   #5d8a6b;                       /* soft accent, replaces neon */
+    --x-sage:   #5d8a6b;
     --x-mint:   var(--mint-green, #e1e7e3);
-    --x-cream:  var(--off-white, #fffdf4);
-    --x-ink:    var(--dark-green, #0b130c);
+    --x-ink:    var(--dark-green, #0b130c);    /* kept for shadows/accents */
+    --x-soft:   var(--ink-soft, #55554e);
     --x-red:    var(--accent-red, #9e2b25);
-    --x-red-lit: #c9564a;                      /* readable red on dark */
+    --x-red-dark: var(--accent-red-dark, #7c211c);
 
     --x-radius-sm: var(--radius-sm, 10px);
     --x-radius-md: var(--radius-md, 16px);
     --x-radius-pill: var(--radius-pill, 999px);
     --x-transition: var(--transition, 0.25s ease);
-    --x-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    --x-shadow: var(--shadow-card, 0 6px 18px rgba(11, 19, 12, 0.14));
 
     position: relative;
     overflow: hidden;
-    background: var(--x-ink);
-    color: var(--x-cream);
+    background: var(--x-paper);
+    color: var(--x-text);
     padding: 0;
     font-family: var(--font-body, 'Cormorant Infant', Georgia, serif);
     /* page starts drained of colour; JS / :hover bleeds it back in */
-    filter: saturate(0.15) contrast(1.05);
+    filter: saturate(0.15) contrast(1.02);
     transition: filter 1.2s ease;
-    /* tall enough for dead flies to fall into */
     min-height: 100vh;
 }
-.extras.bleed    { filter: saturate(1) contrast(1.05); }
-.extras.betrayed { filter: saturate(0) contrast(1.1) brightness(0.95); }
+.extras.bleed    { filter: saturate(1) contrast(1.02); }
+.extras.betrayed { filter: saturate(0) contrast(1.05) brightness(0.98); }
+
+/* subtle page shake on a successful swat */
+.extras.shaking { animation: x-shake 0.18s linear; }
+@keyframes x-shake {
+    0%,100% { translate: 0 0; }
+    25%     { translate: 2px -1px; }
+    50%     { translate: -2px 1px; }
+    75%     { translate: 1px 1px; }
+}
 
 /* ---------- floating background shapes ---------- */
 .extras .shapes {
@@ -64,9 +75,9 @@ Refactored by Claude Fable 5 -->
 .extras .blob {
     position: absolute;
     border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
-    filter: blur(14px);
-    opacity: 0.4;
-    mix-blend-mode: screen;
+    filter: blur(18px);
+    opacity: 0.16;                 /* watercolour wash on paper */
+    mix-blend-mode: multiply;      /* screen doesn't show on light bg */
     animation: x-float 18s ease-in-out infinite, x-morph 12s ease-in-out infinite;
 }
 .extras .blob.b1 { width: 320px; height: 320px; left: -60px;  top: 5%;  background: var(--x-sage);  animation-delay: 0s, -2s; }
@@ -100,12 +111,12 @@ Refactored by Claude Fable 5 -->
     font-size: clamp(2.6rem, 8vw, 5.5rem);
     line-height: 1.05;
     margin: 0;
-    color: var(--x-cream);
+    color: var(--x-green);
     position: relative;
     display: inline-block;
     animation: x-wobble 4s ease-in-out infinite;
 }
-/* offset-print misregistration layers (formerly RGB glitch) */
+/* offset-print misregistration layers */
 .extras .x-glitch::before,
 .extras .x-glitch::after {
     content: attr(data-text);
@@ -113,10 +124,10 @@ Refactored by Claude Fable 5 -->
     left: 0; top: 0;
     width: 100%;
     overflow: hidden;
-    opacity: 0.55;
+    opacity: 0.4;
 }
-.extras .x-glitch::before { color: var(--x-green); transform: translate(-3px,0); }
-.extras .x-glitch::after  { color: var(--x-sage);  transform: translate(3px,0); }
+.extras .x-glitch::before { color: var(--x-red);  transform: translate(-3px,0); }
+.extras .x-glitch::after  { color: var(--x-sage); transform: translate(3px,0); }
 .extras .x-hero:hover .x-glitch::before { animation: x-glitch1 0.4s steps(2) infinite; }
 .extras .x-hero:hover .x-glitch::after  { animation: x-glitch2 0.4s steps(2) infinite; }
 @keyframes x-glitch1 { 0%{clip-path:inset(0 0 70% 0);transform:translate(-4px,-2px)} 50%{clip-path:inset(60% 0 0 0);transform:translate(-2px,2px)} 100%{clip-path:inset(20% 0 40% 0);transform:translate(-5px,0)} }
@@ -130,8 +141,7 @@ Refactored by Claude Fable 5 -->
 .extras .x-sub {
     font-size: 1.25rem;
     font-style: italic;
-    color: var(--x-mint);
-    opacity: 0.85;
+    color: var(--x-soft);
     max-width: 40ch;
     margin: 1rem auto 0;
 }
@@ -145,13 +155,13 @@ Refactored by Claude Fable 5 -->
 .extras .x-section h2 {
     font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
     font-weight: 600;
-    color: var(--x-mint);
+    color: var(--x-green);
     font-size: 2.1rem;
     margin: 0 0 0.5rem;
     display: inline-block;
     transform: rotate(-1deg);
 }
-.extras .x-section > p { opacity: 0.85; max-width: 65ch; font-size: 1.1rem; }
+.extras .x-section > p { color: var(--x-soft); max-width: 65ch; font-size: 1.1rem; }
 
 /* ---------- card grid ---------- */
 .extras .x-grid {
@@ -163,12 +173,11 @@ Refactored by Claude Fable 5 -->
 .extras .x-card {
     display: block;
     text-decoration: none;
-    color: var(--x-cream);
-    background: rgba(255, 253, 244, 0.05);
-    border: 1.5px solid rgba(255, 253, 244, 0.15);
+    color: var(--x-text);
+    background: rgba(9, 70, 29, 0.04);
+    border: 1.5px solid rgba(11, 19, 12, 0.14);
     border-radius: var(--x-radius-md);
     overflow: hidden;
-    backdrop-filter: blur(2px);
     transition: transform 0.25s cubic-bezier(.34,1.56,.64,1),
                 box-shadow var(--x-transition), border-color var(--x-transition);
     will-change: transform;
@@ -187,9 +196,9 @@ Refactored by Claude Fable 5 -->
     align-items: center;
     justify-content: center;
     background:
-        repeating-linear-gradient(45deg, rgba(255,253,244,0.04) 0 12px, transparent 12px 24px),
-        linear-gradient(135deg, #16261a, var(--x-ink));
-    border-bottom: 1.5px solid rgba(255, 253, 244, 0.15);
+        repeating-linear-gradient(45deg, rgba(11,19,12,0.03) 0 12px, transparent 12px 24px),
+        linear-gradient(135deg, var(--x-mint), var(--x-paper));
+    border-bottom: 1.5px solid rgba(11, 19, 12, 0.14);
 }
 .extras .x-thumb span {
     font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
@@ -197,7 +206,7 @@ Refactored by Claude Fable 5 -->
     font-style: italic;
     letter-spacing: 2px;
     font-size: 1.3rem;
-    color: var(--x-mint);
+    color: var(--x-green);
     text-align: center;
     padding: 1rem;
     animation: x-flicker 5s infinite;
@@ -210,11 +219,11 @@ Refactored by Claude Fable 5 -->
 .extras .x-card-body { padding: 1rem; }
 .extras .x-card-body h3 {
     margin: 0 0 0.3rem;
-    color: var(--x-cream);
+    color: var(--x-green);
     font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
     font-weight: 600;
 }
-.extras .x-card-body p { margin: 0; opacity: 0.65; font-size: 1rem; }
+.extras .x-card-body p { margin: 0; color: var(--x-soft); font-size: 1rem; }
 
 /* ---------- manifesto / docs blocks ---------- */
 .extras .x-doc {
@@ -222,31 +231,31 @@ Refactored by Claude Fable 5 -->
     border-radius: 0 var(--x-radius-sm) var(--x-radius-sm) 0;
     padding: 0.75rem 1rem 0.75rem 1.2rem;
     margin: 1.4rem 0;
-    background: rgba(255, 253, 244, 0.03);
+    background: rgba(9, 70, 29, 0.05);
     transition: border-color var(--x-transition), transform var(--x-transition),
                 background-color var(--x-transition);
 }
 .extras .x-doc:hover {
     border-color: var(--x-sage);
-    background: rgba(255, 253, 244, 0.06);
+    background: rgba(9, 70, 29, 0.09);
     transform: translateX(6px);
 }
 .extras .x-doc h3 {
     margin: 0 0 0.3rem;
-    color: var(--x-cream);
+    color: var(--x-green);
     font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
     font-weight: 600;
     font-size: 1.4rem;
 }
-.extras .x-doc p { margin: 0; opacity: 0.85; font-size: 1.1rem; }
+.extras .x-doc p { margin: 0; color: var(--x-text); font-size: 1.1rem; }
 .extras .x-doc a {
-    color: var(--x-mint);
+    color: var(--x-green);
     font-weight: 600;
     font-style: italic;
     text-decoration: none;
     transition: color var(--x-transition);
 }
-.extras .x-doc a:hover { color: var(--x-cream); text-decoration: underline; }
+.extras .x-doc a:hover { color: var(--x-ink); text-decoration: underline; }
 
 /* ---------- bug minigame ---------- */
 .extras .x-bug {
@@ -256,7 +265,7 @@ Refactored by Claude Fable 5 -->
     height: auto;
     cursor: grab;
     user-select: none;
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 4px 5px rgba(11, 19, 12, 0.3));
     animation: x-buzz 6s ease-in-out infinite;
     transition: opacity 0.3s ease;
 }
@@ -267,11 +276,12 @@ Refactored by Claude Fable 5 -->
 .extras .x-bug.x-dead {
     animation: none !important;
     transform: scaleY(0.25) scaleX(1.3) !important;
-    transition: top 1.2s cubic-bezier(0.5, 0, 1, 1), transform 0.1s !important;
+    transition: top 1.2s cubic-bezier(0.5, 0, 1, 1), transform 0.1s, opacity 1s ease !important;
     pointer-events: none;
     filter: grayscale(1) opacity(0.7) !important;
     z-index: 0;
 }
+.extras .x-bug.x-fading { opacity: 0 !important; }
 
 @keyframes x-buzz {
     0%,100% { transform: translate(0,0) rotate(-6deg); }
@@ -280,45 +290,90 @@ Refactored by Claude Fable 5 -->
     75%     { transform: translate(10px,6px) rotate(6deg); }
 }
 
-/* Pure CSS flyswatter */
+/* ---------- flyswatter ---------- */
 .extras .x-swatter {
     position: absolute;
-    width: 60px;
-    height: 140px;
+    width: 64px;
+    height: 152px;
     pointer-events: none;
     z-index: 999;
     transform-origin: bottom center;
-    animation: swat-arc 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
+.extras .x-swatter.hit  { animation: swat-hit  0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+.extras .x-swatter.miss { animation: swat-miss 0.7s ease-in-out forwards; }
+
 .extras .x-swatter-head {
-    width: 60px;
-    height: 70px;
-    background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(158, 43, 37, 0.55) 4px, rgba(158, 43, 37, 0.55) 6px),
-                repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(158, 43, 37, 0.55) 4px, rgba(158, 43, 37, 0.55) 6px);
+    width: 64px;
+    height: 78px;
     border: 4px solid var(--x-red);
-    border-radius: var(--x-radius-sm);
+    border-radius: 22px 22px 12px 12px;    /* rounded paddle */
+    background:
+        radial-gradient(circle at 50% 40%, rgba(158, 43, 37, 0.10), transparent 70%),
+        repeating-linear-gradient(0deg,  transparent 0 5px, rgba(158, 43, 37, 0.45) 5px 7px),
+        repeating-linear-gradient(90deg, transparent 0 5px, rgba(158, 43, 37, 0.45) 5px 7px);
+    box-shadow: 0 4px 10px rgba(11, 19, 12, 0.25);
 }
 .extras .x-swatter-handle {
-    width: 8px;
+    width: 9px;
     height: 70px;
-    background: #5c3a21;
-    margin: 0 auto;
-    border-radius: 0 0 4px 4px;
+    margin: -2px auto 0;
+    background: linear-gradient(180deg, #7a4a2b 0%, #5c3a21 60%, #4a2e1a 100%);
+    border-radius: 5px;
+    box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.15);
 }
 
-@keyframes swat-arc {
-    0%   { transform: rotate(60deg) translateY(-30px); opacity: 0; }
-    20%  { opacity: 1; transform: rotate(70deg) translateY(-40px); }
-    50%  { transform: rotate(-10deg) translateY(0); } /* THE WHACK */
-    80%  { opacity: 1; transform: rotate(-10deg) translateY(0); }
-    100% { opacity: 0; transform: rotate(-10deg) translateY(0); }
+/* wind-up, whack, rebound */
+@keyframes swat-hit {
+    0%   { transform: rotate(65deg) translate(42px, -52px); opacity: 0; }
+    22%  { transform: rotate(74deg) translate(50px, -60px); opacity: 1; }
+    50%  { transform: rotate(-8deg) translate(0, 0); }        /* THE WHACK */
+    60%  { transform: rotate(3deg)  translate(0, -5px); }     /* rebound */
+    70%  { transform: rotate(-5deg) translate(0, 0); }
+    85%  { opacity: 1; }
+    100% { transform: rotate(-5deg) translate(0, 0); opacity: 0; }
 }
+/* overswings, wobbles, finds nothing */
+@keyframes swat-miss {
+    0%   { transform: rotate(65deg) translate(42px, -52px); opacity: 0; }
+    20%  { transform: rotate(74deg) translate(50px, -60px); opacity: 1; }
+    45%  { transform: rotate(-24deg) translate(-8px, 6px); } /* whiff */
+    60%  { transform: rotate(8deg)   translate(2px, 0); }
+    72%  { transform: rotate(-10deg) translate(-2px, 2px); }
+    85%  { transform: rotate(-2deg)  translate(0, 0); opacity: 1; }
+    100% { transform: rotate(-2deg)  translate(0, 0); opacity: 0; }
+}
+
+/* ---------- splat stain ---------- */
+.extras .x-splat {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 50%,
+        rgba(158, 43, 37, 0.5) 0%,
+        rgba(158, 43, 37, 0.3) 35%,
+        transparent 60%);
+    border-radius: 50%;
+    opacity: 0.85;
+    transition: opacity 3s ease 3s;      /* lingers, then fades */
+}
+.extras .x-splat::before,
+.extras .x-splat::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(158, 43, 37, 0.4);
+}
+.extras .x-splat::before { width: 7px; height: 7px; top: -4px;  left: 24px; }
+.extras .x-splat::after  { width: 5px; height: 5px; top: 28px;  left: -3px; }
+.extras .x-splat.fading  { opacity: 0; }
 
 /* ---------- footnote ---------- */
 .extras .x-footnote {
     text-align: center;
     padding: 2rem 1.5rem 3.5rem;
-    opacity: 0.55;
+    color: var(--x-soft);
     font-size: 0.95rem;
     font-style: italic;
 }
@@ -328,9 +383,9 @@ Refactored by Claude Fable 5 -->
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: rgba(11, 19, 12, 0.85);
-    border: 1.5px solid var(--x-mint);
-    color: var(--x-cream);
+    background: rgba(255, 253, 244, 0.92);
+    border: 1.5px solid var(--x-green);
+    color: var(--x-green);
     padding: 10px 22px;
     font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
     font-weight: 600;
@@ -341,13 +396,19 @@ Refactored by Claude Fable 5 -->
     backdrop-filter: blur(4px);
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease, border-color var(--x-transition);
+    transition: opacity 0.4s ease, transform 0.4s ease,
+                border-color var(--x-transition), color var(--x-transition);
     pointer-events: none;
 }
 .extras .x-score-counter.visible { opacity: 1; transform: translateY(0); }
+.extras .x-score-counter.bump    { animation: x-bump 0.25s ease; }
+@keyframes x-bump {
+    0%,100% { scale: 1; }
+    50%     { scale: 1.12; }
+}
 .extras .x-score-counter.enraged {
-    border-color: var(--x-red-lit);
-    color: var(--x-red-lit);
+    border-color: var(--x-red);
+    color: var(--x-red);
     animation: x-flicker 2s infinite;
 }
 
@@ -461,14 +522,24 @@ Refactored by Claude Fable 5 -->
         card.addEventListener('mouseleave', function () { card.style.transform = ''; });
     });
 
-    /* ---- BUG MINIGAME LOGIC ---- */
-    var MAX_FLIES = 2;
-    var currentFlyCount = 0;
+    /* ---- BUG MINIGAME ---- */
     var fliesKilled = 0;
+    var currentFlyCount = 0;
     var bugImgSrc = "{{ '/assets/misc/gadfly.png' | relative_url }}";
 
+    function maxFlies()  { return fliesKilled >= 10 ? 4 : 2; }
+    function isHostile() { return fliesKilled >= 10; }
+
+    function randomPos(padX, padY) {
+        var p = extras.getBoundingClientRect();
+        return {
+            x: Math.random() * (p.width - padX) + 10,
+            y: Math.random() * (p.height - padY) + 10
+        };
+    }
+
     function spawnFly() {
-        if (currentFlyCount >= MAX_FLIES) return;
+        if (currentFlyCount >= maxFlies()) return;
         currentFlyCount++;
 
         var bug = document.createElement('img');
@@ -477,36 +548,26 @@ Refactored by Claude Fable 5 -->
         bug.alt = "A loose gadfly.";
 
         var p = extras.getBoundingClientRect();
-        var startX = Math.random() * (p.width - 100) + 20;
-        var startY = Math.random() * (p.height * 0.6) + 20;
+        bug.style.left = (Math.random() * (p.width - 100) + 20) + 'px';
+        bug.style.top  = (Math.random() * (p.height * 0.6) + 20) + 'px';
 
-        bug.style.left = startX + 'px';
-        bug.style.top = startY + 'px';
-
-        // 8 kills triggers the erratic movement state
         var isErratic = fliesKilled >= 8;
+        var erraticMove = null;
         if (isErratic) {
             bug.classList.add('x-erratic');
-
-            // Randomly jump around the screen every 800ms
-            var erraticMove = setInterval(function () {
-                if (bug.classList.contains('x-dead') || bug.classList.contains('x-dead-prep')) {
-                    clearInterval(erraticMove);
-                    return;
-                }
-                if (!dragging) {
-                    var currentP = extras.getBoundingClientRect();
-                    var newX = Math.random() * (currentP.width - 80) + 10;
-                    var newY = Math.random() * (currentP.height - 100) + 10;
-                    bug.style.left = newX + 'px';
-                    bug.style.top = newY + 'px';
+            erraticMove = setInterval(function () {
+                if (!dragging && !bug.classList.contains('x-dead') &&
+                    !bug.classList.contains('x-dead-prep')) {
+                    var pos = randomPos(80, 100);
+                    bug.style.left = pos.x + 'px';
+                    bug.style.top  = pos.y + 'px';
                 }
             }, 800);
         }
 
         extras.appendChild(bug);
 
-        /* Bug drag & click logic */
+        /* Drag & click logic */
         var dragging = false, isDrag = false;
         var startMouseX = 0, startMouseY = 0;
         var offX = 0, offY = 0;
@@ -550,55 +611,96 @@ Refactored by Claude Fable 5 -->
 
             if (!isDrag) {
                 triggerSwat(bug);
+            } else if (isErratic) {
+                bug.style.transition = '';
+                bug.style.animation = '';   // fall back to .x-erratic keyframes
             } else {
-                // Resume buzz state if dragged and dropped
-                if (isErratic) {
-                    bug.style.transition = ''; // restore CSS transition
-                    bug.style.animation = '';  // fall back to the .x-erratic animation
-                } else {
-                    bug.style.animation = 'x-buzz 6s ease-in-out infinite';
-                }
+                bug.style.animation = 'x-buzz 6s ease-in-out infinite';
             }
         };
 
-        bug.addEventListener('mousedown', function (e) { e.preventDefault(); start(e); });
+        var onMouseDown  = function (e) { e.preventDefault(); start(e); };
+        var onTouchStart = function (e) { start(e); };
+
+        bug.addEventListener('mousedown', onMouseDown);
         window.addEventListener('mousemove', move);
         window.addEventListener('mouseup', end);
-        bug.addEventListener('touchstart', function (e) { start(e); }, { passive: true });
+        bug.addEventListener('touchstart', onTouchStart, { passive: true });
         window.addEventListener('touchmove', move, { passive: true });
         window.addEventListener('touchend', end);
+
+        /* remove window listeners & timers when this fly is done (fixes leak) */
+        bug._cleanup = function () {
+            if (erraticMove) clearInterval(erraticMove);
+            window.removeEventListener('mousemove', move);
+            window.removeEventListener('mouseup', end);
+            window.removeEventListener('touchmove', move);
+            window.removeEventListener('touchend', end);
+        };
     }
 
-    function triggerSwat(bug) {
-        bug.classList.add('x-dead-prep');
-
+    function spawnSwatter(bug, hit) {
         var b = bug.getBoundingClientRect();
         var p = extras.getBoundingClientRect();
 
         var swatter = document.createElement('div');
-        swatter.className = 'x-swatter';
+        swatter.className = 'x-swatter ' + (hit ? 'hit' : 'miss');
         swatter.innerHTML = '<div class="x-swatter-head"></div><div class="x-swatter-handle"></div>';
-
-        swatter.style.left = (b.left - p.left + 15) + 'px';
-        swatter.style.top = (b.top - p.top - 80) + 'px';
-
+        swatter.style.left = (b.left - p.left + 8) + 'px';
+        swatter.style.top  = (b.top  - p.top - 85) + 'px';
         extras.appendChild(swatter);
 
+        setTimeout(function () { swatter.remove(); }, 750);
+        return { x: b.left - p.left, y: b.top - p.top };
+    }
+
+    function leaveSplat(x, y) {
+        var splat = document.createElement('div');
+        splat.className = 'x-splat';
+        splat.style.left = (x + 4) + 'px';
+        splat.style.top  = (y + 4) + 'px';
+        extras.appendChild(splat);
+        // trigger the delayed fade, then remove
+        requestAnimationFrame(function () { splat.classList.add('fading'); });
+        setTimeout(function () { splat.remove(); }, 6500);
+    }
+
+    function triggerSwat(bug) {
+        /* hostile flies dodge 35% of swats */
+        if (bug.classList.contains('x-erratic') && Math.random() < 0.35) {
+            spawnSwatter(bug, false);
+            var pos = randomPos(80, 100);   // fly bolts
+            bug.style.left = pos.x + 'px';
+            bug.style.top  = pos.y + 'px';
+            return;
+        }
+
+        bug.classList.add('x-dead-prep');
+        var impact = spawnSwatter(bug, true);
+
         setTimeout(function () {
+            var p = extras.getBoundingClientRect();
+
             bug.classList.remove('x-dead-prep');
-            bug.classList.remove('x-erratic'); // dead bugs don't twitch
+            bug.classList.remove('x-erratic');
             bug.classList.add('x-dead');
+            bug.style.top = (p.height - 60) + 'px';
 
-            var dropHeight = p.height - 60;
-            bug.style.top = dropHeight + 'px';
+            leaveSplat(impact.x, impact.y);
 
+            /* page shake */
+            extras.classList.add('shaking');
+            setTimeout(function () { extras.classList.remove('shaking'); }, 200);
+
+            if (bug._cleanup) bug._cleanup();
             currentFlyCount--;
             fliesKilled++;
 
-            // Update score UI
-            if (fliesKilled === 1) {
-                scoreCounter.classList.add('visible');
-            }
+            /* score UI */
+            scoreCounter.classList.add('visible');
+            scoreCounter.classList.remove('bump');
+            void scoreCounter.offsetWidth;   // restart bump animation
+            scoreCounter.classList.add('bump');
             if (fliesKilled >= 10) {
                 scoreCounter.classList.add('enraged');
                 scoreCounter.innerText = 'Gadflies Swatted: ' + fliesKilled + ' [SWARM HOSTILE]';
@@ -606,21 +708,20 @@ Refactored by Claude Fable 5 -->
                 scoreCounter.innerText = 'Gadflies Swatted: ' + fliesKilled;
             }
 
-        }, 250);
-
-        setTimeout(function () {
-            swatter.remove();
-        }, 600);
+            /* corpse fades away after lying there a while */
+            setTimeout(function () {
+                bug.classList.add('x-fading');
+                setTimeout(function () { bug.remove(); }, 1200);
+            }, 7000);
+        }, 300);   /* synced to the whack at ~50% of the 0.6s swing */
     }
 
     spawnFly();
 
-    // Spawn loops: faster spawns if the swarm is hostile
+    /* hostile swarm actually spawns faster now (comparison was inverted) */
     setInterval(function () {
-        var spawnChance = fliesKilled >= 10 ? 0.7 : 0.4;
-        if (Math.random() > spawnChance) {
-            spawnFly();
-        }
+        var spawnChance = isHostile() ? 0.7 : 0.4;
+        if (Math.random() < spawnChance) spawnFly();
     }, 2000);
 
 })();
