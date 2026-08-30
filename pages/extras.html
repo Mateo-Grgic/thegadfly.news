@@ -3,34 +3,57 @@ layout: default
 title: Extras
 ---
 
-<!--  Original page made by Claude 4.8 Opus thinking, with most of the Gadfly "game" by Gemini 3 Pro—yes, I know it's vibe coded, but I couldn't be bothered for this right now. 
+<!--  Original page made by Claude 4.8 Opus thinking, with most of the Gadfly 
+"game" by Gemini 3 Pro—yes, I know it's vibe coded, but I couldn't be bothered 
+for this right now. 
 
-The first iteration was super clunky visually, so I changed the colours, fixed layout a little bit, etc. I—and The Gadfly team on the whole—hate AI-copy, so all that got stripped out and fixed too. Not just rewritten—because then it's still be bad, just in my words—but overhauled entirely. (p.s. I use em dashes more than AI does. There's like a bell curve for em-dash use: none = not AI, a few = AI, & every sentince = me).  --> 
+The first iteration was super clunky visually, so I changed the colours, fixed 
+layout a little bit, etc. I—and The Gadfly team on the whole—hate AI-copy, so 
+all that got stripped out and fixed too. Not just rewritten—because then it's 
+still be bad, just in my words—but overhauled entirely. (p.s. I use em dashes 
+more than AI does. There's like a bell curve for em-dash use: none = not AI, a 
+few = AI, & every sentince = me).  
+
+Refactored by Claude Fable 5 --> 
 
 <style>
-/* ---------- scope everything to .extras ---------- */
+/* ==========================================================
+   Extras page — scoped to .extras
+   Inherits site-wide variables from :root, with fallbacks.
+   ========================================================== */
 
 .extras {
-    --x-green: #09461d;
-    --x-neon: #39ff14;
-    --x-cream: #fffdf4;
-    --x-ink: #0b130c;
-    
+    /* ---- local variables ---- */
+    --x-green:  var(--gadfly-green, #09461d);
+    --x-sage:   #5d8a6b;                       /* soft accent, replaces neon */
+    --x-mint:   var(--mint-green, #e1e7e3);
+    --x-cream:  var(--off-white, #fffdf4);
+    --x-ink:    var(--dark-green, #0b130c);
+    --x-red:    var(--accent-red, #9e2b25);
+    --x-red-lit: #c9564a;                      /* readable red on dark */
+
+    --x-radius-sm: var(--radius-sm, 10px);
+    --x-radius-md: var(--radius-md, 16px);
+    --x-radius-pill: var(--radius-pill, 999px);
+    --x-transition: var(--transition, 0.25s ease);
+    --x-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+
     position: relative;
     overflow: hidden;
     background: var(--x-ink);
     color: var(--x-cream);
     padding: 0;
+    font-family: var(--font-body, 'Cormorant Infant', Georgia, serif);
     /* page starts drained of colour; JS / :hover bleeds it back in */
     filter: saturate(0.15) contrast(1.05);
     transition: filter 1.2s ease;
-    /* Ensure the container is tall enough for dead flies to fall into */
-    min-height: 100vh; 
+    /* tall enough for dead flies to fall into */
+    min-height: 100vh;
 }
-.extras.bleed { filter: saturate(1) contrast(1.05); }
+.extras.bleed    { filter: saturate(1) contrast(1.05); }
 .extras.betrayed { filter: saturate(0) contrast(1.1) brightness(0.95); }
 
-/* ---------- floating colourful background shapes ---------- */
+/* ---------- floating background shapes ---------- */
 .extras .shapes {
     position: absolute;
     inset: 0;
@@ -41,16 +64,16 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
 .extras .blob {
     position: absolute;
     border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
-    filter: blur(8px);
-    opacity: 0.55;
+    filter: blur(14px);
+    opacity: 0.4;
     mix-blend-mode: screen;
     animation: x-float 18s ease-in-out infinite, x-morph 12s ease-in-out infinite;
 }
-.extras .blob.b1 { width: 320px; height: 320px; left: -60px;  top: 5%;  background: var(--x-neon);  animation-delay: 0s, -2s; }
-.extras .blob.b2 { width: 260px; height: 260px; right: -40px; top: 25%; background: var(--x-green);  animation-delay: -4s, -1s; }
-.extras .blob.b3 { width: 380px; height: 380px; left: 20%;   top: 55%; background: var(--x-green);          animation-delay: -8s, -5s; }
-.extras .blob.b4 { width: 220px; height: 220px; right: 12%;  top: 72%; background: var(--x-neon);          animation-delay: -6s, -3s; }
-.extras .blob.b5 { width: 300px; height: 300px; left: 40%;   top: 88%; background: var(--x-green);          animation-delay: -10s, -7s; }
+.extras .blob.b1 { width: 320px; height: 320px; left: -60px;  top: 5%;  background: var(--x-sage);  animation-delay: 0s, -2s; }
+.extras .blob.b2 { width: 260px; height: 260px; right: -40px; top: 25%; background: var(--x-green); animation-delay: -4s, -1s; }
+.extras .blob.b3 { width: 380px; height: 380px; left: 20%;    top: 55%; background: var(--x-green); animation-delay: -8s, -5s; }
+.extras .blob.b4 { width: 220px; height: 220px; right: 12%;   top: 72%; background: var(--x-sage);  animation-delay: -6s, -3s; }
+.extras .blob.b5 { width: 300px; height: 300px; left: 40%;    top: 88%; background: var(--x-green); animation-delay: -10s, -7s; }
 
 @keyframes x-float {
     0%,100% { transform: translate(0,0) scale(1); }
@@ -72,8 +95,9 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     padding: 4rem 1.5rem 3rem;
 }
 .extras .x-glitch {
-    font-family: 'Fira Mono Bold', monospace;
-    font-size: clamp(2.4rem, 8vw, 5rem);
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 700;
+    font-size: clamp(2.6rem, 8vw, 5.5rem);
     line-height: 1.05;
     margin: 0;
     color: var(--x-cream);
@@ -81,7 +105,7 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     display: inline-block;
     animation: x-wobble 4s ease-in-out infinite;
 }
-/* RGB-split glitch layers */
+/* offset-print misregistration layers (formerly RGB glitch) */
 .extras .x-glitch::before,
 .extras .x-glitch::after {
     content: attr(data-text);
@@ -89,45 +113,47 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     left: 0; top: 0;
     width: 100%;
     overflow: hidden;
-    opacity: 0.8;
+    opacity: 0.55;
 }
-.extras .x-glitch::before { color: var(--x-green);  transform: translate(-3px,0); }
-.extras .x-glitch::after  { color: var(--x-neon); transform: translate(3px,0); }
+.extras .x-glitch::before { color: var(--x-green); transform: translate(-3px,0); }
+.extras .x-glitch::after  { color: var(--x-sage);  transform: translate(3px,0); }
 .extras .x-hero:hover .x-glitch::before { animation: x-glitch1 0.4s steps(2) infinite; }
 .extras .x-hero:hover .x-glitch::after  { animation: x-glitch2 0.4s steps(2) infinite; }
 @keyframes x-glitch1 { 0%{clip-path:inset(0 0 70% 0);transform:translate(-4px,-2px)} 50%{clip-path:inset(60% 0 0 0);transform:translate(-2px,2px)} 100%{clip-path:inset(20% 0 40% 0);transform:translate(-5px,0)} }
 @keyframes x-glitch2 { 0%{clip-path:inset(50% 0 20% 0);transform:translate(4px,2px)}  50%{clip-path:inset(10% 0 60% 0);transform:translate(2px,-2px)} 100%{clip-path:inset(30% 0 30% 0);transform:translate(5px,0)} }
 
 @keyframes x-wobble {
-    0%,100% { transform: rotate(-1.5deg) skewX(-1deg); }
-    50%     { transform: rotate(1.5deg)  skewX(1deg); }
+    0%,100% { transform: rotate(-1deg); }
+    50%     { transform: rotate(1deg); }
 }
 
 .extras .x-sub {
-    font-size: 1.15rem;
-    color: var(--x-cream);
-    opacity: 0.8;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--x-mint);
+    opacity: 0.85;
     max-width: 40ch;
     margin: 1rem auto 0;
 }
 
-/* ---------- weird sections ---------- */
+/* ---------- sections ---------- */
 .extras .x-section {
     padding: 2.5rem 1.5rem;
     max-width: 1100px;
     margin: 0 auto;
 }
 .extras .x-section h2 {
-    font-family: 'Fira Mono Medium', monospace;
-    color: var(--x-neon) !important;
-    font-size: 1.9rem;
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 600;
+    color: var(--x-mint);
+    font-size: 2.1rem;
     margin: 0 0 0.5rem;
     display: inline-block;
     transform: rotate(-1deg);
 }
-.extras .x-section > p { opacity: 0.85; max-width: 65ch; }
+.extras .x-section > p { opacity: 0.85; max-width: 65ch; font-size: 1.1rem; }
 
-/* ---------- the weird card grid ---------- */
+/* ---------- card grid ---------- */
 .extras .x-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -138,21 +164,22 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     display: block;
     text-decoration: none;
     color: var(--x-cream);
-    background: rgba(255,255,255,0.04);
-    border: 2px solid rgba(255,255,255,0.12);
-    border-radius: 10px;
+    background: rgba(255, 253, 244, 0.05);
+    border: 1.5px solid rgba(255, 253, 244, 0.15);
+    border-radius: var(--x-radius-md);
     overflow: hidden;
     backdrop-filter: blur(2px);
-    transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.25s cubic-bezier(.34,1.56,.64,1),
+                box-shadow var(--x-transition), border-color var(--x-transition);
     will-change: transform;
 }
 .extras .x-card:hover {
     transform: rotate(var(--tilt, -2deg)) translateY(-6px) scale(1.03);
-    border-color: var(--x-neon);
-    box-shadow: 0 10px 30px rgba(57,255,20,0.18), 0 0 0 1px rgba(255,45,75,0.25);
+    border-color: var(--x-sage);
+    box-shadow: var(--x-shadow);
 }
-.extras .x-card:nth-child(2n)  { --tilt: 2deg; }
-.extras .x-card:nth-child(3n)  { --tilt: -3deg; }
+.extras .x-card:nth-child(2n) { --tilt: 2deg; }
+.extras .x-card:nth-child(3n) { --tilt: -3deg; }
 
 .extras .x-thumb {
     aspect-ratio: 8.5 / 11;
@@ -160,42 +187,68 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     align-items: center;
     justify-content: center;
     background:
-        repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 12px, transparent 12px 24px),
-        linear-gradient(135deg, #1a1a1a, #0b130c);
-    border-bottom: 2px solid rgba(255,255,255,0.12);
+        repeating-linear-gradient(45deg, rgba(255,253,244,0.04) 0 12px, transparent 12px 24px),
+        linear-gradient(135deg, #16261a, var(--x-ink));
+    border-bottom: 1.5px solid rgba(255, 253, 244, 0.15);
 }
 .extras .x-thumb span {
-    font-family: 'Fira Mono Bold', monospace;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--x-neon);
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: 2px;
+    font-size: 1.3rem;
+    color: var(--x-mint);
     text-align: center;
     padding: 1rem;
     animation: x-flicker 5s infinite;
 }
 @keyframes x-flicker {
     0%,19%,21%,100% { opacity: 1; }
-    20%              { opacity: 0.3; }
-    55%,57%          { opacity: 0.5; }
+    20%             { opacity: 0.3; }
+    55%,57%         { opacity: 0.5; }
 }
 .extras .x-card-body { padding: 1rem; }
-.extras .x-card-body h3 { margin: 0 0 0.3rem; color: var(--x-cream) !important; font-family: 'Fira Mono Medium', monospace; }
-.extras .x-card-body p  { margin: 0; opacity: 0.6; font-size: 0.9rem; }
+.extras .x-card-body h3 {
+    margin: 0 0 0.3rem;
+    color: var(--x-cream);
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 600;
+}
+.extras .x-card-body p { margin: 0; opacity: 0.65; font-size: 1rem; }
 
 /* ---------- manifesto / docs blocks ---------- */
 .extras .x-doc {
     border-left: 4px solid var(--x-green);
-    padding: 0.5rem 0 0.5rem 1.2rem;
+    border-radius: 0 var(--x-radius-sm) var(--x-radius-sm) 0;
+    padding: 0.75rem 1rem 0.75rem 1.2rem;
     margin: 1.4rem 0;
-    transition: border-color 0.3s ease, transform 0.2s ease;
+    background: rgba(255, 253, 244, 0.03);
+    transition: border-color var(--x-transition), transform var(--x-transition),
+                background-color var(--x-transition);
 }
-.extras .x-doc:hover { border-color: var(--x-neon); transform: translateX(6px); }
-.extras .x-doc h3 { margin: 0 0 0.3rem; color: var(--x-cream) !important; }
-.extras .x-doc p  { margin: 0; opacity: 0.8; }
-.extras .x-doc a  { color: var(--x-neon); font-weight: bold; text-decoration: none; }
-.extras .x-doc a:hover { text-decoration: underline; }
+.extras .x-doc:hover {
+    border-color: var(--x-sage);
+    background: rgba(255, 253, 244, 0.06);
+    transform: translateX(6px);
+}
+.extras .x-doc h3 {
+    margin: 0 0 0.3rem;
+    color: var(--x-cream);
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+.extras .x-doc p { margin: 0; opacity: 0.85; font-size: 1.1rem; }
+.extras .x-doc a {
+    color: var(--x-mint);
+    font-weight: 600;
+    font-style: italic;
+    text-decoration: none;
+    transition: color var(--x-transition);
+}
+.extras .x-doc a:hover { color: var(--x-cream); text-decoration: underline; }
 
-/* ---------- BUG MINIGAME STYLES ---------- */
+/* ---------- bug minigame ---------- */
 .extras .x-bug {
     position: absolute;
     z-index: 2;
@@ -203,23 +256,17 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     height: auto;
     cursor: grab;
     user-select: none;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6));
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
     animation: x-buzz 6s ease-in-out infinite;
-    /* smooth movement for when they spawn */
-    transition: opacity 0.3s ease; 
+    transition: opacity 0.3s ease;
 }
 .extras .x-bug:active { cursor: grabbing; }
 
-/* The moment before being swatted */
-.extras .x-bug.x-dead-prep {
-    animation: none !important;
-}
+.extras .x-bug.x-dead-prep { animation: none !important; }
 
-/* Squished and falling */
 .extras .x-bug.x-dead {
     animation: none !important;
     transform: scaleY(0.25) scaleX(1.3) !important;
-    /* Accelerates nicely into the footer */
     transition: top 1.2s cubic-bezier(0.5, 0, 1, 1), transform 0.1s !important;
     pointer-events: none;
     filter: grayscale(1) opacity(0.7) !important;
@@ -233,24 +280,23 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     75%     { transform: translate(10px,6px) rotate(6deg); }
 }
 
-/* Pure CSS Flyswatter */
+/* Pure CSS flyswatter */
 .extras .x-swatter {
     position: absolute;
     width: 60px;
     height: 140px;
     pointer-events: none;
     z-index: 999;
-    /* Hinges at the bottom of the handle */
     transform-origin: bottom center;
     animation: swat-arc 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 .extras .x-swatter-head {
     width: 60px;
     height: 70px;
-    background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255, 60, 60, 0.6) 4px, rgba(255, 60, 60, 0.6) 6px),
-                repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(255, 60, 60, 0.6) 4px, rgba(255, 60, 60, 0.6) 6px);
-    border: 4px solid #b32424;
-    border-radius: 8px;
+    background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(158, 43, 37, 0.55) 4px, rgba(158, 43, 37, 0.55) 6px),
+                repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(158, 43, 37, 0.55) 4px, rgba(158, 43, 37, 0.55) 6px);
+    border: 4px solid var(--x-red);
+    border-radius: var(--x-radius-sm);
 }
 .extras .x-swatter-handle {
     width: 8px;
@@ -268,51 +314,48 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     100% { opacity: 0; transform: rotate(-10deg) translateY(0); }
 }
 
-/* a little footer note inside the drawer */
+/* ---------- footnote ---------- */
 .extras .x-footnote {
     text-align: center;
     padding: 2rem 1.5rem 3.5rem;
-    opacity: 0.5;
-    font-size: 0.85rem;
+    opacity: 0.55;
+    font-size: 0.95rem;
+    font-style: italic;
 }
 
-/* ---------- SCORE COUNTER ---------- */
+/* ---------- score counter ---------- */
 .extras .x-score-counter {
     position: fixed;
     bottom: 20px;
     right: 20px;
     background: rgba(11, 19, 12, 0.85);
-    border: 2px solid var(--x-neon);
+    border: 1.5px solid var(--x-mint);
     color: var(--x-cream);
-    padding: 10px 20px;
-    font-family: 'Fira Mono Bold', monospace;
+    padding: 10px 22px;
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 600;
     font-size: 1.1rem;
-    border-radius: 8px;
+    border-radius: var(--x-radius-pill);
+    box-shadow: var(--x-shadow);
     z-index: 1000;
     backdrop-filter: blur(4px);
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.3s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease, border-color var(--x-transition);
     pointer-events: none;
 }
-.extras .x-score-counter.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+.extras .x-score-counter.visible { opacity: 1; transform: translateY(0); }
 .extras .x-score-counter.enraged {
-    border-color: #ff2d4b;
-    color: #ff2d4b;
+    border-color: var(--x-red-lit);
+    color: var(--x-red-lit);
     animation: x-flicker 2s infinite;
 }
 
-/* ---------- ERRATIC BUG MODE ---------- */
+/* ---------- erratic bug mode ---------- */
 .extras .x-bug.x-erratic {
-    /* Fast, angry jitter */
-    animation: x-fast-buzz 0.08s infinite alternate !important; 
-    /* Smooths out the random JS coordinate jumps */
+    animation: x-fast-buzz 0.08s infinite alternate !important;
     transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1), left 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
 }
-
 @keyframes x-fast-buzz {
     0%   { transform: rotate(-15deg) scale(1.1); }
     100% { transform: rotate(15deg) scale(0.9); }
@@ -341,7 +384,7 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
         <h1 class="x-glitch" data-text="EXTRA STUFF">EXTRA STUFF</h1>
         <p class="x-sub">Enter the Gadfly-verse; this is all the Gadfly "stuff" that's not in the form of a mainline issue.</p>
     </section>
-    
+
     <section class="x-section">
         <h2>Extra-Issue Documents</h2>
         <p>The Gadfly has more rules and regulations than the WRDSB does; take a read</p>
@@ -371,7 +414,9 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
               <a href="{{ '/pages/manifesto' | relative_url }}">Get radicalised →</a></p>
         </div>
     </section>
-    
+
+    <div class="x-score-counter" id="x-score-counter" aria-live="polite"></div>
+
 </div>
 
 <script>
@@ -379,9 +424,11 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     var extras = document.getElementById('extras');
     if (!extras) return;
 
+    var scoreCounter = document.getElementById('x-score-counter');
+
     /* ---- STATE CONFIGURATION VARIABLES ---- */
-    var bw = false;      
-    var colour = true;   
+    var bw = false;
+    var colour = true;
 
     if (bw) {
         extras.classList.remove('bleed');
@@ -419,7 +466,7 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
     var currentFlyCount = 0;
     var fliesKilled = 0;
     var bugImgSrc = "{{ '/assets/misc/gadfly.png' | relative_url }}";
-    
+
     function spawnFly() {
         if (currentFlyCount >= MAX_FLIES) return;
         currentFlyCount++;
@@ -428,21 +475,21 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
         bug.className = 'x-bug';
         bug.src = bugImgSrc;
         bug.alt = "A loose gadfly.";
-        
+
         var p = extras.getBoundingClientRect();
         var startX = Math.random() * (p.width - 100) + 20;
         var startY = Math.random() * (p.height * 0.6) + 20;
-        
+
         bug.style.left = startX + 'px';
         bug.style.top = startY + 'px';
-        
-        // 8 Kills triggers the erratic movement state
+
+        // 8 kills triggers the erratic movement state
         var isErratic = fliesKilled >= 8;
         if (isErratic) {
             bug.classList.add('x-erratic');
-            
+
             // Randomly jump around the screen every 800ms
-            var erraticMove = setInterval(function() {
+            var erraticMove = setInterval(function () {
                 if (bug.classList.contains('x-dead') || bug.classList.contains('x-dead-prep')) {
                     clearInterval(erraticMove);
                     return;
@@ -456,99 +503,99 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
                 }
             }, 800);
         }
-        
+
         extras.appendChild(bug);
 
-        /* Bug Drag & Click Logic */
+        /* Bug drag & click logic */
         var dragging = false, isDrag = false;
         var startMouseX = 0, startMouseY = 0;
         var offX = 0, offY = 0;
-        
+
         var start = function (e) {
             if (bug.classList.contains('x-dead')) return;
             dragging = true;
-            isDrag = false; 
-            
+            isDrag = false;
+
             var b = bug.getBoundingClientRect();
             var clientX = e.clientX || (e.touches && e.touches[0].clientX);
             var clientY = e.clientY || (e.touches && e.touches[0].clientY);
-            
+
             startMouseX = clientX;
             startMouseY = clientY;
-            offX = clientX - b.left; 
+            offX = clientX - b.left;
             offY = clientY - b.top;
-            
+
             bug.style.animation = 'none';
-            if (isErratic) bug.style.transition = 'none'; // Disable transition so dragging stays snappy
+            if (isErratic) bug.style.transition = 'none'; // keep dragging snappy
         };
-        
+
         var move = function (e) {
             if (!dragging || bug.classList.contains('x-dead')) return;
-            
+
             var clientX = e.clientX || (e.touches && e.touches[0].clientX);
             var clientY = e.clientY || (e.touches && e.touches[0].clientY);
-            
+
             if (Math.abs(clientX - startMouseX) > 5 || Math.abs(clientY - startMouseY) > 5) {
                 isDrag = true;
             }
-            
+
             var bounds = extras.getBoundingClientRect();
             bug.style.left = (clientX - bounds.left - offX) + 'px';
             bug.style.top  = (clientY - bounds.top  - offY) + 'px';
         };
-        
-        var end = function () { 
+
+        var end = function () {
             if (!dragging || bug.classList.contains('x-dead')) return;
-            dragging = false; 
-            
+            dragging = false;
+
             if (!isDrag) {
                 triggerSwat(bug);
             } else {
                 // Resume buzz state if dragged and dropped
                 if (isErratic) {
-                    bug.style.transition = ''; // Restore CSS transition
-                    bug.style.animation = 'x-fast-buzz 0.08s infinite alternate !important';
+                    bug.style.transition = ''; // restore CSS transition
+                    bug.style.animation = '';  // fall back to the .x-erratic animation
                 } else {
                     bug.style.animation = 'x-buzz 6s ease-in-out infinite';
                 }
             }
         };
 
-        bug.addEventListener('mousedown', function(e) { e.preventDefault(); start(e); });
+        bug.addEventListener('mousedown', function (e) { e.preventDefault(); start(e); });
         window.addEventListener('mousemove', move);
         window.addEventListener('mouseup', end);
-        bug.addEventListener('touchstart', function(e) { start(e); }, { passive: true });
+        bug.addEventListener('touchstart', function (e) { start(e); }, { passive: true });
         window.addEventListener('touchmove', move, { passive: true });
         window.addEventListener('touchend', end);
     }
 
     function triggerSwat(bug) {
         bug.classList.add('x-dead-prep');
-        
+
         var b = bug.getBoundingClientRect();
         var p = extras.getBoundingClientRect();
-        
+
         var swatter = document.createElement('div');
         swatter.className = 'x-swatter';
         swatter.innerHTML = '<div class="x-swatter-head"></div><div class="x-swatter-handle"></div>';
-        
+
         swatter.style.left = (b.left - p.left + 15) + 'px';
         swatter.style.top = (b.top - p.top - 80) + 'px';
-        
+
         extras.appendChild(swatter);
-        
-        setTimeout(function() {
+
+        setTimeout(function () {
             bug.classList.remove('x-dead-prep');
-            bug.classList.remove('x-erratic'); // Ensure dead bugs don't twitch
+            bug.classList.remove('x-erratic'); // dead bugs don't twitch
             bug.classList.add('x-dead');
-            
-            var dropHeight = p.height - 60; 
+
+            var dropHeight = p.height - 60;
             bug.style.top = dropHeight + 'px';
-            
+
             currentFlyCount--;
             fliesKilled++;
-            
-            // Update Score UI
+
+            // Update score UI
             if (fliesKilled === 1) {
                 scoreCounter.classList.add('visible');
             }
@@ -559,17 +606,17 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
                 scoreCounter.innerText = 'Gadflies Swatted: ' + fliesKilled;
             }
 
-        }, 250); 
-        
-        setTimeout(function() {
+        }, 250);
+
+        setTimeout(function () {
             swatter.remove();
         }, 600);
     }
 
     spawnFly();
-    
-    // Spawn loops: Faster spawns if the swarm is hostile
-    setInterval(function() {
+
+    // Spawn loops: faster spawns if the swarm is hostile
+    setInterval(function () {
         var spawnChance = fliesKilled >= 10 ? 0.7 : 0.4;
         if (Math.random() > spawnChance) {
             spawnFly();
@@ -578,3 +625,4 @@ The first iteration was super clunky visually, so I changed the colours, fixed l
 
 })();
 </script>
+
