@@ -8,15 +8,17 @@ This is the website for my satirical school newspaper: The Gadfly.
 
 A simple mostly-static website using Jekyll, with minimal amounts of vanilla JavaScript (only to make the burger menu work, and for Vim keybinds), mostly coded by myself with AI assistance in places. Of course, the content itself is certified No-AI; that means the issues and website contents are human-written.  
 
-Note: Um, well, the comics/extras page are partially `vibecoded`. They have inline JS, etc. If you want to avoid AI, avoid those pages, but all content and text are still human, like always.
+Note: Um, well, the comics, extras, and consent page(s) are partially `vibecoded`. They have inline JS, etc. If you want to avoid AI, avoid those pages, but all content and text are still human, like always.
 
 Resources used:
 * Hosting - GitHub Pages
 * Building - Jekyll
+* Local Development - Nix, Vim, GNOME Text
 * Domain purchase - Namecheap
-* Font(s) - Mozilla Fira Mono (Regular, Medium, Bold)
+* Font(s) - Cormorant Infant & Cormorant Garamond
 * Email subscription - Buttondown (free tier) 
 * Form - Web3Forms (free tier) 
-* Captcha - hCaptcha  
+* Captcha - hCaptcha
+* AI tools used - Claude Fable/Opus, Gemini 3.x Flash, Deepseek V4 Flash
 
 [![License: MIT]()](https://github.com/matey-0/thegadfly.news/blob/main/LICENSE)
