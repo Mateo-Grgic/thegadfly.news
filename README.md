@@ -1,6 +1,6 @@
 # The Gadfly Website
 
-<img width="2880" height="1714" alt="image" src="https://github.com/user-attachments/assets/df10fa00-e155-4c6f-acc1-161db801eab0" />  
+<img width="2880" height="1714" alt="image" src="https://github.com/user-attachments/assets/3c7dd08f-5c5c-4995-8345-e0c5bfb6f49b" />  
 
 [Archived Site (Wayback Machine)](https://web.archive.org/web/20260000000000*/https://thegadfly.news/pages/thegadfly)  
 
