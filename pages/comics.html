@@ -1,0 +1,418 @@
+---
+layout: default
+title: Comics
+---
+
+<style>
+/* ==========================================================
+   Comics archive — scoped to .comics
+   The Gadfly funny pages.
+
+   Structure:
+     1. Variables
+     2. Hero / masthead
+     3. Issue jump-nav
+     4. Issue sections
+     5. Comic panels (mixed aspect ratios — never cropped)
+     6. Lightbox
+     7. Small screens & motion
+   ========================================================== */
+
+/* ---------- 1. variables ---------- */
+.comics {
+    --c-paper:  var(--off-white, #fffdf4);
+    --c-text:   var(--ink, #2b2b26);
+    --c-green:  var(--gadfly-green, #09461d);
+    --c-sage:   #5d8a6b;
+    --c-mint:   var(--mint-green, #e1e7e3);
+    --c-soft:   var(--ink-soft, #55554e);
+
+    --c-line:        rgba(11, 19, 12, 0.16);   /* hairline borders */
+    --c-line-strong: rgba(11, 19, 12, 0.3);
+    --c-wash:        rgba(9, 70, 29, 0.04);    /* faint green tint */
+
+    --c-radius-sm:   var(--radius-sm, 10px);
+    --c-radius-md:   var(--radius-md, 16px);
+    --c-radius-pill: var(--radius-pill, 999px);
+    --c-transition:  var(--transition, 0.25s ease);
+    --c-shadow:      var(--shadow-card, 0 6px 18px rgba(11, 19, 12, 0.14));
+    --c-spring:      cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    --c-panel-w: 340px;      /* ONE knob for comic size */
+
+    background: var(--c-paper);
+    color: var(--c-text);
+    font-family: var(--font-body, 'Cormorant Infant', Georgia, serif);
+    min-height: 100vh;
+    padding-bottom: 2.5rem;
+}
+
+/* ---------- 2. hero ---------- */
+.comics .c-hero {
+    text-align: center;
+    padding: 2.2rem 1.5rem 0.8rem;
+}
+.comics .c-hero h1 {
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 700;
+    font-size: clamp(2rem, 5.5vw, 3.6rem);
+    line-height: 1.05;
+    margin: 0;
+    color: var(--c-green);
+}
+.comics .c-sub {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--c-soft);
+    max-width: 45ch;
+    margin: 0.5rem auto 0;
+}
+.comics .c-rule {
+    max-width: 720px;
+    margin: 1rem auto 0;
+    border: 0;
+    border-top: 3px double var(--c-line-strong);
+}
+
+/* ---------- 3. issue jump-nav ---------- */
+.comics .c-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.9rem 1.5rem 0;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.comics .c-nav a {
+    padding: 0.2rem 0.85rem;
+    border: 1.5px solid var(--c-line-strong);
+    border-radius: var(--c-radius-pill);
+    color: var(--c-green);
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    background: var(--c-wash);
+    transition: border-color var(--c-transition),
+                background-color var(--c-transition),
+                transform var(--c-transition);
+}
+.comics .c-nav a:hover,
+.comics .c-nav a:focus-visible {
+    border-color: var(--c-sage);
+    background: var(--c-mint);
+    transform: translateY(-2px);
+    outline: none;
+}
+
+/* ---------- 4. issue sections ---------- */
+.comics .c-issue {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.7rem 1.5rem 0;
+    scroll-margin-top: 5rem;
+}
+.comics .c-issue-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto 0.9rem;
+}
+.comics .c-issue-head h2 {
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: var(--c-green);
+    margin: 0;
+    transform: rotate(-1deg);
+    display: inline-block;
+}
+.comics .c-date {
+    font-style: italic;
+    color: var(--c-soft);
+    font-size: 1rem;
+}
+
+/* ---------- 5. comic panels ---------- */
+/* Same width for every panel; height follows the artwork.
+   Rows are centred and top-aligned, so a tall comic next to
+   a wide one still reads cleanly. Nothing is cropped. */
+.comics .c-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.1rem;
+}
+.comics .c-panel {
+    display: block;
+    width: var(--c-panel-w);
+    max-width: 100%;
+    cursor: zoom-in;
+    text-decoration: none;
+    background: #fff;
+    border: 1.5px solid var(--c-line);
+    border-radius: var(--c-radius-md);
+    padding: 7px 7px 9px;                    /* slim white mat */
+    box-shadow: 0 3px 10px rgba(11, 19, 12, 0.08);
+    transition: transform 0.25s var(--c-spring),
+                box-shadow var(--c-transition),
+                border-color var(--c-transition);
+    will-change: transform;
+}
+.comics .c-panel:hover,
+.comics .c-panel:focus-visible {
+    transform: rotate(var(--tilt, -1.5deg)) translateY(-6px) scale(1.02);
+    border-color: var(--c-sage);
+    box-shadow: var(--c-shadow);
+    outline: none;
+}
+.comics .c-panel:nth-child(2n) { --tilt: 1.5deg; }
+.comics .c-panel:nth-child(3n) { --tilt: -2deg; }
+
+.comics .c-panel img {
+    display: block;
+    width: 100%;
+    height: auto;                            /* natural ratio, no cropping */
+    border-radius: var(--c-radius-sm);
+    border: 1px solid rgba(11, 19, 12, 0.1);
+    background: var(--c-mint);               /* placeholder while loading */
+    min-height: 120px;                       /* mat isn't a sliver pre-load */
+}
+.comics .c-caption {
+    margin: 0.4rem 0.2rem 0;
+    font-size: 0.92rem;
+    line-height: 1.3;
+    color: var(--c-soft);
+    font-style: italic;
+    text-align: center;
+}
+.comics .c-caption strong {
+    color: var(--c-green);
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* ---------- empty state ---------- */
+.comics .c-empty {
+    text-align: center;
+    color: var(--c-soft);
+    font-style: italic;
+    padding: 3rem 1.5rem;
+}
+
+/* ---------- 6. lightbox ---------- */
+.comics .c-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    padding: 2rem;
+    background: rgba(255, 253, 244, 0.94);   /* cream fog, not a void */
+    backdrop-filter: blur(6px);
+}
+.comics .c-lightbox.open { display: flex; }
+.comics .c-lightbox img {
+    max-width: min(88vw, 900px);
+    max-height: 78vh;
+    width: auto;
+    height: auto;                            /* whatever shape it is, show it all */
+    border-radius: var(--c-radius-md);
+    border: 1.5px solid var(--c-line-strong);
+    box-shadow: var(--c-shadow);
+    background: #fff;
+}
+.comics .c-lb-caption {
+    font-style: italic;
+    color: var(--c-soft);
+    text-align: center;
+    max-width: 60ch;
+    margin: 0;
+}
+.comics .c-lb-caption strong {
+    color: var(--c-green);
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-style: normal;
+}
+.comics .c-lb-btn {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    width: 48px;
+    height: 48px;
+    border: 1.5px solid var(--c-line-strong);
+    border-radius: 50%;
+    background: rgba(255, 253, 244, 0.9);
+    color: var(--c-green);
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color var(--c-transition),
+                background-color var(--c-transition);
+}
+.comics .c-lb-btn:hover,
+.comics .c-lb-btn:focus-visible {
+    border-color: var(--c-sage);
+    background: var(--c-mint);
+    outline: none;
+}
+.comics .c-lb-prev  { left: 1rem; }
+.comics .c-lb-next  { right: 1rem; }
+.comics .c-lb-close { top: 1rem; right: 1rem; translate: 0 0; }
+
+/* ---------- 7. small screens & motion ---------- */
+@media (max-width: 480px) {
+    .comics { --c-panel-w: 100%; }
+    .comics .c-lb-prev { left: 0.4rem; }
+    .comics .c-lb-next { right: 0.4rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .comics * { animation: none !important; transition: none !important; }
+}
+</style>
+
+<div class="comics" id="comics">
+
+    <section class="c-hero">
+        <h1>Comics</h1>
+        <p class="c-sub">Every Gadfly comic. Ever</p>
+        <hr class="c-rule">
+    </section>
+
+    {% if site.data.comics and site.data.comics.size > 0 %}
+    {% assign issues = site.data.comics | reverse %}
+
+    <nav class="c-nav" aria-label="Jump to issue">
+        {% for entry in issues %}
+        <a href="#{{ entry.issue | slugify }}">{{ entry.issue }}</a>
+        {% endfor %}
+    </nav>
+
+    {% for entry in issues %}
+    <section class="c-issue" id="{{ entry.issue | slugify }}">
+        <div class="c-issue-head">
+            <h2>{{ entry.issue }}</h2>
+            {% if entry.date %}<span class="c-date">{{ entry.date }}</span>{% endif %}
+        </div>
+        <div class="c-grid">
+            {% for comic in entry.comics %}
+            <a class="c-panel" href="{{ comic.file | relative_url }}"
+               data-issue="{{ entry.issue }}"
+               data-title="{{ comic.title }}"
+               data-artist="{{ comic.artist }}">
+                <img src="{{ comic.file | relative_url }}"
+                     alt="{% if comic.title != '' %}{{ comic.title }} — {% endif %}comic from {{ entry.issue }}"
+                     loading="lazy">
+                {% if comic.title != '' or comic.artist != '' %}
+                <p class="c-caption">
+                    {% if comic.title != '' %}<strong>{{ comic.title }}</strong>{% endif %}
+                    {% if comic.artist != '' %}<br>by {{ comic.artist }}{% endif %}
+                </p>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+    {% endfor %}
+
+    {% else %}
+    <p class="c-empty">No comics yet. The artists are, presumably, on deadline.</p>
+    {% endif %}
+
+    <!-- lightbox -->
+    <div class="c-lightbox" id="c-lightbox" role="dialog" aria-modal="true" aria-label="Comic viewer" hidden>
+        <button class="c-lb-btn c-lb-close" id="c-lb-close" aria-label="Close viewer">×</button>
+        <button class="c-lb-btn c-lb-prev"  id="c-lb-prev"  aria-label="Previous comic">‹</button>
+        <img id="c-lb-img" src="" alt="">
+        <p class="c-lb-caption" id="c-lb-caption"></p>
+        <button class="c-lb-btn c-lb-next"  id="c-lb-next"  aria-label="Next comic">›</button>
+    </div>
+
+</div>
+
+<script>
+(function () {
+    'use strict';
+
+    var root = document.getElementById('comics');
+    if (!root) return;
+
+    var panels = Array.prototype.slice.call(root.querySelectorAll('.c-panel'));
+    if (!panels.length) return;
+
+    var lightbox = document.getElementById('c-lightbox');
+    var lbImg    = document.getElementById('c-lb-img');
+    var lbCap    = document.getElementById('c-lb-caption');
+    var current  = -1;
+    var lastFocus = null;
+
+    function render() {
+        var p = panels[current];
+        lbImg.src = p.getAttribute('href');
+        lbImg.alt = p.querySelector('img').alt;
+
+        /* built with textContent, not innerHTML — XSS-safe captions */
+        var cap = document.createElement('strong');
+        cap.textContent = p.dataset.issue;
+        lbCap.textContent = '';
+        lbCap.appendChild(cap);
+        if (p.dataset.title)  lbCap.appendChild(document.createTextNode(' — ' + p.dataset.title));
+        if (p.dataset.artist) lbCap.appendChild(document.createTextNode(' — by ' + p.dataset.artist));
+    }
+
+    function open(i) {
+        current = i;
+        lastFocus = document.activeElement;
+        render();
+        lightbox.hidden = false;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        document.getElementById('c-lb-close').focus();
+    }
+
+    function step(dir) {
+        current = (current + dir + panels.length) % panels.length;  /* wraps */
+        render();
+    }
+
+    function close() {
+        lightbox.classList.remove('open');
+        lightbox.hidden = true;
+        lbImg.src = '';
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+    }
+
+    panels.forEach(function (p, i) {
+        p.addEventListener('click', function (e) {
+            e.preventDefault();               /* href = no-JS fallback */
+            open(i);
+        });
+    });
+
+    document.getElementById('c-lb-close').addEventListener('click', close);
+    document.getElementById('c-lb-prev').addEventListener('click', function () { step(-1); });
+    document.getElementById('c-lb-next').addEventListener('click', function () { step(1); });
+
+    lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) close();   /* click the fog to close */
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (lightbox.hidden) return;
+        if (e.key === 'Escape')     close();
+        if (e.key === 'ArrowLeft')  step(-1);
+        if (e.key === 'ArrowRight') step(1);
+    });
+})();
+</script>
+

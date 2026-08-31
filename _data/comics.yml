@@ -1,0 +1,72 @@
+# Newest issue first — the page renders in this order.
+- issue: "Issue 9"
+  date: "May 2026"
+  comics:
+    - file: /assets/comics/issue9.png
+      title: "Generational Fall-Off"
+      artist: "Hassan Ahmed"
+      
+- issue: "Issue 8"
+  date: "April 2026"
+  comics:
+    - file: /assets/comics/issue8.png
+      title: "Liberty Desecrated"
+      artist: "Hassan Ahmed"
+      
+- issue: "Issue 7"
+  date: "March 2026"
+  comics:
+    - file: /assets/comics/issue7-1.png
+      title: "Space F(L)ight"
+      artist: "Hassan Ahmed"
+    - file: /assets/comics/issue7-2.png
+      title: "Frogs Desiring a King "
+      artist: "Hassan Ahmed"
+
+- issue: "Issue 6"
+  date: "February 2026"
+  comics:
+    - file: /assets/comics/issue6-1.png
+      title: "Two Travellers & The Bear"
+      artist: "Hassan Ahmed"
+    - file: /assets/comics/issue6-2.png
+      title: "Kicked Out"
+      artist: "Hassan Ahmed"
+
+- issue: "Issue 5"
+  date: "January 2026"
+  comics:
+    - file: /assets/comics/issue5-1.png
+      title: "Gerb’s Inn"
+      artist: "Hassan Ahmed"
+    - file: /assets/comics/issue5-2.png
+      title: "Farm of Animals"
+      artist: "Hassan Ahmed"      
+      
+- issue: "Issue 4"
+  date: "December 2025"
+  comics:
+    - file: /assets/comics/issue4.png
+      title: "Important Figures"
+      artist: "Hassan Ahmed"
+
+- issue: "Issue 3"
+  date: "November 2025"
+  comics:
+    - file: /assets/comics/issue3.png
+      title: "Funny Prank"
+      artist: "Hassan Ahmed"
+      
+- issue: "Issue 2"
+  date: "October 2025"
+  comics:
+    - file: /assets/comics/issue2.png
+      title: "Elizabeth's Revenge"
+      artist: "Hassan Ahmed"
+      
+- issue: "Issue 1"
+  date: "September 2025"
+  comics:
+    - file: /assets/comics/issue1.png
+      title: "The Gadfly V.S. Ancient Greek Guy "
+      artist: "Lianne Elkadri"   
