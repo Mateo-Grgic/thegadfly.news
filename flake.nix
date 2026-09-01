@@ -18,7 +18,13 @@
             rubyPackages.jekyll-feed
             rubyPackages.jekyll-seo-tag
             rubyPackages.webrick
+
+            fish
           ];
+
+          shellHook = ''
+            exec fish
+          '';
         };
       });
 }
