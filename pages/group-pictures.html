@@ -1,51 +1,284 @@
 ---
 layout: default
 title: Group Pictures
----  
+---
 
-<section class="groupies-section">
+<style>
+/* ==========================================================
+   Group Pictures — author reveal
+   Click a group photo to meet the Gadflies of that issue.
+   Follows the comics-page lightbox pattern & site variables.
+   ========================================================== */
+
+/* Original page by me, added bit with the click on author photo is by Claude Fable */ 
+
+.groupies-section .groupies {
+    cursor: zoom-in;
+    transition: transform var(--transition, 0.25s ease),
+                box-shadow var(--transition, 0.25s ease);
+}
+.groupies-section .groupies:hover,
+.groupies-section .groupies:focus-visible {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: var(--shadow-lift, 0 10px 24px rgba(11, 19, 12, 0.18));
+    outline: none;
+}
+.groupie-hint {
+    margin: 0.6rem 0 0;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--ink-soft, #55554e);
+}
+
+/* ---------- author lightbox ---------- */
+.g-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 2rem 1.5rem;
+    background: rgba(255, 253, 244, 0.94);   /* cream fog, per the comics page */
+    backdrop-filter: blur(6px);
+}
+.g-lightbox.open { display: flex; }
+
+.g-lb-title {
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 600;
+    font-size: clamp(1.5rem, 4vw, 2.1rem);
+    color: var(--gadfly-green, #09461d);
+    text-align: center;
+    margin: 0;
+}
+.g-lb-sub {
+    font-style: italic;
+    color: var(--ink-soft, #55554e);
+    text-align: center;
+    margin: -0.8rem 0 0;
+}
+
+.g-lb-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    max-width: 900px;
+    max-height: 65vh;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+.g-lb-author {
+    text-align: center;
+    background: var(--off-white, #fffdf4);
+    border: 1.5px solid var(--line, #cfcdc2);
+    border-radius: var(--radius-md, 16px);
+    padding: 0.8rem 0.8rem 0.6rem;
+    box-shadow: var(--shadow-card, 0 6px 18px rgba(11, 19, 12, 0.14));
+}
+.g-lb-author img {
+    display: block;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: var(--radius-md, 16px);
+    box-shadow: var(--shadow-soft, 0 2px 10px rgba(11, 19, 12, 0.10));
+    background: var(--mint-green, #e1e7e3);   /* placeholder while loading */
+}
+.g-lb-author p {
+    margin: 0.5rem 0 0;
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-weight: 600;
+    color: var(--gadfly-green, #09461d);
+}
+
+.g-lb-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 48px;
+    height: 48px;
+    border: 1.5px solid var(--line, #cfcdc2);
+    border-radius: 50%;
+    background: rgba(255, 253, 244, 0.9);
+    color: var(--gadfly-green, #09461d);
+    font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color var(--transition, 0.25s ease),
+                background-color var(--transition, 0.25s ease);
+}
+.g-lb-close:hover,
+.g-lb-close:focus-visible {
+    border-color: var(--gadfly-green, #09461d);
+    background: var(--mint-green, #e1e7e3);
+    outline: none;
+}
+
+@media (max-width: 480px) {
+    .g-lb-author img { width: 110px; height: 110px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .groupies-section .groupies { transition: none !important; }
+}
+</style>
+
+<section class="groupies-section" id="groupies">
     <h1>Previous Group Photos</h1>
     <div class="groupies-grid">
         <div class="groupie-card">
             <h2>Issue #1 - Taken on: September 1, 2025</h2>
-            <img src="{{ "/assets/group-pictures/issue1-group.webp" | relative_url }}" alt="1st Group Photo" class="groupies">
+            <img src="{{ "/assets/group-pictures/issue1-group.webp" | relative_url }}" alt="1st Group Photo" class="groupies" tabindex="0"
+                 data-issue="Issue #1"
+                 data-authors="Mateo Grgić|prev/Mateo/mateo-1.webp,Hassan Ahmed|prev/Hassan/hassan-1.webp,Lianne Elkadri|prev/Lianne/lianne-1.webp">
         </div>
         <div class="groupie-card">
             <h2>Issue #2 - Taken on: October 24, 2025</h2>
-            <img src="{{ "/assets/group-pictures/issue2-group.webp" | relative_url }}" alt="2st Group Photo" class="groupies">
+            <img src="{{ "/assets/group-pictures/issue2-group.webp" | relative_url }}" alt="2st Group Photo" class="groupies" tabindex="0"
+                 data-issue="Issue #2"
+                 data-authors="Mateo Grgić|prev/Mateo/mateo-2.png,Hassan Ahmed|prev/Hassan/hassan-2.png,Lianne Elkadri|prev/Lianne/lianne-2.png">
         </div>
         <div class="groupie-card">
             <h2>Issue #3 - Taken on: November 14, 2025</h2>
-            <img src="{{ "/assets/group-pictures/issue3-group.webp" | relative_url }}" alt="3rd Group Photo" class="groupies">
+            <img src="{{ "/assets/group-pictures/issue3-group.webp" | relative_url }}" alt="3rd Group Photo" class="groupies" tabindex="0"
+                 data-issue="Issue #3"
+                 data-authors="Mateo Grgić|prev/Mateo/mateo-3.png,Hassan Ahmed|prev/Hassan/hassan-3.png,Lianne Elkadri|prev/Lianne/lianne-3.png,David|prev/David/david-3.png">
         </div>
         <div class="groupie-card">
             <h2>Issue #4 - Taken on: December 17, 2025</h2>
-            <img src="{{ "/assets/group-pictures/issue4-group.webp" | relative_url }}" alt="4rd Group Photo" class="groupies">
+            <img src="{{ "/assets/group-pictures/issue4-group.webp" | relative_url }}" alt="4rd Group Photo" class="groupies" tabindex="0"
+                 data-issue="Issue #4"
+                 data-authors="Mateo Grgić|prev/Mateo/mateo-4.jpg,Hassan Ahmed|prev/Hassan/hassan-4.png,Lianne Elkadri|prev/Lianne/lianne-4.png,David|prev/David/david-4.png">
         </div>
         <div class="groupie-card">
             <h2>Issue #5 - Taken on: January 19, 2026</h2>
-            <img src="{{ "/assets/group-pictures/issue5-group.webp" | relative_url }}" alt="5th Group Photo" class="groupies">
+            <img src="{{ "/assets/group-pictures/issue5-group.webp" | relative_url }}" alt="5th Group Photo" class="groupies" tabindex="0"
+                 data-issue="Issue #5"
+                 data-authors="Mateo Grgić|prev/Mateo/mateo-5.jpg,Hassan Ahmed|prev/Hassan/hassan-5.jpg,Lianne Elkadri|prev/Lianne/lianne-5.jpg,David|prev/David/david-5.jpg">
         </div>
         <div class="groupie-card">
             <h2>Issue #6 - Taken on: February 26, 2026</h2>
-            <img src="{{ "/assets/group-pictures/issue6-group.webp" | relative_url }}" alt="6th Group Photo" class="groupies">
+            <img src="{{ "/assets/group-pictures/issue6-group.webp" | relative_url }}" alt="6th Group Photo" class="groupies" tabindex="0"
+                 data-issue="Issue #6"
+                 data-authors="Mateo Grgić|prev/Mateo/mateo-6.webp,Hassan Ahmed|prev/Hassan/hassan-6.webp,Lianne Elkadri|prev/Lianne/lianne-6.webp,David|prev/David/david-6.webp,Oskar Deneau|prev/Oskar/oskar-6.webp">
         </div>
         <div class="groupie-card">
             <h2>Issue #7 - Taken on: March 23, 2026</h2>
-            <img src="{{ "/assets/group-pictures/issue7-group.webp" | relative_url }}" alt="7th Group Photo" class="groupies">
+            <img src="{{ "/assets/group-pictures/issue7-group.webp" | relative_url }}" alt="7th Group Photo" class="groupies" tabindex="0"
+                 data-issue="Issue #7"
+                 data-authors="Mateo Grgić|prev/Mateo/mateo-7.webp,Hassan Ahmed|prev/Hassan/hassan-7.webp,Lianne Elkadri|prev/Lianne/lianne-7.webp,Oskar Deneau|prev/Oskar/oskar-7.webp">
         </div>
         <div class="groupie-card">
             <h2>Issue #8 - Taken on: July 13, 2026</h2>
-            <img src="{{ "/assets/group-pictures/issue8-group.webp" | relative_url }}" alt="8th Group Photo" class="groupies">
+            <img src="{{ "/assets/group-pictures/issue8-group.webp" | relative_url }}" alt="8th Group Photo" class="groupies" tabindex="0"
+                 data-issue="Issue #8"
+                 data-authors="Mateo Grgić|prev/Mateo/mateo-8.webp,Hassan Ahmed|prev/Hassan/hassan-8.webp">
         </div>
         <div class="groupie-card">
             <h2>Issue #9 - Taken on: June 5, 2026</h2>
-            <img src="{{ "/assets/group-pictures/issue9-group.webp" | relative_url }}" alt="9th Group Photo" class="groupies">
+            <img src="{{ "/assets/group-pictures/issue9-group.webp" | relative_url }}" alt="9th Group Photo" class="groupies" tabindex="0"
+                 data-issue="Issue #9"
+                 data-authors="Mateo Grgić|prev/Mateo/mateo-9.webp,Hassan Ahmed|prev/Hassan/hassan-9.webp,Lianne Elkadri|prev/Lianne/lianne-9.png,Oskar Deneau|prev/Oskar/oskar-9.webp">
         </div>
         <div class="groupie-card">
             <h2>Issue #10 - Taken on: August 5, 2026</h2>
-            <img src="{{ "/assets/group-pictures/issue10-group.webp" | relative_url }}" alt="10th Group Photo" class="groupies">
+            <img src="{{ "/assets/group-pictures/issue10-group.webp" | relative_url }}" alt="10th Group Photo" class="groupies" tabindex="0"
+                 data-issue="Issue #10"
+                 data-authors="Mateo Grgić|current/mateo.webp,Hassan Ahmed|current/hassan.webp,Lianne Elkadri|current/lianne.webp,Oskar Deneau|current/oskar.webp,Omar Aladham|current/omar.webp">
         </div>
     </div>
+
+    <!-- author lightbox -->
+    <div class="g-lightbox" id="g-lightbox" role="dialog" aria-modal="true" aria-label="Issue authors" hidden>
+        <button class="g-lb-close" id="g-lb-close" aria-label="Close viewer">×</button>
+        <h2 class="g-lb-title" id="g-lb-title"></h2>
+        <p class="g-lb-sub">Meet this issue's team!</p>
+        <div class="g-lb-grid" id="g-lb-grid"></div>
+    </div>
 </section>
+
+<script>
+(function () {
+    'use strict';
+
+    var root = document.getElementById('groupies');
+    if (!root) return;
+
+    var photos = Array.prototype.slice.call(root.querySelectorAll('.groupies[data-authors]'));
+    if (!photos.length) return;
+
+    var lightbox  = document.getElementById('g-lightbox');
+    var lbTitle   = document.getElementById('g-lb-title');
+    var lbGrid    = document.getElementById('g-lb-grid');
+    var closeBtn  = document.getElementById('g-lb-close');
+    var basePath  = "{{ '/assets/author-images/' | relative_url }}";
+    var lastFocus = null;
+
+    /* built with createElement/textContent, not innerHTML — same as comics */
+    function render(photo) {
+        lbTitle.textContent = photo.dataset.issue;
+        lbGrid.textContent = '';
+
+        photo.dataset.authors.split(',').forEach(function (entry) {
+            var parts = entry.split('|');
+            var name = parts[0].trim();
+            var file = parts[1].trim();
+
+            var card = document.createElement('div');
+            card.className = 'g-lb-author';
+
+            var img = document.createElement('img');
+            img.src = basePath + file;
+            img.alt = name;
+            img.loading = 'lazy';
+
+            var label = document.createElement('p');
+            label.textContent = name;
+
+            card.appendChild(img);
+            card.appendChild(label);
+            lbGrid.appendChild(card);
+        });
+    }
+
+    function open(photo) {
+        lastFocus = document.activeElement;
+        render(photo);
+        lightbox.hidden = false;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+    }
+
+    function close() {
+        lightbox.classList.remove('open');
+        lightbox.hidden = true;
+        lbGrid.textContent = '';
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+    }
+
+    photos.forEach(function (photo) {
+        photo.addEventListener('click', function () { open(photo); });
+        photo.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                open(photo);
+            }
+        });
+    });
+
+    closeBtn.addEventListener('click', close);
+    lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) close();   /* click the fog to close */
+    });
+    document.addEventListener('keydown', function (e) {
+        if (!lightbox.hidden && e.key === 'Escape') close();
+    });
+})();
+</script>
 
